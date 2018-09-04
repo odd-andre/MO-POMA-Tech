@@ -8,11 +8,17 @@ package Servlets;
 import Classes.SqlHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import Entities.Student;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -35,9 +41,31 @@ public class showStudent extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("LOL");
+            
             SqlHandler sqlHdl = new SqlHandler(out);
-           
+            sqlHdl.select("user_id,Adress,Email");
+            sqlHdl.from("Student");
+            ResultSet rst = sqlHdl.runSelect();
+            
+            List<Student> students = new ArrayList();
+            
+            try {
+            int rowCount = 0;
+                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
+                    String sAdress = rst.getString("Adress");
+                    String sEmail = rst.getString("Email");
+                    Integer sId   = rst.getInt("user_id");
+                    students.add(new Student(sAdress,sEmail,sId));
+                    ++rowCount;
+                 }  // end while
+            }
+            catch (SQLException ex) {
+                out.println("Ikke hentet fra DB " +ex);
+            }
+                
+            request.setAttribute("students", students);
+            RequestDispatcher view = request.getRequestDispatcher("/Users/showStudent.jsp");
+            view.forward(request,response);
         }
     }
 

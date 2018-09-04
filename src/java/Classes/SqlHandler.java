@@ -19,7 +19,9 @@ public class SqlHandler {
     String select;
     String where;
     String from;
+    
     PrintWriter out;
+    
     Connection conn;        // Must be defined here as class variables, get their value in the login method
     Statement stmt;    
     
@@ -35,12 +37,9 @@ public class SqlHandler {
               DataSource ds = (DataSource)cont.lookup("java:comp/env/jdbc/localhostDS");  
               //DataSource ds = (DataSource)cont.lookup("jdbc/LocalhostDS");
               conn =  ds.getConnection();
-             out.println("Connection gotten");
 
              // Step 2: Allocate a 'Statement' object in the Connection
              stmt = conn.createStatement();
-                out.println("Statement gotten");
-
             }
             catch (SQLException ex ) {
                 out.println("Not connected to database " +ex);
@@ -49,31 +48,35 @@ public class SqlHandler {
                 out.println("Not correct naming" + nex);
             }
     }
+    
     public void select(String selectString){
         this.select = selectString;
     }
     public void where(String whereString){
-    
+        this.where = whereString;
     }
-    public void runSelect(){
+    public void from(String fromString){
+        this.from = fromString;
+    }
+    
+    public ResultSet runSelect(){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT ? FROM ? WHERE ?");
-            selectString.setString(1,this.select);
-            selectString.setString(2,this.from);
-            selectString.setString(3,this.where);
+            selectString = conn.prepareStatement("SELECT "+this.select+" FROM "+this.from);
+            //selectString.setString(1,this.select);
+            //selectString.setString(2,this.from);
             
-            selectString.executeQuery();
+            return selectString.executeQuery();
         } // end try     
           catch (SQLException ex) {
                 out.println("Ikke lagre i DB " +ex);
         }
+        return null;
     }
-    
+
     public void closeConnection(){
         try {
-        conn.close();
-        
+            conn.close();
         }
         catch (SQLException ex) {
                 System.out.println("Ikke lukke DB " +ex);
@@ -89,6 +92,7 @@ public class SqlHandler {
                     
         }
     }
+    
     public void clearState(){
         this.select = "";
         this.where = "";
