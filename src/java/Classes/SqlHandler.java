@@ -31,13 +31,16 @@ public class SqlHandler {
     private void connectDb(PrintWriter out){
         try {
              // Step 1: Allocate a database 'Connection' object
-             Context cont = new InitialContext();
-             DataSource ds = (DataSource)cont.lookup("java:comp/env/jdbc/LocalhostDS");  
-             //DataSource ds = (DataSource)cont.lookup("jdbc/LocalhostDS");
-             conn =  ds.getConnection();
+              Context cont = new InitialContext();
+              DataSource ds = (DataSource)cont.lookup("java:comp/env/jdbc/localhostDS");  
+              //DataSource ds = (DataSource)cont.lookup("jdbc/LocalhostDS");
+              conn =  ds.getConnection();
+             out.println("Connection gotten");
 
              // Step 2: Allocate a 'Statement' object in the Connection
              stmt = conn.createStatement();
+                out.println("Statement gotten");
+
             }
             catch (SQLException ex ) {
                 out.println("Not connected to database " +ex);
