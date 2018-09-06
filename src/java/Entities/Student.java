@@ -9,10 +9,7 @@ package Entities;
  *
  * @author oddandre
  */
-public class Student {
-    String adress;
-    String email;
-    Integer id;
+public class Student extends User {
     
     public Student(String adress, String email, Integer id){
         this.adress = adress;
