@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import Classes.SqlHandler;
@@ -24,7 +19,7 @@ import java.util.List;
  *
  * @author oddandre
  */
-@WebServlet(name = "showStudent", urlPatterns = {"/showStudent"})
+@WebServlet(name = "showStudent", urlPatterns = {"/showStudent/*"})
 public class showStudent extends HttpServlet {
 
     /**
@@ -41,13 +36,13 @@ public class showStudent extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            String path = request.getPathInfo();
+            String requestedStudent = path.replace("/", "");
             
             SqlHandler sqlHdl = new SqlHandler(out);
-            sqlHdl.select("user_id,Adress,Email");
-            sqlHdl.from("Student");
-            ResultSet rst = sqlHdl.runSelect();
+            ResultSet rst = sqlHdl.getStudent(requestedStudent);
             
-            List<Student> students = new ArrayList();
+            List<Student> student = new ArrayList();
             
             try {
             int rowCount = 0;
@@ -55,7 +50,7 @@ public class showStudent extends HttpServlet {
                     String sAdress = rst.getString("Adress");
                     String sEmail = rst.getString("Email");
                     Integer sId   = rst.getInt("user_id");
-                    students.add(new Student(sAdress,sEmail,sId));
+                    student.add(new Student(sAdress,sEmail,sId));
                     ++rowCount;
                  }  // end while
             }
@@ -63,7 +58,7 @@ public class showStudent extends HttpServlet {
                 out.println("Ikke hentet fra DB " +ex);
             }
                 
-            request.setAttribute("students", students);
+            request.setAttribute("students", student);
             RequestDispatcher view = request.getRequestDispatcher("/Users/showStudent.jsp");
             view.forward(request,response);
         }

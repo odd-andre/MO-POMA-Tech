@@ -92,6 +92,19 @@ public class SqlHandler {
                     
         }
     }
+    public ResultSet getStudent(String id){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT user_id,Adress,Email FROM User WHERE user_id = ?");
+            selectString.setString(1, id);
+            
+            return selectString.executeQuery();
+        } // end try     
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+    }
     
     public void clearState(){
         this.select = "";
