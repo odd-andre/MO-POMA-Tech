@@ -95,7 +95,7 @@ public class SqlHandler {
     public ResultSet getStudent(String id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT user_id,Adress,Email FROM User WHERE user_id = ?");
+            selectString = conn.prepareStatement("SELECT user_Id,adress,email FROM User WHERE user_Id = ?");
             selectString.setString(1, id);
             
             return selectString.executeQuery();

@@ -35,21 +35,24 @@ public class showStudent extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            // Get the path after the url, anything after /showstudent/ will show here. In this case /showstudent/{studentId}
             String path = request.getPathInfo();
+            // getPathInfo includes the / after showStudent, remove it
             String requestedStudent = path.replace("/", "");
-            
+            //Create a sqlHandler to run database queries
             SqlHandler sqlHdl = new SqlHandler(out);
+            //Queries return as ResultSets so we have to store it as such
             ResultSet rst = sqlHdl.getStudent(requestedStudent);
             
+            //We will return the student in the form of a ArrayList, this could be done better as there is only one user
             List<Student> student = new ArrayList();
             
             try {
             int rowCount = 0;
                 while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    String sAdress = rst.getString("Adress");
-                    String sEmail = rst.getString("Email");
-                    Integer sId   = rst.getInt("user_id");
+                    String sAdress = rst.getString("adress");
+                    String sEmail = rst.getString("email");
+                    Integer sId   = rst.getInt("user_Id");
                     student.add(new Student(sAdress,sEmail,sId));
                     ++rowCount;
                  }  // end while
@@ -57,9 +60,11 @@ public class showStudent extends HttpServlet {
             catch (SQLException ex) {
                 out.println("Ikke hentet fra DB " +ex);
             }
-                
+            //Put data into the requset for the next page allowing us to use it.
             request.setAttribute("students", student);
+            //Get the jsp file where we have put our html
             RequestDispatcher view = request.getRequestDispatcher("/Users/showStudent.jsp");
+            //Send our data from request into the jsp file
             view.forward(request,response);
         }
     }
@@ -100,7 +105,7 @@ public class showStudent extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "A servlet to get a students information";
     }// </editor-fold>
 
 }
