@@ -95,13 +95,29 @@ public class SqlHandler {
     public ResultSet getStudent(String id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT user_Id,adress,email FROM User WHERE user_Id = ?");
+            selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email " +
+                    "FROM Student as stu " +
+                    "INNER JOIN User as U ON stu.user_Id = U.user_Id " +
+                    "WHERE stu.user_Id = ?");
             selectString.setString(1, id);
             
             return selectString.executeQuery();
         } // end try     
         catch (SQLException ex) {
              out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+    }
+    public ResultSet viewModule(){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals FROM Modules WHERE module_Id = 2");
+            //selectString.setString(1, id);
+
+            return selectString.executeQuery();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
         }
         return null;
     }

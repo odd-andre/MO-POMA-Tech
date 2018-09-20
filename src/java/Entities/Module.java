@@ -12,22 +12,23 @@ package Entities;
 public class Module {
     private String name;
     private Integer id;
+    private Integer tId;
     private String deadline;
     private String learning_Goals;
 
 
 
-	public Module (String name, Integer id, String deadline , String learning_Goals)
-		{
-			
-			this.name = name;
-			this.id = id;
-			this.deadline = deadline;
-			this.learning_Goals = learning_Goals;
-		}
+	public Module (String name, String deadline, String learnGl, Integer id, Integer tId){
+
+		this.deadline = deadline;
+		this.id = id;
+		this.learning_Goals = learnGl;
+		this.tId = tId;
+		this.name = name;
+	}
      
 
-public String getName() 
+		public String getName()
 		{
 			return name;
 		}
