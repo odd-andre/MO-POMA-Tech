@@ -52,8 +52,11 @@ public class showStudent extends HttpServlet {
                 while(rst.next()) {   // Move the cursor to the next row, return false if no more row
                     String sAdress = rst.getString("adress");
                     String sEmail = rst.getString("email");
-                    Integer sId   = rst.getInt("user_Id");
-                    student.add(new Student(sAdress,sEmail,sId));
+                    Integer sSemester   = rst.getInt("semester");
+                    String sFirstName = rst.getString("firstname");
+                    String sSurname = rst.getString("surname");
+                    Integer sId = rst.getInt("user_Id");
+                    student.add(new Student(sAdress,sEmail,sFirstName, sSurname, sId, sSemester));
                     ++rowCount;
                  }  // end while
             }
