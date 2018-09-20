@@ -7,6 +7,7 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Petr
  */
-@WebServlet(name = "AddingModule", urlPatterns = {"/AddingModule"})
-public class AddingModule extends HttpServlet {
+@WebServlet(name = "addModule", urlPatterns = {"/addModule"})
+public class addModule extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,20 +30,28 @@ public class AddingModule extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddingModule</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddingModule at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+		 try {String query="insert into Module (name,deadline,learning_Goals) values (?,?,?,?)";
+			pst.setString(1,name.getText());
+			pst.setString(2,deadline.getText());
+			pst.setString(3,learning_Goals.getText());
+			
+			pst.execute();
+			
+			JOptionPane.showMessageDialog(null, "Zaměstnanec vytvořen");
+			pst.close();
+			((Node)event.getSource()).getScene().getWindow().hide();
+			
+			
+} catch (SQLException e) {
+	
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+}
         }
     }
 
