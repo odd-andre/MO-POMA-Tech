@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -108,11 +110,11 @@ public class SqlHandler {
         }
         return null;
     }
-    public ResultSet viewModule(){
+    public ResultSet viewModule(String id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals FROM Modules WHERE module_Id = 2");
-            //selectString.setString(1, id);
+            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals FROM Modules WHERE module_Id = ?");
+            selectString.setString(1, id);
 
             return selectString.executeQuery();
         } // end try
@@ -121,7 +123,52 @@ public class SqlHandler {
         }
         return null;
     }
-    
+    public void insertStudent(Integer id){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO Student "
+                    + "(user_id, semester) "
+                    + "VALUES (?, ?)");
+            
+            selectString.setInt(1, id);
+            selectString.setInt(2,1);
+            selectString.executeUpdate();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+    }
+    public void insertUser(String address, Integer zip, String email, String password, String datebirth, String firstname, String surname){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO User "
+                    + "(adress, zip_code, email, password, rights, created_Datetime, date_Of_Birth, firstname, surname) "
+                    + "VALUES (?, ?, ? , ? , ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String created = formatter.format(date);
+            selectString.setString(1, address);
+            selectString.setInt(2, zip);
+            selectString.setString(3, email);
+            selectString.setString(4, password);
+            selectString.setString(5, "student");
+            selectString.setString(6, created);
+            selectString.setString(7, datebirth);
+            selectString.setString(8, firstname);
+            selectString.setString(9, surname);
+            selectString.executeUpdate();
+            
+            ResultSet rs = selectString.getGeneratedKeys();
+            if(rs.next()){
+                Integer id = rs.getInt(1);
+                this.insertStudent(id);
+            }
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+    }
     public void clearState(){
         this.select = "";
         this.where = "";

@@ -16,6 +16,7 @@ public class User {
     String rights;
     String adress;
     String email;
+    String datebirth;
     Integer id;
     
 }
