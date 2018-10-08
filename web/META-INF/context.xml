@@ -5,9 +5,9 @@
         name="jdbc/localhostDS" 
         type="javax.sql.DataSource" 
         auth="Container" 
-        username="web" 
-        password="password" 
+        username="root" 
+        password="Netoldapekan1" 
         driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/mo-poma">
+        url="jdbc:mysql://localhost:3306/mopoma">
     </Resource>
 </Context>
