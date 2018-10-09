@@ -94,14 +94,28 @@ public class SqlHandler {
                     
         }
     }
-    public ResultSet getStudent(String id){
+    public ResultSet getStudent(Integer id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email " +
+            selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email, U.zip_code, U.date_Of_Birth " +
                     "FROM Student as stu " +
                     "INNER JOIN User as U ON stu.user_Id = U.user_Id " +
                     "WHERE stu.user_Id = ?");
-            selectString.setString(1, id);
+            selectString.setInt(1, id);
+            
+            return selectString.executeQuery();
+        } // end try     
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+    }
+    public ResultSet getStudents(){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT U.user_Id , U.firstname, U.surname, U.email " +
+                    "FROM Student as stu " +
+                    "INNER JOIN User as U ON stu.user_Id = U.user_Id");
             
             return selectString.executeQuery();
         } // end try     

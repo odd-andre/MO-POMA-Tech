@@ -7,6 +7,8 @@ package Entities;
 
 import Classes.SqlHandler;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -15,15 +17,9 @@ import java.io.PrintWriter;
 public class Student extends User {
 
     Integer semester;
-    
-    public Student(String adress, String email,String firstName, String surName, Integer semester, Integer zip, String datebirth){
-        this.adress = adress;
-        this.email = email;
-        this.firstName = firstName;
-        this.surName = surName;
-        this.semester = semester;
-        this.zip_code = zip;
-        this.datebirth = datebirth;
+    //Set default values if none are provided otherwise
+    public Student(){
+
     }
     public String getAdress(){return this.adress;}
     public String getEmail(){return this.email;}
@@ -31,11 +27,42 @@ public class Student extends User {
     public String getFirstName(){return this.firstName;}
     public String getSurName(){return this.surName;}
     
-    public void save(PrintWriter out){
-        SqlHandler sqhndl = new SqlHandler(out);
-        sqhndl.insertUser(adress, zip_code, email, this.generatePassword(), datebirth, firstName, surName);
+    public void getStudent(Integer id,PrintWriter out){
+        SqlHandler sqlHdl = new SqlHandler(out);
+        ResultSet rst = sqlHdl.getStudent(id);
+        try {
+            int rowCount = 0;
+                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
+                    this.adress = rst.getString("adress");
+                    this.email = rst.getString("email");
+                    this.semester   = rst.getInt("semester");
+                    this.firstName = rst.getString("firstname");
+                    this.surName = rst.getString("surname");
+                    this.id = rst.getInt("user_Id");
+                    this.datebirth = rst.getString("birth_Of_Birth");
+                    this.zip_code = rst.getInt("zip_code");
+                    
+                    ++rowCount;
+                 }  // end while
+            }
+            catch (SQLException ex) {
+                out.println("Ikke hentet fra DB " +ex);
+            }
     }
-    public String generatePassword(){
-        return this.adress+this.firstName;
+    public void buildStudentForList(String fName, String sName, String email, Integer id){
+        firstName = fName;
+        surName = sName;
+        this.email = email;
+        this.id = id;
+    }
+    public void createStudent(PrintWriter out, String adress, String email,String firstName, String surName, Integer semester, Integer zip, String datebirth){
+        SqlHandler sqhndl = new SqlHandler(out);
+        sqhndl.insertUser(adress, zip, email, this.generatePassword(adress, firstName), datebirth, firstName, surName);
+    }
+    public void save(PrintWriter out){
+        
+    }
+    public String generatePassword(String address, String firstname){
+        return adress+firstName;
     }
 }

@@ -41,8 +41,8 @@ public class createStudent extends HttpServlet {
             String address = request.getParameter("address");
             Integer zipcode = Integer.parseInt(request.getParameter("zipcode"));
             Integer semester = 1;
-            Student student = new Student(address,email,firstName,surName,semester,zipcode,birthDate);
-            student.save(out);
+            Student student = new Student();
+            student.createStudent(out, address, email, firstName, surName, semester, zipcode, birthDate);
             response.sendRedirect("/MO-POMA_Tech");
         }
     }
