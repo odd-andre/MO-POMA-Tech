@@ -31,13 +31,13 @@ public class Module {
        this.name = name;
    }
 
-    /*public Module() {
+    public Module() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Module(String mName, Integer mId, String mDeadline, String mLearnGl, Integer tId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
+    }
     
    
    /*These are the methods through them we will get our results.*/
