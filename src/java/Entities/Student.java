@@ -26,6 +26,8 @@ public class Student extends User {
     public Integer getId(){return this.id;}
     public String getFirstName(){return this.firstName;}
     public String getSurName(){return this.surName;}
+    public Integer getZipCode(){return this.zip_code;}
+    public String getBirthDate(){return this.datebirth;}
     
     public void getStudent(Integer id,PrintWriter out){
         SqlHandler sqlHdl = new SqlHandler(out);
@@ -39,7 +41,7 @@ public class Student extends User {
                     this.firstName = rst.getString("firstname");
                     this.surName = rst.getString("surname");
                     this.id = rst.getInt("user_Id");
-                    this.datebirth = rst.getString("birth_Of_Birth");
+                    this.datebirth = rst.getString("date_Of_Birth");
                     this.zip_code = rst.getInt("zip_code");
                     
                     ++rowCount;
@@ -59,8 +61,9 @@ public class Student extends User {
         SqlHandler sqhndl = new SqlHandler(out);
         sqhndl.insertUser(adress, zip, email, this.generatePassword(adress, firstName), datebirth, firstName, surName);
     }
-    public void save(PrintWriter out){
-        
+    public void save(PrintWriter out,Integer id,String adress, String email,String firstName, String surName, Integer semester, Integer zip, String datebirth ){
+        SqlHandler sqlHdl = new SqlHandler(out);
+        sqlHdl.updateStudent(id, adress, email, firstName, surName, zip, datebirth);
     }
     public String generatePassword(String address, String firstname){
         return adress+firstName;

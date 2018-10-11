@@ -137,6 +137,28 @@ public class SqlHandler {
         }
         return null;
     }
+    public void updateStudent(Integer id,String adress, String email,String firstName, String surName, Integer zip, String datebirth){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("UDATE User "
+                    + "(SET adress = ?,email = ?,firstname = ?, surname = ?, zip_code = ?, date_Of_Birth = ?) "
+                    + "WHERE user_id = ?");
+            
+            selectString.setString(1, adress);
+            selectString.setString(2,email);
+            selectString.setString(3,firstName);
+            selectString.setString(4,surName);
+            selectString.setInt(5,zip);
+            selectString.setString(6,datebirth);
+            selectString.setInt(7,id);
+
+
+            selectString.executeUpdate();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+    }
     public void insertStudent(Integer id){
     PreparedStatement selectString;
         try {
