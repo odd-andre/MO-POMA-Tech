@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Muhammad Ali
  */
-@WebServlet(name = "Create_Module", urlPatterns = {"/Create_Module/*"})
+@WebServlet(name = "Create_Module", urlPatterns = {"/Create_Module"})
 public class Create_Module extends HttpServlet {
 
     /**
@@ -34,13 +34,13 @@ public class Create_Module extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
          try (PrintWriter out = response.getWriter()) {
-            String modName = request.getParameter("name");
+            String modName = request.getParameter("Module_Name");
             String deadline = request.getParameter("deadline");
-            String learngoals = request.getParameter("learning_Goals");
+            String learngoals = request.getParameter("learn_Goals");
             //Integer mId = Integer.parseInt(request.getParameter("module_Id"));
-            Integer tId = Integer.parseInt(request.getParameter("teacher_Id"));
+            Integer tId = Integer.parseInt(request.getParameter("Teacher_ID"));
             Module module = new Module();
-           module.createModule(out, modName, deadline, learngoals, tId);
+            module.createModule(out, modName, deadline, learngoals, tId);
             response.sendRedirect("/MO-POMA_Tech");
         }
     }

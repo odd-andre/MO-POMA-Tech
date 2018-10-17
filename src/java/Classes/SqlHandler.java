@@ -130,8 +130,8 @@ public class SqlHandler {
     public void insertModule(String name, Integer tID, String deadline, String goals){
     PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("INSERT INTO Modules VALUES"
-                    + "( module_name, teacher_Id, deadline, learning_Goals) "
+            selectString = conn.prepareStatement("INSERT INTO Modules "
+                    + "(name, teacher_Id, deadline, learning_Goals) "
                     + "VALUES (?, ?, ?, ?)");
             
             //selectString.setInt(1, id);
@@ -141,14 +141,9 @@ public class SqlHandler {
             selectString.setString(4, goals);
            // selectString.setInt("name1",1,11,"2018-09-28","Learn something 1");
             selectString.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Module created sucessfully");
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
-        }
-        catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);
         }
     }
     
