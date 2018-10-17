@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -126,23 +127,56 @@ public class SqlHandler {
         return null;
     }
     
-    public void insertModule(Integer id, String name, Integer tID, String deadline, String goals){
+    public void insertModule(String name, Integer tID, String deadline, String goals){
     PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("INSERT INTO Modules "
-                    + "(module_Id, teacher_Id, deadline, learning_Goals) "
-                    + "VALUES (?, ?, ?, ?,)");
+            selectString = conn.prepareStatement("INSERT INTO Modules VALUES"
+                    + "( module_name, teacher_Id, deadline, learning_Goals) "
+                    + "VALUES (?, ?, ?, ?)");
             
-            selectString.setInt(1, id);
+            //selectString.setInt(1, id);
             selectString.setString(1, name);
-            selectString.setInt(1, tID);
-            selectString.setString(1, deadline);
-            selectString.setString(1, goals);
+            selectString.setInt(2, tID);
+            selectString.setString(3, deadline);
+            selectString.setString(4, goals);
            // selectString.setInt("name1",1,11,"2018-09-28","Learn something 1");
             selectString.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Module created sucessfully");
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public void updateModule(String name, Integer id, Integer tId, String deadline, String learnGl ){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("UPDATE Modules " 
+                + "(SET name = ?,module_Id = ?,teacher_Id = ?,deadline = ?,learning_Goals = ?)"
+                + "WHERE module_Id = ?");
+            
+            selectString.setString(1, name);
+            selectString.setInt(2, id);
+            selectString.setInt(3, tId);
+            selectString.setString(4, deadline);
+            selectString.setString(5, learnGl);
+            
+            selectString.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Data Saved");
+        }//end try
+            
+            
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+        }
+        
+        catch (Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
     }
     
@@ -176,4 +210,5 @@ public class SqlHandler {
     }
     
 }
+
 
