@@ -23,7 +23,7 @@
             <div class="row justify-content-md-center">
                 <div class="col-10">
                     <h1>Edit student</h1>
-                    <form action="editStudentPost" method="POST">
+                    <form action="/MO-POMA_Tech/editStudentPost" method="POST">
                         <input hidden type="text" name="user_id" id="user_id" value="${student.getId().intValue()}">
                         <div class="form-row">
                           <div class="col-6">

@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Entities.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,9 +34,16 @@ public class editStudentPost extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            
-            
+            Student student = new Student();
+            Integer user_id = Integer.parseInt(request.getParameter("user_id"));
+            String firstName = request.getParameter("firstname");
+            String surName = request.getParameter("lastname");
+            String email = request.getParameter("email");
+            String birthDate = request.getParameter("datebirth");
+            String address = request.getParameter("address");
+            Integer zipcode = Integer.parseInt(request.getParameter("zipcode"));
+            student.updateStudent(out, user_id, address, email, firstName, surName, zipcode, birthDate);
+            response.sendRedirect("/MO-POMA_Tech/showStudent/"+user_id);
         }
     }
 

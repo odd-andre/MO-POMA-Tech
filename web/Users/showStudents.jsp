@@ -36,7 +36,7 @@
                     <tr>
                         <td><a href="/MO-POMA_Tech/showStudent/${student.getId().intValue()}"/> ${student.getFirstName()} ${student.getSurName()}</td>
                         <td>${student.email}</td>
-                        <td>${student.getId().intValue()}</td>
+                        <td><a href="/MO-POMA_Tech/editStudent/${student.getId().intValue()}"> edit </a></td>
 
                     </tr>
                 </c:forEach>

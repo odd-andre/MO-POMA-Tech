@@ -140,9 +140,9 @@ public class SqlHandler {
     public void updateStudent(Integer id,String adress, String email,String firstName, String surName, Integer zip, String datebirth){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("UDATE User "
-                    + "(SET adress = ?,email = ?,firstname = ?, surname = ?, zip_code = ?, date_Of_Birth = ?) "
-                    + "WHERE user_id = ?");
+            selectString = conn.prepareStatement("UPDATE User "
+                    + "SET adress = ?,email = ?,firstname = ?, surname = ?, zip_code = ?, date_Of_Birth = ? "
+                    + "WHERE user_Id = ?");
             
             selectString.setString(1, adress);
             selectString.setString(2,email);
@@ -154,6 +154,7 @@ public class SqlHandler {
 
 
             selectString.executeUpdate();
+            this.closeConnection();
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);

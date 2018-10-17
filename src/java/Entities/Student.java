@@ -68,4 +68,8 @@ public class Student extends User {
     public String generatePassword(String address, String firstname){
         return adress+firstName;
     }
+    public void updateStudent(PrintWriter out,Integer id,String adress, String email,String firstName, String surName, Integer zip, String datebirth){
+        SqlHandler sqlHdl = new SqlHandler(out);
+        sqlHdl.updateStudent(id, adress, email, firstName, surName, zip, datebirth);
+    }
 }
