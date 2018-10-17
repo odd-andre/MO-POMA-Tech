@@ -147,31 +147,24 @@ public class SqlHandler {
         }
     }
     
-    public void updateModule(String name, Integer id, Integer tId, String deadline, String learnGl ){
+    public void updateModule(String name,Integer id,Integer tId, String deadline, String learnGl ){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("UPDATE Modules " 
-                + "(SET name = ?,module_Id = ?,teacher_Id = ?,deadline = ?,learning_Goals = ?)"
+                + "SET name = ?,teacher_Id = ?,deadline = ?,learning_Goals = ? "
                 + "WHERE module_Id = ?");
             
             selectString.setString(1, name);
-            selectString.setInt(2, id);
-            selectString.setInt(3, tId);
-            selectString.setString(4, deadline);
-            selectString.setString(5, learnGl);
-            
+            selectString.setInt(2, tId);
+            selectString.setString(3, deadline);
+            selectString.setString(4, learnGl);
+            selectString.setInt(5, id);
+
             selectString.executeUpdate();
             
-            JOptionPane.showMessageDialog(null, "Data Saved");
-        }//end try
-            
-            
+        }//end try          
         catch (SQLException ex) {
             out.println("Ikke lagre i DB" +ex);
-        }
-        
-        catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);
         }
     }
     

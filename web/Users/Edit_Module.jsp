@@ -24,7 +24,7 @@
             <div class="row justify-content-md-center">
                 <div class="col-10">
                     <h1>Edit Module</h1>
-                    <form action="Edit_Module" method="POST">
+                    <form action="Edit_ModulePost" method="POST">
                         <div class="form-row">
                           <div class="col-6">
                               <label for="Module_Name">Module Name</label>
