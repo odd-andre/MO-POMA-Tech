@@ -22,18 +22,18 @@ public class Module {
     String learnGl;
 
    /*Constructor for the class*/
-   public Module (String name, String deadline, String learnGl, Integer id, Integer tId){
+   public Module (/*String name, String deadline, String learnGl, Integer id, Integer tId*/){
        
-       this.deadline = deadline;
+     /*  this.deadline = deadline;
        this.id = id;
        this.learnGl = learnGl;
        this.tId = tId;
-       this.name = name;
+       this.name = name;*/
    }
 
-    public Module() {
+   /* public Module() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 
     public Module(String mName, Integer mId, String mDeadline, String mLearnGl, Integer tId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -77,17 +77,20 @@ public class Module {
                  }  // end while
             }
             catch (SQLException ex) {
-                out.println("Ikke hentet fra DB " +ex);
+                out.println("Ikke h entet fra DB " +ex);
             }
     }
    
-   public void createModule(PrintWriter out, String name, Integer id, String deadline, String learnGl, Integer tID){
+   public void createModule(PrintWriter out, String name, String deadline, String learnGl, Integer tID){
        SqlHandler sqlhndl = new SqlHandler(out);
-       sqlhndl.insertModule(id, name, tID, deadline, learnGl);
+       sqlhndl.insertModule(name, tID, deadline, learnGl);
   
    }
-   //to save using printwriter object.
-   public void save(PrintWriter out){
+   //call method to save data connected to sqlhandler.
+   public void save(PrintWriter out, String name, Integer id, Integer tId, String deadline, String learnGl){
+       SqlHandler sqlhdl = new SqlHandler();
+       sqlhdl.updateModule(name, id, tId, deadline, learnGl);
    }
 }// slutt
+    
     
