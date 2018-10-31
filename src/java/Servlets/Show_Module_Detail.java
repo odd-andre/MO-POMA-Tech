@@ -8,8 +8,6 @@ package Servlets;
 import Entities.Module;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,26 +35,24 @@ public class Show_Module_Detail extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            // Get the path after the url, anything after /showstudent/ will show here. In this case /showstudent/{studentId}
-            String path = request.getPathInfo();
-            // getPathInfo includes the / after showModule, remove it
-            String requestedModule = path.replace("/", "");
-            //Create a sqlHandler to run database queries
-            //SqlHandler sqlHdl = new SqlHandler(out);
-            //Queries return as ResultSets so we have to store it as such
-            //ResultSet rst = sqlHdl.getStudent(requestedStudent);
+            /*Get the path after the url, anything after /showModuleDetail/ will show here. In this case /ShowModuleDetail/{Module_Id}*/
+                String path = request.getPathInfo();
+            /* getPathInfo includes the / after showModule, remove it */
+                String requestedModule = path.replace("/", "");
+            /*Create a sqlHandler to run database queries
+                SqlHandler sqlHdl = new SqlHandler(out);
+                Queries return as ResultSets so we have to store it as such
+                ResultSet rst = sqlHdl.getStudent(requestedStudent);*/
             
-            //We will return the student in the form of a ArrayList, this could be done better as there are number of modules.
-           // List<Module> module = new ArrayList();
-            Module moduleObj = new Module();
-            moduleObj.getModuleDetail(Integer.parseInt(requestedModule), out);
-           // module.add(moduleObj);
-            //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("module", moduleObj);
-            //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/showModule.jsp");
-            //Send our data from request into the jsp file
-            view.forward(request,response);
+                Module moduleObj = new Module();
+                moduleObj.getModuleDetail(Integer.parseInt(requestedModule), out);
+                // module.add(moduleObj);
+                /*Put data into the requset for the next page allowing us to use it. */
+                request.setAttribute("module", moduleObj);
+                /*Get the jsp file where we have put our html */
+                RequestDispatcher view = request.getRequestDispatcher("/Users/showModule.jsp");
+                /*Send our data from request into the jsp file */
+                view.forward(request,response);
         }
     }
 
@@ -100,3 +96,4 @@ public class Show_Module_Detail extends HttpServlet {
     }// </editor-fold>
 
 }
+
