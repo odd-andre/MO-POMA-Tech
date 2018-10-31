@@ -31,10 +31,13 @@ public class Edit_Module extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         try (PrintWriter out = response.getWriter()) {
+            
             
             String path = request.getPathInfo();
             
@@ -42,10 +45,12 @@ public class Edit_Module extends HttpServlet {
             
             Module modlObj = new Module();
             modlObj.getModuleDetail(Integer.parseInt(requestedModule), out);
-            
+           
             request.setAttribute("module", modlObj);
+           
             RequestDispatcher view = request.getRequestDispatcher("/Users/Edit_Module.jsp");
             view.forward(request, response);
+            
         }
     }
 
@@ -89,3 +94,4 @@ public class Edit_Module extends HttpServlet {
     }// </editor-fold>
 
 }
+
