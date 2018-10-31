@@ -20,6 +20,7 @@ public class Module {
     String deadline;
     Integer tId;
     String learnGl;
+    Teacher teach = new Teacher();
 
    /*Constructor for the class*/
    public Module (/*String name, String deadline, String learnGl, Integer id, Integer tId*/){
@@ -31,10 +32,10 @@ public class Module {
        this.name = name;*/
    }
 
-   /* public Module() {
+   
+    public Module(String mName, Integer mId, String mDeadline, String mLearnGl, Integer tId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
-    
+    }
    
    /*These are the methods through them we will get our results.*/
    public String getName(){ 
@@ -57,6 +58,7 @@ public class Module {
        return this.tId; 
    }
    
+   /*show individual module detail */
    public void getModuleDetail(Integer id,PrintWriter out){
         SqlHandler sqlHdl = new SqlHandler(out);
         ResultSet rst = sqlHdl.getModule(id);
@@ -77,16 +79,60 @@ public class Module {
             }
     }
    
-   public void createModule(PrintWriter out, String name, String deadline, String learnGl, Integer tID){
+   /*to show module list. */
+   public void forModuleList(Integer Id, String Name, String Deadline, String learnGl, Integer TID){
+       this.id=Id;
+       this.name=Name;
+       this.tId=TID;
+       this.deadline=Deadline;
+       this.learnGl=learnGl;
+   }
+   
+   /*function that will fetch teacher name through handler and resultset. */
+   public void getTeachName(PrintWriter out, Integer id) {
+       SqlHandler sqlhndl= new SqlHandler(out);
+       ResultSet rstst = sqlhndl.getTeacherName(id);
+    try {
+        while (rstst.next()){
+        String teachName = rstst.getString("firstname");
+        teach.firstName= teachName;
+        }
+            
+    }
+     catch (SQLException ex) {
+                out.println("Ikke hentet fra DB " +ex);
+            }
+   }
+   
+   //to display teacher name through JSP
+   public String getTeachName(){
+       return teach.getFirstName();
+   }
+   
+   /*create module function connected with handler. */
+    public void createModule(PrintWriter out, String name, String deadline, String learnGl, Integer tID){
        SqlHandler sqlhndl = new SqlHandler(out);
        sqlhndl.insertModule(name, tID, deadline, learnGl);
-  
+      
    }
-   //call method to save data connected to sqlhandler.
+    
+    /*update existing module. */
+    public void updateModule(PrintWriter out, String name, Integer id, Integer tId, String deadline, String learnGl){
+   
+       SqlHandler sqlhndl = new SqlHandler(out);
+       sqlhndl.updateModule(name, id, tId, deadline, learnGl);
+   }
+    
+    public void deleteModule(PrintWriter out, Integer id){
+        SqlHandler sqlhndl = new SqlHandler(out);
+        sqlhndl.slettModule(id);
+    
+}
+    
+   /* call method to save data connected to sqlhandler. */
    public void save(PrintWriter out, String name, Integer id, Integer tId, String deadline, String learnGl){
        SqlHandler sqlhdl = new SqlHandler();
        sqlhdl.updateModule(name, id, tId, deadline, learnGl);
    }
 }// slutt
-    
-    
+        
