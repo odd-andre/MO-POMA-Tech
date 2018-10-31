@@ -34,14 +34,15 @@ public class Create_Module extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
          try (PrintWriter out = response.getWriter()) {
-            String modName = request.getParameter("Module_Name");
-            String deadline = request.getParameter("deadline");
-            String learngoals = request.getParameter("learn_Goals");
-            //Integer mId = Integer.parseInt(request.getParameter("module_Id"));
-            Integer tId = Integer.parseInt(request.getParameter("Teacher_ID"));
-            Module module = new Module();
-            module.createModule(out, modName, deadline, learngoals, tId);
-            response.sendRedirect("/MO-POMA_Tech");
+             
+                String modName = request.getParameter("Module_Name");
+                String deadline = request.getParameter("deadline");
+                String learngoals = request.getParameter("learn_Goals");
+                //Integer mId = Integer.parseInt(request.getParameter("module_Id"));
+                Integer tId = Integer.parseInt(request.getParameter("Teacher_ID"));
+                Module module = new Module();
+                module.createModule(out, modName, deadline, learngoals, tId);
+                response.sendRedirect("/MO-POMA_Tech");
         }
     }
 
