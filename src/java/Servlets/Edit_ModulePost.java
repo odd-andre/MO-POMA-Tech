@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Entities.Module;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,8 +35,19 @@ public class Edit_ModulePost extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
+                Module module = new Module();
+                Integer md_id = Integer.parseInt(request.getParameter("Module_ID"));
+                String md_name = request.getParameter("Module_Name");
+                Integer tchr_id = Integer.parseInt(request.getParameter("Teacher_ID"));
+                String md_deadline = request.getParameter("Deadline");
+                String md_goals = request.getParameter("learn_Goals");
+            
+                module.updateModule(out, md_name, md_id, tchr_id, md_deadline, md_goals);
+                response.sendRedirect("/MO-POMA_Tech/Show_Module_Detail/" + md_id);
+                //out.print("Hello");
         }
     }
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -77,3 +89,4 @@ public class Edit_ModulePost extends HttpServlet {
     }// </editor-fold>
 
 }
+
