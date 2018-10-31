@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Edit_Module
-    Created on : Oct 11, 2018, 10:07:50 PM
+    Document   : Create_Module
+    Created on : Oct 11, 2018, 11:43:39 AM
     Author     : Muhammad Ali
 --%>
 
@@ -17,41 +17,57 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Module</title>
+        <title>Update Module</title>
     </head>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/MO-POMA_Tech">MO-POMA</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/MO-POMA_Tech/showStudents">Students</a>
+      <a class="nav-item nav-link" href="/MO-POMA_Tech/Module_List">Modules</a>
+      <a class="nav-item nav-link" href="#">Forum</a>
+    </div>
+  </div>
+</nav>
+    
+    
     <body>
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-10">
-                    <h1>Edit Module</h1>
-                    <form action="Edit_ModulePost" method="POST">
+                    <h1>Edit /Update Module</h1>
+                    <form action="/MO-POMA_Tech/Edit_ModulePost" method="POST">
                         <div class="form-row">
                           <div class="col-6">
                               <label for="Module_Name">Module Name</label>
-                              <input type="text" name="Module_Name" id="Module_Name" class="form-control" placeholder="String text">
+                              <input type="text" name="Module_Name" id="Module_Name" value = "${module.getName()}" class="form-control" placeholder="String text">
                           </div>
                           <div class="col-6">
                               <label for="Module_ID">Module ID</label>
-                              <input type="text" name="Module_ID" id="Module_ID" class="form-control" placeholder="numeric number">
+                              <input type="text" name="Module_ID" id="Module_ID" value = "${module.getID().intValue()}" class="form-control" placeholder="numeric number">
                           </div>
                         </div>
                         <div class="form-row">
                             <div class="col-9">
                               <label for="Teacher_ID">Teacher ID</label>
-                              <input type="Teacher_ID" class="form-control" name="Teacher_ID" id="teacher_id" placeholder="numeric value">
+                              <input type="Teacher_ID" class="form-control" name="Teacher_ID" id="teacher_id" value="${module.getTeacherID().intValue()}" placeholder="numeric value">
                             </div>
                             <div class="col-3">
                                 <label for="">Deadline</label>
-                                <input type="text" name="deadline" id="deadline" class="form-control" placeholder="YEAR-MONTH-DAY">
+                                <input type="text" name="Deadline" id="deadline" value = "${module.getDeadline()}" class="form-control" placeholder="YEAR-MONTH-DAY">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-9">
                               <label for="address">Goals</label>
-                              <input type="text" class="form-control" name="learn_Goals" id="goals" placeholder="string text">
+                              <input type="text" class="form-control" name="learn_Goals" id="goals" value = "${module.getGoals()}" placeholder="string text">
                             </div>
                             
-                            <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Edit Module</button>
+                            <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Update Module</button><br>
                             <button style="margin-right: 10px;" type="reset" class="btn col-3">Clear</button>
                     </form>
                 </div>
