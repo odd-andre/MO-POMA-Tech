@@ -4,6 +4,8 @@
     Author     : Muhammad Ali
 --%>
 
+<%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="Entities.Module"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -14,8 +16,24 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Module</title>
     </head>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/MO-POMA_Tech">MO-POMA</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/MO-POMA_Tech/showStudents">Students</a>
+      <a class="nav-item nav-link" href="/MO-POMA_Tech/Module_List">Modules</a>
+      <a class="nav-item nav-link" href="#">Forum</a>
+    </div>
+  </div>
+</nav>
+    
     <body>
         <div class="container">
             <div class="row justify-content-md-center">
