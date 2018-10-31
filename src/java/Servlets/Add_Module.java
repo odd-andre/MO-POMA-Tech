@@ -35,9 +35,9 @@ public class Add_Module extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            //Get the jsp file where we have put our html
+            /*Get the jsp file where we have put our html */
             RequestDispatcher view = request.getRequestDispatcher("/Users/Create_Module.jsp");
-            //Send our data from request into the jsp file
+            /*Send our data from request into the jsp file */
             view.forward(request,response);
         }
     }
@@ -82,3 +82,4 @@ public class Add_Module extends HttpServlet {
     }// </editor-fold>
 
 }
+
