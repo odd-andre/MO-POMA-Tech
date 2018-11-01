@@ -122,6 +122,36 @@ public class SqlHandler {
         return null;
     }
     
+        public ResultSet getTeacherName(Integer id){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT firstname FROM User WHERE user_Id = ?;");
+                    //"INNER JOIN User as U ON stu.user_Id = U.user_Id " +
+                  //  "WHERE stu.user_Id = ?;");
+            selectString.setInt(1, id);
+            return selectString.executeQuery();
+        }
+        catch (SQLException ex) {
+             out.println("Error in connection " +ex);
+        }
+        return null;
+    }
+    
+     public ResultSet viewDeliverable(){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT deliverable_Id,student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression FROM deliverable ");
+           
+ 
+
+            return selectString.executeQuery();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Connection does not work " +ex);
+        }
+        return null;
+    }
+    
     public void clearState(){
         this.select = "";
         this.where = "";
