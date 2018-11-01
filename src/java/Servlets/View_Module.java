@@ -74,6 +74,8 @@ public class View_Module extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/Users/showModule.jsp");
             //Send our data from request into the jsp file
             view.forward(request,response);
+            
+            
         }
     }
 
