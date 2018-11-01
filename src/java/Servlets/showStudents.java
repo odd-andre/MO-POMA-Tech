@@ -40,24 +40,31 @@ public class showStudents extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+            String accessType = "Student";
+            if(request.isUserInRole("Teacher")) {
+                accessType = "Teacher";
+            }
+            request.setAttribute("accessType", accessType);
+            
             SqlHandler sqlHdl = new SqlHandler(out);
             ResultSet rst = sqlHdl.getStudents();
             List<Student> students = new ArrayList();
 
             try {
-            int rowCount = 0;
-                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    Student student = new Student();
-                    String fName = rst.getString("firstname");
-                    String sName = rst.getString("surname");
-                    String email = rst.getString("email");
-                    Integer id = rst.getInt("user_id");
+                int rowCount = 0;
+                    while(rst.next()) {   // Move the cursor to the next row, return false if no more row
+                        Student student = new Student();
+                        String fName = rst.getString("firstname");
+                        String sName = rst.getString("surname");
+                        String email = rst.getString("email");
+                        Integer id = rst.getInt("user_id");
 
-                    student.buildStudentForList(fName,sName,email,id);
-                    students.add(student);
-                    
-                    ++rowCount;
-                 }  // end while
+                        student.buildStudentForList(fName,sName,email,id);
+                        students.add(student);
+
+                        ++rowCount;
+                     }  // end while
             }
             catch (SQLException ex) {
                 out.println("Ikke hentet fra DB " +ex);

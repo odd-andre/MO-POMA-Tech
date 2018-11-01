@@ -7,7 +7,7 @@
     <session-config>
         <!-- Sessions will be automatically terminated (i.e. logged out)
         after 30 minutes of inactivity -->
-        <session-timeout> 30 </session-timeout>
+        <session-timeout> 10 </session-timeout>
     </session-config>
  
     <!-- A security constraint is a limit on what the users can do. 
@@ -18,7 +18,9 @@
         <web-resource-collection>
             <web-resource-name>UserResources</web-resource-name>
             <url-pattern>/showStudent/*</url-pattern>
-            <url-pattern>/ShowList</url-pattern>
+            <url-pattern>/showStudents</url-pattern>
+            <url-pattern>/editStudent/*</url-pattern>
+            <url-pattern>/signOut/*</url-pattern>
         </web-resource-collection>
         <!--  the user must have one of these roles  -->
         <auth-constraint>
@@ -29,12 +31,12 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>AdminResources</web-resource-name>
-            <url-pattern>/AdminDeleteContact</url-pattern>
+            <web-resource-name>TeacherResources</web-resource-name>
+            <url-pattern>/addStudent</url-pattern>
             <url-pattern>/AdminSaveContact</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>RolodexAdmin</role-name>
+            <role-name>Teacher</role-name>
         </auth-constraint>
     </security-constraint>
   

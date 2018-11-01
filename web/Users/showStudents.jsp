@@ -16,10 +16,23 @@
 
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Show students</title>
     </head>
     <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/MO-POMA_Tech">MO-Poma</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/MO-POMA_Tech/showStudents">Students</a>
+      <a class="nav-item nav-link" href="#">Modules</a>
+      <a class="nav-item nav-link" href="#">Forum</a>
+      <a class="nav-item nav-link" href="/MO-POMA_Tech/signOut">Sign Out</a>
+    </div>
+  </div>
+</nav>
     <div class="container justify-content-center">
         <div class="col-12">
         <h1>Student list</h1>
@@ -42,9 +55,12 @@
                 </c:forEach>
            </tbody>
          </table>
-        <form action="addStudent" type="get">
-            <button type="Submit" action="addStudent" class="btn btn-primary">Primary</button>
-        </form>
+        <c:set var="condition" value="Teacher"/>
+        <c:if test="${accessType == 'Teacher'}" >
+            <form action="addStudent" type="get">
+                <button type="Submit" action="addStudent" class="btn btn-primary">Add Student</button>
+            </form>   
+        </c:if>
         </div>
     </div>
     </body>
