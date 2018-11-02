@@ -142,7 +142,6 @@ public class SqlHandler {
         try {
             selectString = conn.prepareStatement("SELECT deliverable_Id,student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression FROM deliverable ");
            
- 
 
             return selectString.executeQuery();
         } // end try

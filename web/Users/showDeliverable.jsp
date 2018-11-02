@@ -41,9 +41,18 @@
             <tbody>
                 <c:forEach items="${deliverable}" var="deliverable">
                     <tr>
-                        <td></td>
+                        <td>${deliverable.getDeliverable_Id()}</td>
+                           <td>${deliverable.getStudent_Id()}</td>
+                           <td>${deliverable.getModule_Id()}</td>
+                              <td>${deliverable.getTeacher_Id()}</td>
                         <td>${deliverable.getDatetime_Of_Submit()}</td>
-                        <td>${deliverable.getTeachName()}</td>
+                        <td>${deliverable.getStatus()}</td>
+                         <td>${deliverable.getPoints()}</td>
+                        <td>${deliverable.getFeedback()}</td>
+                        <td>${deliverable.getProgression()}</td>
+                     
+                       
+                   
 
                     </tr>
                 </c:forEach>

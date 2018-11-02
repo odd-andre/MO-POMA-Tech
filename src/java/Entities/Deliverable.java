@@ -73,7 +73,7 @@ public Deliverable(){
     public String getProgression(){return this.progression;}
 
 
- public void getTeachName(PrintWriter out, Integer id) {
+ /*public void getTeachName(PrintWriter out, Integer id) {
        SqlHandler sqlhndl= new SqlHandler(out);
        ResultSet rstst = sqlhndl.getTeacherName(id);
     try {
@@ -86,6 +86,7 @@ public Deliverable(){
                 out.println("Ikke hentet fra DB " +ex);
             }
      }
+*/
     }
 
 

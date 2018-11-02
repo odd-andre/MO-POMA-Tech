@@ -43,6 +43,7 @@ public class showDeliverable extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
            SqlHandler sqlHdl = new SqlHandler(out);
@@ -50,6 +51,7 @@ public class showDeliverable extends HttpServlet {
          List<Deliverable> deliverable = new ArrayList();
          
           try {
+              
              int rowCount = 0;
              while (rst.next()) {
                  Deliverable deliverableObj = new Deliverable();
@@ -64,7 +66,8 @@ public class showDeliverable extends HttpServlet {
                  String progression = rst.getString("progression");
                  
                  deliverableObj.deliverableList(deliverable_Id, teacher_Id, student_Id, module_Id, datetime_Of_Submit, status, points, feedback, progression);
-                 deliverableObj.getTeachName(out, teacher_Id);
+              /*   deliverableObj.getTeachName(out, teacher_Id);*/
+              
                  deliverable.add(deliverableObj);
                  
                  ++rowCount;
