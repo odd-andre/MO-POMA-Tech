@@ -5,13 +5,22 @@
  */
 package Entities;
 
+import Classes.SqlHandler;
+
 /**
  *
  * @author ThunderCow
  */
 public class Forum {
+    
     Integer forum_Id;
     Integer creator_Id;
     String fName;
     
+    
+    public void getForum(){
+        SqlHandler sqlhandl = new SqlHandler();
+        sqlhandl.getForum();
+    }
 }
+    

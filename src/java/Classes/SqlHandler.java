@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -92,14 +94,14 @@ public class SqlHandler {
                     
         }
     }
-    public ResultSet getStudent(String id){
+    public ResultSet getStudent(Integer id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email " +
+            selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email, U.zip_code, U.date_Of_Birth " +
                     "FROM Student as stu " +
                     "INNER JOIN User as U ON stu.user_Id = U.user_Id " +
                     "WHERE stu.user_Id = ?");
-            selectString.setString(1, id);
+            selectString.setInt(1, id);
             
             return selectString.executeQuery();
         } // end try     
@@ -108,11 +110,25 @@ public class SqlHandler {
         }
         return null;
     }
-    public ResultSet viewModule(){
+    public ResultSet getStudents(){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals FROM Modules WHERE module_Id = 2");
-            //selectString.setString(1, id);
+            selectString = conn.prepareStatement("SELECT U.user_Id , U.firstname, U.surname, U.email " +
+                    "FROM Student as stu " +
+                    "INNER JOIN User as U ON stu.user_Id = U.user_Id");
+            
+            return selectString.executeQuery();
+        } // end try     
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+    }
+    public ResultSet viewModule(String id){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals FROM Modules WHERE module_Id = ?");
+            selectString.setString(1, id);
 
             return selectString.executeQuery();
         } // end try
@@ -121,11 +137,99 @@ public class SqlHandler {
         }
         return null;
     }
-    
+    public void updateStudent(Integer id,String adress, String email,String firstName, String surName, Integer zip, String datebirth){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("UPDATE User "
+                    + "SET adress = ?,email = ?,firstname = ?, surname = ?, zip_code = ?, date_Of_Birth = ? "
+                    + "WHERE user_Id = ?");
+            
+            selectString.setString(1, adress);
+            selectString.setString(2,email);
+            selectString.setString(3,firstName);
+            selectString.setString(4,surName);
+            selectString.setInt(5,zip);
+            selectString.setString(6,datebirth);
+            selectString.setInt(7,id);
+
+
+            selectString.executeUpdate();
+            this.closeConnection();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+    }
+    public void insertStudent(Integer id){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO Student "
+                    + "(user_id, semester) "
+                    + "VALUES (?, ?)");
+            
+            selectString.setInt(1, id);
+            selectString.setInt(2,1);
+            selectString.executeUpdate();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+    }
+    public void insertUser(String address, Integer zip, String email, String password, String datebirth, String firstname, String surname){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO User "
+                    + "(adress, zip_code, email, password, rights, created_Datetime, date_Of_Birth, firstname, surname) "
+                    + "VALUES (?, ?, ? , ? , ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String created = formatter.format(date);
+            selectString.setString(1, address);
+            selectString.setInt(2, zip);
+            selectString.setString(3, email);
+            selectString.setString(4, password);
+            selectString.setString(5, "student");
+            selectString.setString(6, created);
+            selectString.setString(7, datebirth);
+            selectString.setString(8, firstname);
+            selectString.setString(9, surname);
+            selectString.executeUpdate();
+            
+            ResultSet rs = selectString.getGeneratedKeys();
+            if(rs.next()){
+                Integer id = rs.getInt(1);
+                this.insertStudent(id);
+            }
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+    }
     public void clearState(){
         this.select = "";
         this.where = "";
         this.from = "";
     }
-    
+
+    public ResultSet getForum_Post(Integer forumpost_Id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+public ResultSet getForum(Integer id){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum WHERE forum_Id = ?");
+            selectString.setInt(1, id);
+
+            return selectString.executeQuery();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+}
+
+    public ResultSet getForum() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
