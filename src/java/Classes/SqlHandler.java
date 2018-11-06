@@ -212,14 +212,12 @@ public class SqlHandler {
         this.from = "";
     }
 
-    public ResultSet getForum_Post(Integer forumpost_Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-public ResultSet getForum(Integer id){
+
+public ResultSet getForum(){
     PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum WHERE forum_Id = ?");
-            selectString.setInt(1, id);
+            selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum ");
+            //selectString.setInt(1, id);
 
             return selectString.executeQuery();
         } // end try
@@ -228,8 +226,4 @@ public ResultSet getForum(Integer id){
         }
         return null;
 }
-
-    public ResultSet getForum() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

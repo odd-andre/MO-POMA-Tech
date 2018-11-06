@@ -40,29 +40,15 @@ public class showStudent extends HttpServlet {
             // getPathInfo includes the / after showStudent, remove it
             String requestedStudent = path.replace("/", "");
             //Create a sqlHandler to run database queries
-            SqlHandler sqlHdl = new SqlHandler(out);
+            //SqlHandler sqlHdl = new SqlHandler(out);
             //Queries return as ResultSets so we have to store it as such
-            ResultSet rst = sqlHdl.getStudent(requestedStudent);
+            //ResultSet rst = sqlHdl.getStudent(requestedStudent);
             
             //We will return the student in the form of a ArrayList, this could be done better as there is only one user
             List<Student> student = new ArrayList();
-            
-            try {
-            int rowCount = 0;
-                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    String sAdress = rst.getString("adress");
-                    String sEmail = rst.getString("email");
-                    Integer sSemester   = rst.getInt("semester");
-                    String sFirstName = rst.getString("firstname");
-                    String sSurname = rst.getString("surname");
-                    Integer sId = rst.getInt("user_Id");
-                    student.add(new Student(sAdress,sEmail,sFirstName, sSurname, sId, sSemester));
-                    ++rowCount;
-                 }  // end while
-            }
-            catch (SQLException ex) {
-                out.println("Ikke hentet fra DB " +ex);
-            }
+            Student studentObj = new Student();
+            studentObj.getStudent(Integer.parseInt(requestedStudent), out);
+            student.add(studentObj);
             //Put data into the requset for the next page allowing us to use it.
             request.setAttribute("students", student);
             //Get the jsp file where we have put our html

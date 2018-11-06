@@ -5,12 +5,9 @@
  */
 package Servlets;
 
-import Classes.SqlHandler;
-import Entities.Forum;
+import Entities.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ThunderCoW
+ * @author oddandre
  */
-@WebServlet(name = "View_Forum", urlPatterns = {"/View_Forum"})
-public class View_Forum extends HttpServlet {
+@WebServlet(name = "editStudent", urlPatterns = {"/editStudent/*"})
+public class editStudent extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,35 +35,16 @@ public class View_Forum extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            SqlHandler sqlHdl = new SqlHandler(out);
-            ResultSet rst = sqlHdl.getForum();
-           //List<Forum> forums = new ArrayList();
-           Forum forum = new Forum();
-            try {
-                
-            int rowCount = 0;
-                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    
-                    Integer fId = rst.getInt("forum_Id");
-                    String fName = rst.getString("fName");
-                    Integer createrId = rst.getInt("creator_Id");
-
-                    forum.getForum(fId, createrId, fName);
-                    ++rowCount;
-                 }  // end while
-            }
-            catch (SQLException ex) {
-                
-                out.println("Ikke hentet fra DB " +ex);
-            }
+            // Get the path after the url, anything after /showstudent/ will show here. In this case /showstudent/{studentId}
+            String path = request.getPathInfo();
+            // getPathInfo includes the / after showStudent, remove it
+            String requestedStudent = path.replace("/", "");
             
-            //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("forum", forum);
+            Student studentObj = new Student();
+            studentObj.getStudent(Integer.parseInt(requestedStudent), out);
             
-            //Get the jsp file where we have put our html
-            
-            RequestDispatcher view = request.getRequestDispatcher("/Users/viewForum.jsp");
-            //Send our data from request into the jsp file
+            request.setAttribute("student", studentObj);
+            RequestDispatcher view = request.getRequestDispatcher("/Users/editStudent.jsp");
             view.forward(request,response);
             
         }

@@ -6,6 +6,7 @@
 package Entities;
 
 import Classes.SqlHandler;
+import java.io.PrintWriter;
 
 /**
  *
@@ -17,10 +18,28 @@ public class Forum {
     Integer creator_Id;
     String fName;
     
-    
-    public void getForum(){
-        SqlHandler sqlhandl = new SqlHandler();
-        sqlhandl.getForum();
+    public Forum(){
+       /* this.forum_Id=Forum_Id;
+        this.creator_Id=Creator_Id;
+        this.fName=ForumName*/
     }
+    
+    public void getForum(Integer Forum_Id, Integer Creator_Id, String ForumName){
+        this.forum_Id=Forum_Id;
+        this.creator_Id=Creator_Id;
+        this.fName=ForumName;
+    }
+
+   
+        public int getFroumID(){return this.forum_Id;}
+        public int getCreatorID(){return this.creator_Id;}
+        public String getFroumName(){return this.fName;}
+    
+       /* public void getForum(PrintWriter out, Integer fId, Integer crtId, String fName){
+        SqlHandler sqlhandl = new SqlHandler(out);
+        sqlhandl.getForum();
+     }*/
+    
+   
 }
     

@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Muhammad Ali
  */
-@WebServlet(name = "View_Module", urlPatterns = {"/View_Module"})
+@WebServlet(name = "View_Module", urlPatterns = {"/View_Module/*"})
 public class View_Module extends HttpServlet {
 
     /**
@@ -39,13 +39,13 @@ public class View_Module extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             // Get the path after the url, anything after /showstudent/ will show here. In this case /showstudent/{studentId}
-             //String path = request.getPathInfo();
+             String path = request.getPathInfo();
             // getPathInfo includes the / after showStudent, remove it
-             //String requestedStudent = path.replace("/", "");
+             String requestedModule = path.replace("/", "");
             //Create a sqlHandler to run database queries
             SqlHandler sqlHdl = new SqlHandler(out);
             //Queries return as ResultSets so we have to store it as such
-            ResultSet rst = sqlHdl.viewModule();
+            ResultSet rst = sqlHdl.viewModule(requestedModule);
             
             //We will return the student in the form of a ArrayList, this could be done better as there is only one user
             //List<Student> student = new ArrayList();

@@ -6,11 +6,13 @@
 package Servlets;
 
 import Classes.SqlHandler;
-import Entities.Forum;
+import Entities.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ThunderCoW
+ * @author oddandre
  */
-@WebServlet(name = "View_Forum", urlPatterns = {"/View_Forum"})
-public class View_Forum extends HttpServlet {
+@WebServlet(name = "showStudents", urlPatterns = {"/showStudents"})
+public class showStudents extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,33 +41,32 @@ public class View_Forum extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             SqlHandler sqlHdl = new SqlHandler(out);
-            ResultSet rst = sqlHdl.getForum();
-           //List<Forum> forums = new ArrayList();
-           Forum forum = new Forum();
+            ResultSet rst = sqlHdl.getStudents();
+            List<Student> students = new ArrayList();
+
             try {
-                
             int rowCount = 0;
                 while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    
-                    Integer fId = rst.getInt("forum_Id");
-                    String fName = rst.getString("fName");
-                    Integer createrId = rst.getInt("creator_Id");
+                    Student student = new Student();
+                    String fName = rst.getString("firstname");
+                    String sName = rst.getString("surname");
+                    String email = rst.getString("email");
+                    Integer id = rst.getInt("user_id");
 
-                    forum.getForum(fId, createrId, fName);
+                    student.buildStudentForList(fName,sName,email,id);
+                    students.add(student);
+                    
                     ++rowCount;
                  }  // end while
             }
             catch (SQLException ex) {
-                
                 out.println("Ikke hentet fra DB " +ex);
             }
             
             //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("forum", forum);
-            
+            request.setAttribute("students", students);
             //Get the jsp file where we have put our html
-            
-            RequestDispatcher view = request.getRequestDispatcher("/Users/viewForum.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/Users/showStudents.jsp");
             //Send our data from request into the jsp file
             view.forward(request,response);
             
