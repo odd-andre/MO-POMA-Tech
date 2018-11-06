@@ -10,8 +10,12 @@ package Entities;
  * @author oddandre
  */
 public class User {
+    String firstName;
+    String surName;
+    Integer zip_code;
+    String rights;
     String adress;
     String email;
+    String datebirth;
     Integer id;
-    
 }
