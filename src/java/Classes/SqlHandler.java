@@ -213,11 +213,11 @@ public class SqlHandler {
     }
 
 
-public ResultSet getForum(){
+public ResultSet getForum(Integer id){
     PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum ");
-            //selectString.setInt(1, id);
+            selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum WHERE forum_Id = ? ");
+            selectString.setInt(1, id);
 
             return selectString.executeQuery();
         } // end try
@@ -226,4 +226,18 @@ public ResultSet getForum(){
         }
         return null;
 }
+
+public ResultSet showForumList(){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum ");
+            
+            return selectString.executeQuery();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+}
+
 }
