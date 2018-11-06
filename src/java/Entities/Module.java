@@ -94,8 +94,8 @@ public class Module {
        ResultSet rstst = sqlhndl.getTeacherName(id);
     try {
         while (rstst.next()){
-        String teachName = rstst.getString("firstname");
-        teach.firstName= teachName;
+        String teachrName = rstst.getString("firstname");
+        teach.firstName= teachrName;
         }
             
     }
