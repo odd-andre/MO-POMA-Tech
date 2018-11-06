@@ -36,32 +36,26 @@ public class Forum_Post extends Forum {
     public String getfPostname(){return this.fPostname;}
     public Integer getcreator(){return this.creator;}
 
-public void getForum_Post(Integer forumpost_Id,PrintWriter out){
-        SqlHandler sqlHdl = new SqlHandler(out);
-        ResultSet rst = sqlHdl.getForum_Post(forumpost_Id);
+    public void getForumDetail(PrintWriter out, Integer id){
+        SqlHandler sqlhandl = new SqlHandler(out);
+        ResultSet rst = sqlhandl.getForum(id);
+        
         try {
+                
             int rowCount = 0;
                 while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    this.forumpost_Id = rst.getInt("forumpost_Id");
-                    this.forum_Id = rst.getInt("forum_Id");
-                    this.datetime_upload = rst.getString("datetime_upload");
-                    this.fPostname = rst.getString("fPostname");
-                    this.creator = rst.getInt("creator");
                     
+                    this.forum_Id = rst.getInt("forum_Id");
+                    this.fName = rst.getString("fName");
+                    this.creator_Id = rst.getInt("creator_Id");
+
+          
                     ++rowCount;
                  }  // end while
             }
             catch (SQLException ex) {
+                
                 out.println("Ikke hentet fra DB " +ex);
             }
+    }
 }
-
-public void buildStudentForList(Integer fp_Id, Integer f_Id, String date, String fname, Integer cId){
-        forumpost_Id = fp_Id;
-        forum_Id = f_Id;
-        datetime_upload = date;
-        fPostname = fname;
-        creator = cId;
-}
-}
-    
