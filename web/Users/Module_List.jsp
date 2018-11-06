@@ -1,10 +1,12 @@
 <%-- 
-    Document   : showModule
-    Created on : Oct 11, 2018, 10:51:24 AM
+    Document   : Module_List
+    Created on : Oct 21, 2018, 10:24:31 PM
     Author     : Muhammad Ali
 --%>
+
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="Entities.Module"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -16,8 +18,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
+        <title>Module List</title>
         <style>
             table, th, td {
                 border: 1px solid black;
@@ -46,7 +48,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="/MO-POMA_Tech/showStudents">Students</a>
-      <a class="nav-item nav-link" href="/MO-POMA_Tech/Module_List">Modules</a>
+      <a class="nav-item nav-link" href="/MO-POMA_Tech/Add_Module">Modules</a>
       <a class="nav-item nav-link" href="#">Forum</a>
     </div>
   </div>
@@ -56,29 +58,33 @@
     <body>
         <div class="container"> 
             <div class="row justify-content-md-center">
-        <h1>Hello World!</h1>
+        <h1>List of Module!</h1>
        <div class="col-10"> 
                       
               <table style="width:100%">
               
         <tr>
-            <th> Module Name:</th>
-            <th> Module ID:</th>
-            <th> Teacher ID:</th>
-            <th> Module Deadline:</th>
-            <th> Learning Goals:</th>
+            <th> Module Name</th>
+            <th> Module ID</th>
+           <th> Teacher ID</th>
+            <th> Teacher Name</th>
+            <th> Module Deadline</th>
+            <th> Learning Goals</th>
         </tr>
+        <c:forEach items="${module}" var="module">
         <tr>
               <td><p>${module.getName()}</td>
               <td>${module.getID().intValue()}</td>
               <td>${module.getTeacherID().intValue()}</td>
+              <td>${module.getTeachName()}</td>
               <td>${module.getDeadline()}</td>
               <td>${module.getGoals()}</p></td>
+              
         </tr>
+        </c:forEach>
     </table> 
         
            </div>
       </div>
     </body>
 </html>
-

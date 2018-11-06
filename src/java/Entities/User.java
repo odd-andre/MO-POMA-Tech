@@ -18,5 +18,4 @@ public class User {
     String email;
     String datebirth;
     Integer id;
-    
 }

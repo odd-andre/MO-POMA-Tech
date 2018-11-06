@@ -11,4 +11,7 @@ package Entities;
  */
 public class Teacher extends User {
     Integer user_id;
+    
+    /*get teacher first name to display*/
+    public String getFirstName(){return this.firstName;}
 }

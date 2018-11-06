@@ -17,8 +17,11 @@
         <!--  to access these pages  -->
         <web-resource-collection>
             <web-resource-name>UserResources</web-resource-name>
-            <url-pattern>/showStudent/*</url-pattern>
-            <url-pattern>/ShowList</url-pattern>
+            <url-pattern>/show_Module_Detail/*</url-pattern>
+            <url-pattern>/Add_Module</url-pattern>
+            <url-pattern>/Edit_Module/*</url-pattern>
+            <url-pattern>/Delete_Module</url-pattern>
+            <url-pattern>/Module_List</url-pattern>
         </web-resource-collection>
         <!--  the user must have one of these roles  -->
         <auth-constraint>
@@ -60,3 +63,5 @@
 
     
 </web-app>
+
+
