@@ -7,6 +7,7 @@ package Servlets;
 
 import Classes.SqlHandler;
 import Entities.Student;
+import Entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -41,10 +42,9 @@ public class showStudents extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            String accessType = "Student";
-            if(request.isUserInRole("Teacher")) {
-                accessType = "Teacher";
-            }
+            User user = new User();
+            String accessType = user.getUserType(request);
+            
             request.setAttribute("accessType", accessType);
             
             SqlHandler sqlHdl = new SqlHandler(out);

@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author oddandre
@@ -18,5 +20,13 @@ public class User {
     String email;
     String datebirth;
     Integer id;
+    
+    public String getUserType(HttpServletRequest request){
+        String accessType = "Student";
+            if(request.isUserInRole("Teacher")) {
+                accessType = "Teacher";
+            }
+            return accessType;
+    }
     
 }
