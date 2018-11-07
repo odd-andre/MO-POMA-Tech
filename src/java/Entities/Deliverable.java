@@ -87,6 +87,12 @@ public Deliverable(){
             }
      }
 */
+    
+    public void createDeliverable(PrintWriter out, Integer deliverable_Id, Integer teacher_Id, Integer student_Id, Integer module_Id, String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
+        SqlHandler sqhndl = new SqlHandler(out);
+        sqhndl.insertDeliverable(deliverable_Id, teacher_Id, student_Id, module_Id, datetime_Of_Submit, status, points, feedback,progression);
+    }
+    
     }
 
 

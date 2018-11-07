@@ -6,10 +6,12 @@
 package Classes;
 import java.io.PrintWriter;
 import java.sql.*; 
+import java.text.SimpleDateFormat;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.util.Date;
 
 /**
  *
@@ -136,7 +138,37 @@ public class SqlHandler {
         }
         return null;
     }
+        
+         public void insertDeliverable(Integer deliverable_Id, Integer teacher_Id, Integer student_Id, Integer module_Id, String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO deliverable "
+                    + "(deliverable_Id,teacher_Id,student_Id,module_Id,datetime_Of_Submit,status,points,feedback,progression) "
+                    + "VALUES (?, ?, ? , ? , ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String created = formatter.format(date);
+            selectString.setInt(1, deliverable_Id);
+            selectString.setInt(2, teacher_Id);
+            selectString.setInt(3, student_Id);
+            selectString.setInt(4, module_Id);
+            selectString.setString(5, datetime_Of_Submit);
+            selectString.setString(6, status);
+            selectString.setInt(7, points);
+            selectString.setString(8, feedback);
+            selectString.setString(9, progression);
+            selectString.executeUpdate();
+            
+            ResultSet rs = selectString.getGeneratedKeys();
+            
+            
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
     
+    }
      public ResultSet viewDeliverable(){
         PreparedStatement selectString;
         try {
