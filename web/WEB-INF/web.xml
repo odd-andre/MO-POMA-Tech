@@ -7,7 +7,7 @@
     <session-config>
         <!-- Sessions will be automatically terminated (i.e. logged out)
         after 30 minutes of inactivity -->
-        <session-timeout> 30 </session-timeout>
+        <session-timeout> 20 </session-timeout>
     </session-config>
  
     <!-- A security constraint is a limit on what the users can do. 
@@ -51,7 +51,7 @@
 
     <!-- which realm to use -->
     <login-config>
-        <auth-method>BASIC</auth-method>
+        <auth-method>BASIC</auth-method> 
         <realm-name>DataSourceRealm</realm-name>
     </login-config>
 
