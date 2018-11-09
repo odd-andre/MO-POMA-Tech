@@ -6,6 +6,7 @@
 package Servlets;
 
 import Entities.Module;
+import Entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,6 +35,11 @@ public class Edit_ModulePost extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+            /*Here restricting the users by defining the role of them*/
+             User user = new User();
+             String accessType = user.getUserType(request);
+             request.setAttribute("accessType", accessType);
             
                 Module module = new Module();
                 Integer md_id = Integer.parseInt(request.getParameter("Module_ID"));

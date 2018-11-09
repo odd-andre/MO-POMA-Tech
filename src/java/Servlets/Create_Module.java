@@ -6,6 +6,7 @@
 package Servlets;
 
 import Entities.Module;
+import Entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,6 +35,11 @@ public class Create_Module extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
          try (PrintWriter out = response.getWriter()) {
+             
+             /*Here restricting the users by defining the role of them*/
+             User user = new User();
+             String accessType = user.getUserType(request);
+             request.setAttribute("accessType", accessType);
              
                 String modName = request.getParameter("Module_Name");
                 String deadline = request.getParameter("deadline");

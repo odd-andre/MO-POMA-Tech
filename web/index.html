@@ -4,17 +4,70 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
 <html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+      <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div>TODO write content!</div>
-        <form action="View_Module/" type="get">
-                <input type="Submit" name="hent" value="Data from DB">   
-        </form>
+        <div class="container">
+
+        </div>
+         <p class ="font-weight-bold">
+          <h1 align="center"><b>Welcome to MO-POMA Tech page</b> </h1>  
+          <h3>Short Description</h3>   
+          The following parts are done in this project: 
+           <ol>
+               <li>Student part </li>
+               <li>Module part </li>
+               <li>Deliverable part </li>
+               <li>Forum part </li>
+               <li>Message part </li>
+               <li>Notification part </li><br>
+               <li>The code will typically be something like: 
+
+                   public void showStudenter(PrintWriter out) <br>
+                   { <br>
+                   PreparedStatement getStudents; <br>         
+                   try { <br>
+                   getStudents = conn.prepareStatement("select * from student order by ?");<br>
+                   getStudents.setString(1,"firstName");<br>
+                   <br>
+                   ResultSet rset = getStudents.executeQuery();<br>
+ 
+                   // Step 4: Process the ResultSet by scrolling the cursor forward via next(). <br>
+                   //  For each row, retrieve the contents of the cells with getXxx(columnName). <br>
+                   out.println("The records selected are:" +" "); <br>
+                   int rowCount = 0; <br>
+                   while(rset.next()) {   <br>
+                   ...............................
+               </li>
+           </ol>
+        </p>
+            
+            <h2>From Earlier </h2>  
+           <p class="text-primary">In Context.xml: Define DataSource </p>
+              
+           <p class="text-danger"> In Web.xml: Define which DataSource to use (May be omitted)</p>
+           <p class="text-primary"> In the Java code, use the DataSource to log into the database</p>
+           <p class="text-danger"> Here we have restructured the code. </p>
+           <p class="text-primary"> The loggInn() method returns a Connection </p>
+           
+           <p class="text-primary"> For Student, we have number of Servlets, here called showstudents. 
+                  ..............continue...............
+          </p> 
+          <div><h3>Click below to connect with database App!</h3></div>
+            <form action="Show_Module_Detail/2" type="get">
+                <input type="Submit" name="retrieve" value="Data from DB">   
+            </form><br>
     </body>
 </html>
 

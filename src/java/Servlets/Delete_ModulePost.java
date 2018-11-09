@@ -6,6 +6,7 @@
 package Servlets;
 
 import Entities.Module;
+import Entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,7 +35,13 @@ public class Delete_ModulePost extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-                Integer mod_id = Integer.parseInt(request.getParameter("Module_ID"));
+            
+            /*Here restricting the users by defining the role of them*/
+             User user = new User();
+             String accessType = user.getUserType(request);
+             request.setAttribute("accessType", accessType);
+            
+             Integer mod_id = Integer.parseInt(request.getParameter("Module_ID"));
             
                 Module module = new Module();
                 module.deleteModule(out, mod_id);
