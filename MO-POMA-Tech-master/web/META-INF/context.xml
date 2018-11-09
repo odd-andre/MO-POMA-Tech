@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context path="/MO-POMA_Tech">
+    <Resource 
+        name="jdbc/localhostDS" 
+        type="javax.sql.DataSource" 
+        auth="Container" 
+        username="root" 
+        password="AA4426212aa" 
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/mo-poma">
+    </Resource>
+</Context>
