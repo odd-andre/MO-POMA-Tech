@@ -4,7 +4,7 @@
 --%>
 
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="Entities.Module"%>
+<%@page import="Entities.Forum"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -19,7 +19,7 @@
         <title>Add Forum</title>
     </head>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/MO-POMA_Tech">MO-POMA</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -37,20 +37,20 @@
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-10">
-                    <h1>Add Module</h1>
+                    <h1>Insert Forum</h1>
                     <form action="Create_Forum" method="POST">
                         <div class="form-row">
-                          <div class="col-6">
+                          <div class="col-3">
+                              <label for="Forum_ID">Forum ID</label>
+                              <input type="text" name="Forum_ID" id="Forum_ID" class="form-control" placeholder="numeric number">
+                          </div>
+                            <div class="col-3">
                               <label for="Creator_ID">Creator ID</label>
                               <input type="Creator_ID" class="form-control" name="Creator_ID" id="teacher_id" placeholder="numeric value">
                           </div>
-                          <div class="col-6">
-                              <label for="Forum_ID">Forum ID</label>
-                              <input type="text" name="Module_ID" id="Module_ID" class="form-control" placeholder="numeric number">
-                          </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-9">
+                            <div class="col-6">
                               <label for="Forum_Name">Forum Name</label>
                               <input type="text" name="Forum_Name" id="Forum_Name" class="form-control" placeholder="String text">    
                             </div>

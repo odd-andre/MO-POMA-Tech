@@ -74,8 +74,7 @@ public class Forum {
     
        public void createForum(PrintWriter out, Integer forum_Id, Integer creator_Id, String fName){
        SqlHandler sqlhndl = new SqlHandler(out);
-       sqlhndl.insertForum(forum_Id, creator_Id, fName);
-      
+       sqlhndl.createForum(forum_Id, creator_Id, fName);
    }
         
 }

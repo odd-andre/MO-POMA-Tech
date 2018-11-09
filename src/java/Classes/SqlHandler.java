@@ -241,27 +241,26 @@ public ResultSet showForumList(){
         return null;
 }
 
-    public void insertForum(Integer fId, Integer cId, String fName){
+    public void createForum(Integer forum_Id, Integer creator_Id, String fName){
     PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO Forum "
                     + "(forum_Id, creator_Id, fName) "
-                    + "VALUES (?, ?, ?, )");
+                    + "VALUES (?, ?, ?)");
             
-            //selectString.setInt(1, id);
-            selectString.setInt(1, fId);
-            selectString.setInt(2, cId);
+            selectString.setInt(1, forum_Id);
+            selectString.setInt(2, creator_Id);
             selectString.setString(3, fName);
             selectString.executeUpdate();
                 
-            JOptionPane.showMessageDialog(null, "Forum created sucessfully");
+            //JOptionPane.showMessageDialog(null, "Forum created sucessfully");
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
         }
-        catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+        //catch (Exception e){
+          //  JOptionPane.showMessageDialog(null, e);
+        //}
     }
 
 }

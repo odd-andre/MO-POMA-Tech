@@ -8,6 +8,7 @@ package Servlets;
 import Entities.Forum;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Muhammad Ali
+ * @author ThunderCow
  */
-@WebServlet(name = "createForum", urlPatterns = {"/createForum"})
+@WebServlet(name = "Create_Forum", urlPatterns = {"/Create_Forum"})
 public class Create_Forum extends HttpServlet {
 
     /**
@@ -35,12 +36,17 @@ public class Create_Forum extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
          try (PrintWriter out = response.getWriter()) {
              
-                Integer fId = Integer.parseInt(request.getParameter("forum_Id"));
-                Integer cId = Integer.parseInt(request.getParameter("creator_Id"));
-                String fName = request.getParameter("fName");
+                Integer forum_Id = Integer.parseInt(request.getParameter("Forum_ID"));
+                Integer creator_Id = Integer.parseInt(request.getParameter("Creator_ID"));
+                String fName = request.getParameter("Forum_Name");
                 Forum forum = new Forum();
-                forum.createForum(out, fId, cId, fName);
+                forum.createForum(out, forum_Id, creator_Id, fName);
                 response.sendRedirect("/MO-POMA_Tech");
+                
+                /*Get the jsp file where we have put our html */
+            RequestDispatcher view = request.getRequestDispatcher("/Users/createForum.jsp");
+            /*Send our data from request into the jsp file */
+            view.forward(request,response);
         }
     }
     

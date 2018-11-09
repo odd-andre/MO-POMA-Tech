@@ -1,7 +1,7 @@
 <%-- 
     Document   : viewForum
     Created on : 02-Nov-2018, 12:43:37
-    Author     : cyber
+    Author     : ThunderCow
 --%>
 
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
