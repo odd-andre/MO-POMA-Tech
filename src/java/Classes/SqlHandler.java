@@ -139,7 +139,7 @@ public class SqlHandler {
         return null;
     }
         
-         public void insertDeliverable(Integer deliverable_Id, Integer teacher_Id, Integer student_Id, Integer module_Id, String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
+         public void createDeliverable(Integer deliverable_Id, Integer teacher_Id, Integer student_Id, Integer module_Id, String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO deliverable "
