@@ -32,6 +32,10 @@ public class SqlHandler {
         this.out = out;
         this.connectDb(out);
     }
+
+    public SqlHandler() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private void connectDb(PrintWriter out){
         try {
              // Step 1: Allocate a database 'Connection' object
@@ -94,6 +98,23 @@ public class SqlHandler {
                     
         }
     }
+    
+     public ResultSet getDeliverable(Integer id){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT deliverable_Id,student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression " +
+                    "FROM deliverable " +
+                    "WHERE deliverable_Id = ?");
+            selectString.setInt(1, id);
+            
+            return selectString.executeQuery();
+        } // end try     
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+            }
+
     public ResultSet getStudent(String id){
         PreparedStatement selectString;
         try {
@@ -139,34 +160,49 @@ public class SqlHandler {
         return null;
     }
         
-         public void createDeliverable(Integer deliverable_Id, Integer teacher_Id, Integer student_Id, Integer module_Id, String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
+         public void createDeliverable(Integer student_Id, Integer module_Id, Integer teacher_Id, String status, Integer points,String feedback, String progression){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO deliverable "
-                    + "(deliverable_Id,teacher_Id,student_Id,module_Id,datetime_Of_Submit,status,points,feedback,progression) "
-                    + "VALUES (?, ?, ? , ? , ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
-            
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date();
-            String created = formatter.format(date);
-            selectString.setInt(1, deliverable_Id);
-            selectString.setInt(2, teacher_Id);
-            selectString.setInt(3, student_Id);
-            selectString.setInt(4, module_Id);
-            selectString.setString(5, datetime_Of_Submit);
-            selectString.setString(6, status);
-            selectString.setInt(7, points);
-            selectString.setString(8, feedback);
-            selectString.setString(9, progression);
+                    + "(student_Id,module_Id,teacher_Id,status,points,feedback,progression) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+            selectString.setInt(1, student_Id);  
+            selectString.setInt(2, module_Id);
+            selectString.setInt(3, teacher_Id);
+            selectString.setString(4, status);
+            selectString.setInt(5, points);
+            selectString.setString(6, feedback);
+            selectString.setString(7, progression);
             selectString.executeUpdate();
-            
-            ResultSet rs = selectString.getGeneratedKeys();
             
             
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
         }
+         }
+            public void updateDeliverable(Integer deliverable_Id,String status, Integer points,String feedback, String progression ){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("UPDATE deliverable "
+                + "SET status = ?,points = ?,feedback = ?,progression = ? "
+                + "WHERE deliverable_Id = ?");
+            
+            selectString.setInt(1,deliverable_Id);
+            selectString.setString(2, status);
+            selectString.setInt(3, points);
+            selectString.setString(4, feedback);
+            selectString.setString(5, progression);            
+            selectString.executeUpdate();
+            
+        }//end try
+            
+            
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+        }
+    
+        
     
     }
      public ResultSet viewDeliverable(){
