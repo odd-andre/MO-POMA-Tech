@@ -61,7 +61,8 @@ public class View_Module extends HttpServlet {
                     String mLearnGl = rst.getString("learning_Goals");
                     Integer tId   = rst.getInt("teacher_Id");
                     //student.add(new Student(mName,mDeadline,mId, mLearnGl, tId));
-                    module = new Module (mName, mDeadline,mLearnGl, mId, tId);
+                    module = new Module ();
+                    module.forModuleList(mId,mName,mDeadline, mLearnGl, tId);
                     ++rowCount;
                  }  // end while
             }
