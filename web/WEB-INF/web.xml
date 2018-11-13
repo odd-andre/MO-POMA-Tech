@@ -7,16 +7,21 @@
     <session-config>
         <!-- Sessions will be automatically terminated (i.e. logged out)
         after 30 minutes of inactivity -->
-        <session-timeout> 10 </session-timeout>
+        <session-timeout> 20 </session-timeout>
     </session-config>
- 
     <!-- A security constraint is a limit on what the users can do. 
+ 
         The constraint is enforced by tomcat, no programming is needed
         All necessary info is in this file -->
     <security-constraint>
         <!--  to access these pages  -->
         <web-resource-collection>
             <web-resource-name>UserResources</web-resource-name>
+            <url-pattern>/show_Module_Detail/*</url-pattern>
+            <url-pattern>/Add_Module</url-pattern>
+            <url-pattern>/Edit_Module/*</url-pattern>
+            <url-pattern>/Delete_Module</url-pattern>
+            <url-pattern>/Module_List</url-pattern>
             <url-pattern>/showStudent/*</url-pattern>
             <url-pattern>/showStudents</url-pattern>
             <url-pattern>/editStudent/*</url-pattern>
@@ -62,3 +67,5 @@
 
     
 </web-app>
+
+
