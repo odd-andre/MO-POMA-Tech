@@ -1,23 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Entities.Student;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author oddandre
  */
-@WebServlet(name = "showStudent", urlPatterns = {"/showStudent/*"})
-public class showStudent extends HttpServlet {
+@WebServlet(name = "signOut", urlPatterns = {"/signOut"})
+public class signOut extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,26 +33,10 @@ public class showStudent extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            // Get the path after the url, anything after /showstudent/ will show here. In this case /showstudent/{studentId}
-            String path = request.getPathInfo();
-            // getPathInfo includes the / after showStudent, remove it
-            String requestedStudent = path.replace("/", "");
-            //Create a sqlHandler to run database queries
-            //SqlHandler sqlHdl = new SqlHandler(out);
-            //Queries return as ResultSets so we have to store it as such
-            //ResultSet rst = sqlHdl.getStudent(requestedStudent);
-            
-            //We will return the student in the form of a ArrayList, this could be done better as there is only one user
-            List<Student> student = new ArrayList();
-            Student studentObj = new Student();
-            studentObj.getStudent(Integer.parseInt(requestedStudent), out);
-            student.add(studentObj);
-            //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("students", student);
-            //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/showStudent.jsp");
-            //Send our data from request into the jsp file
-            view.forward(request,response);
+            /* TODO output your page here. You may use following sample code. */
+            request.getSession().invalidate();
+            response.setStatus(401);
+            out.write("<html><head><meta http-equiv='refresh' content='0;/MO-POMA_Tech'></head></html>");
         }
     }
 
@@ -91,7 +76,7 @@ public class showStudent extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "A servlet to get a students information";
+        return "Short description";
     }// </editor-fold>
 
 }

@@ -1,5 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Servlets;
 
+import Entities.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -8,16 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Entities.Student;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author oddandre
  */
-@WebServlet(name = "showStudent", urlPatterns = {"/showStudent/*"})
-public class showStudent extends HttpServlet {
+@WebServlet(name = "editStudent", urlPatterns = {"/editStudent/*"})
+public class editStudent extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,22 +39,14 @@ public class showStudent extends HttpServlet {
             String path = request.getPathInfo();
             // getPathInfo includes the / after showStudent, remove it
             String requestedStudent = path.replace("/", "");
-            //Create a sqlHandler to run database queries
-            //SqlHandler sqlHdl = new SqlHandler(out);
-            //Queries return as ResultSets so we have to store it as such
-            //ResultSet rst = sqlHdl.getStudent(requestedStudent);
             
-            //We will return the student in the form of a ArrayList, this could be done better as there is only one user
-            List<Student> student = new ArrayList();
             Student studentObj = new Student();
             studentObj.getStudent(Integer.parseInt(requestedStudent), out);
-            student.add(studentObj);
-            //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("students", student);
-            //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/showStudent.jsp");
-            //Send our data from request into the jsp file
+            
+            request.setAttribute("student", studentObj);
+            RequestDispatcher view = request.getRequestDispatcher("/Users/editStudent.jsp");
             view.forward(request,response);
+            
         }
     }
 
@@ -91,7 +86,7 @@ public class showStudent extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "A servlet to get a students information";
+        return "Short description";
     }// </editor-fold>
 
 }
