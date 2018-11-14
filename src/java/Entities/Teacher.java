@@ -14,4 +14,3 @@ public class Teacher extends User {
     
     public String getFirstName(){return this.firstName;}
 }
-}

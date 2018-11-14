@@ -11,7 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author oddandre
@@ -114,7 +115,7 @@ public class SqlHandler {
         return null;
             }
 
-    public ResultSet getStudent(String id){
+    public ResultSet getStudent(Integer id){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email, U.zip_code, U.date_Of_Birth " +
@@ -158,13 +159,11 @@ public class SqlHandler {
            // selectString.setInt("name1",1,11,"2018-09-28","Learn something 1");
             selectString.executeUpdate();
             
-            JOptionPane.showMessageDialog(null, "Module created sucessfully");
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
         }
         catch (Exception e){
-            JOptionPane.showMessageDialog(null, e);
         }
     }
     public void updateStudent(Integer id,String adress, String email,String firstName, String surName, Integer zip, String datebirth){
