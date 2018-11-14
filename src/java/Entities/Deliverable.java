@@ -103,12 +103,16 @@ public Deliverable(){
             }
     }
     
-    public void createDeliverable(PrintWriter out,Integer student_Id, Integer module_Id, Integer teacher_Id, String status, Integer points,String feedback, String progression){
+    public void createDeliverable(PrintWriter out,Integer student_Id, Integer module_Id, Integer teacher_Id, String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
         SqlHandler sqhndl = new SqlHandler(out);
-        sqhndl.createDeliverable(student_Id, module_Id, teacher_Id, status, points, feedback, progression);
+        sqhndl.createDeliverable(student_Id, module_Id, teacher_Id, datetime_Of_Submit, status, points, feedback, progression);
     }
     
+     public void deleteDeliverable(PrintWriter out, Integer deliverable_Id){
+        SqlHandler sqlhndl = new SqlHandler(out);
+        sqlhndl.deleteDeliverable(deliverable_Id);
     
+}
 
   public void updateDeliverable(PrintWriter out,Integer deliverable_Id, String status, Integer points, String feedback, String progression){
    
