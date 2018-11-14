@@ -160,19 +160,20 @@ public class SqlHandler {
         return null;
     }
         
-         public void createDeliverable(Integer student_Id, Integer module_Id, Integer teacher_Id, String status, Integer points,String feedback, String progression){
+         public void createDeliverable(Integer student_Id, Integer module_Id, Integer teacher_Id,String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO deliverable "
-                    + "(student_Id,module_Id,teacher_Id,status,points,feedback,progression) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    + "(student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             selectString.setInt(1, student_Id);  
             selectString.setInt(2, module_Id);
             selectString.setInt(3, teacher_Id);
-            selectString.setString(4, status);
-            selectString.setInt(5, points);
-            selectString.setString(6, feedback);
-            selectString.setString(7, progression);
+            selectString.setString(4, datetime_Of_Submit);
+            selectString.setString(5, status);
+            selectString.setInt(6, points);
+            selectString.setString(7, feedback);
+            selectString.setString(8, progression);
             selectString.executeUpdate();
             
             
@@ -217,6 +218,24 @@ public class SqlHandler {
             out.println("Connection does not work " +ex);
         }
         return null;
+    }
+     
+      public void deleteDeliverable(Integer deliverable_Id){
+        PreparedStatement selectString;
+        try {
+            String sqlq = "DELETE FROM deliverable WHERE deliverable_Id=?";
+            selectString = conn.prepareStatement(sqlq);
+            
+            selectString.setInt(1, deliverable_Id);
+            if (deliverable_Id != null) {
+                int i = selectString.executeUpdate();
+                System.out.println(""+i+"Deliverable deleted successfully");
+            }
+            conn.close();
+            }     
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" + ex);
+        }
     }
     
     public void clearState(){

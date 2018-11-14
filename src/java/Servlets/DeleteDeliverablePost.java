@@ -5,9 +5,9 @@
  */
 package Servlets;
 
+import Entities.Deliverable;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Petr
  */
-@WebServlet(name = "CreateDeliverablepost", urlPatterns = {"/CreateDeliverablePost"})
-public class CreateDeliverablePost extends HttpServlet {
+@WebServlet(name = "DeleteDeliverablePost", urlPatterns = {"/DeleteDeliverablePost"})
+public class DeleteDeliverablePost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,15 +30,19 @@ public class CreateDeliverablePost extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/CreateDeliverable.jsp");
-            //Send our data from request into the jsp file
-            view.forward(request,response);
+            /*Here restricting the users by defining the role of them*/
+             
+            
+             Integer deliverable_Id = Integer.parseInt(request.getParameter("deliverable_Id"));
+            
+                Deliverable deliverable = new Deliverable();
+                deliverable.deleteDeliverable(out, deliverable_Id);
+                response.sendRedirect("/MO-POMA_Tech/showDeliverable?view_Deliverable=view_Deliverable");
         }
     }
 

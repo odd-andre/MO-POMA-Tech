@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Entities.Deliverable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Petr
  */
-@WebServlet(name = "CreateDeliverablepost", urlPatterns = {"/CreateDeliverablePost"})
-public class CreateDeliverablePost extends HttpServlet {
+@WebServlet(name = "DeleteDeliverable", urlPatterns = {"/DeleteDeliverable/*"})
+public class DeleteDeliverable extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,15 +33,26 @@ public class CreateDeliverablePost extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+     
+           response.setContentType("text/html;charset=UTF-8");
+               try (PrintWriter out = response.getWriter()) {
+                        
+              String path = request.getPathInfo();
+              String requestedDeliverable = path.replace("/", "");
+             Deliverable delObj = new Deliverable();
+               delObj.deleteDeliverable(out, Integer.parseInt(requestedDeliverable));
+           
             
-            //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/CreateDeliverable.jsp");
-            //Send our data from request into the jsp file
-            view.forward(request,response);
+           
+            request.setAttribute("delObj", delObj);
+            
+            RequestDispatcher view = request.getRequestDispatcher("/Users/deleteDeliverable.jsp");
+            view.forward(request, response);
+            
         }
     }
+        
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
