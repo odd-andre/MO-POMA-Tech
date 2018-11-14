@@ -73,3 +73,5 @@ public class Student extends User {
         sqlHdl.updateStudent(id, adress, email, firstName, surName, zip, datebirth);
     }
 }
+
+  

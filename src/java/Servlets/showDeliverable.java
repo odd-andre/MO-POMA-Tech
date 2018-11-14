@@ -6,11 +6,16 @@
 package Servlets;
 
 import Classes.SqlHandler;
-import Entities.Module;
+import Entities.Deliverable;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Muhammad Ali
+ * @author Petr
  */
-@WebServlet(name = "View_Module", urlPatterns = {"/View_Module/*"})
-public class View_Module extends HttpServlet {
+@WebServlet(name = "showDeliverable", urlPatterns = {"/showDeliverable"})
+public class showDeliverable extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,51 +40,56 @@ public class View_Module extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        
         try (PrintWriter out = response.getWriter()) {
-            // Get the path after the url, anything after /showstudent/ will show here. In this case /showstudent/{studentId}
-             String path = request.getPathInfo();
-            // getPathInfo includes the / after showStudent, remove it
-             String requestedModule = path.replace("/", "");
-            //Create a sqlHandler to run database queries
-            SqlHandler sqlHdl = new SqlHandler(out);
-            //Queries return as ResultSets so we have to store it as such
-            ResultSet rst = sqlHdl.viewModule(requestedModule);
+            /* TODO output your page here. You may use following sample code. */
+           SqlHandler sqlHdl = new SqlHandler(out);
+            ResultSet rst = sqlHdl.viewDeliverable();
+         List<Deliverable> deliverable = new ArrayList();
+         
+          try {
+              
+             int rowCount = 0;
+             while (rst.next()) {
+                 Deliverable deliverableObj = new Deliverable();
+                 Integer deliverable_Id = rst.getInt("deliverable_Id");
+                 Integer student_Id = rst.getInt("student_Id");
+                 Integer module_Id = rst.getInt("module_Id");
+                 Integer teacher_Id  = rst.getInt("teacher_Id");
+                 String datetime_Of_Submit = rst.getString("datetime_Of_Submit");
+                 String status = rst.getString("status");
+                 Integer points = rst.getInt("points");
+                 String feedback = rst.getString("feedback");
+                 String progression = rst.getString("progression");
+                 
+                 deliverableObj.deliverableList(deliverable_Id, teacher_Id, student_Id, module_Id, datetime_Of_Submit, status, points, feedback, progression);
+              /*   deliverableObj.getTeachName(out, teacher_Id);*/
+              
+                 deliverable.add(deliverableObj);
+                 
+                 ++rowCount;
+                
+             }
+              }
+             catch (SQLException ex){
+                     out.println("Error");
+                     }
+         
             
-            //We will return the student in the form of a ArrayList, this could be done better as there is only one user
-            //List<Student> student = new ArrayList();
-            //List<Module> module = new ArrayList();
-            Module module = null;
-            
-            try {
-            int rowCount = 0;
-                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    String mName = rst.getString("name");
-                    Integer mId   = rst.getInt("module_Id");
-                    String mDeadline = rst.getString("deadline");
-                    String mLearnGl = rst.getString("learning_Goals");
-                    Integer tId   = rst.getInt("teacher_Id");
-                    //student.add(new Student(mName,mDeadline,mId, mLearnGl, tId));
-                    module = new Module ();
-                    module.forModuleList(mId,mName,mDeadline, mLearnGl, tId);
-                    ++rowCount;
-                 }  // end while
-            }
-            catch (SQLException ex) {
-                out.println("Ikke hentet fra DB " +ex);
-            }
-            //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("module", module);
+     
+          request.setAttribute("deliverable", deliverable);
             //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/showModule.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/Users/showDeliverable.jsp");
             //Send our data from request into the jsp file
             view.forward(request,response);
-            
-            
+        
         }
-    }
-
+        }
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -92,7 +102,11 @@ public class View_Module extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(showDeliverable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -106,7 +120,11 @@ public class View_Module extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(showDeliverable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -14,9 +14,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <c:forEach items="${students}" var="student">
-            <p>${student.adress} ${student.getEmail()}</p>
-        </c:forEach>
+        <h1>Adding module</h1>
+        <form name="addModule" action="addModule">
+            Name: <input type="text" name="name"> <br>
+            Deadline: <input type="text" name="deadline"> <br>
+            Learning_Goals: <input type="text" name="learning_Goals"> <br>
+            <input type="submit" value="Send">
+        </form>
     </body>
 </html>
+
+

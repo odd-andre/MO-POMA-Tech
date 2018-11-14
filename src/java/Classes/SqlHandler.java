@@ -6,15 +6,11 @@
 package Classes;
 import java.io.PrintWriter;
 import java.sql.*; 
+import java.text.SimpleDateFormat;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JOptionPane;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
@@ -34,6 +30,10 @@ public class SqlHandler {
     public SqlHandler (PrintWriter out){
         this.out = out;
         this.connectDb(out);
+    }
+
+    public SqlHandler() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     private void connectDb(PrintWriter out){
         try {
@@ -97,7 +97,24 @@ public class SqlHandler {
                     
         }
     }
-    public ResultSet getStudent(Integer id){
+    
+     public ResultSet getDeliverable(Integer id){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT deliverable_Id,student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression " +
+                    "FROM deliverable " +
+                    "WHERE deliverable_Id = ?");
+            selectString.setInt(1, id);
+            
+            return selectString.executeQuery();
+        } // end try     
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+            }
+
+    public ResultSet getStudent(String id){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email, U.zip_code, U.date_Of_Birth " +
@@ -316,6 +333,65 @@ public class SqlHandler {
         return null;
     }
    
+         public void createDeliverable(Integer student_Id, Integer module_Id, Integer teacher_Id, String status, Integer points,String feedback, String progression){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO deliverable "
+                    + "(student_Id,module_Id,teacher_Id,status,points,feedback,progression) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)");
+            selectString.setInt(1, student_Id);  
+            selectString.setInt(2, module_Id);
+            selectString.setInt(3, teacher_Id);
+            selectString.setString(4, status);
+            selectString.setInt(5, points);
+            selectString.setString(6, feedback);
+            selectString.setString(7, progression);
+            selectString.executeUpdate();
+            
+            
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+         }
+            public void updateDeliverable(Integer deliverable_Id,String status, Integer points,String feedback, String progression ){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("UPDATE deliverable "
+                + "SET status = ?,points = ?,feedback = ?,progression = ? "
+                + "WHERE deliverable_Id = ?");
+            
+            selectString.setInt(1,deliverable_Id);
+            selectString.setString(2, status);
+            selectString.setInt(3, points);
+            selectString.setString(4, feedback);
+            selectString.setString(5, progression);            
+            selectString.executeUpdate();
+            
+        }//end try
+            
+            
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+        }
+    
+        
+    
+    }
+     public ResultSet viewDeliverable(){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT deliverable_Id,student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression FROM deliverable ");
+           
+
+            return selectString.executeQuery();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Connection does not work " +ex);
+        }
+        return null;
+    }
+    
     public void clearState(){
         this.select = "";
         this.where = "";
