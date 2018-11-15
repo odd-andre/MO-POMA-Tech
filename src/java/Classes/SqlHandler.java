@@ -6,10 +6,12 @@
 package Classes;
 import java.io.PrintWriter;
 import java.sql.*; 
+import java.text.SimpleDateFormat;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.util.Date;
 
 /**
  *
@@ -36,10 +38,12 @@ public class SqlHandler {
               Context cont = new InitialContext();
               DataSource ds = (DataSource)cont.lookup("java:comp/env/jdbc/localhostDS");  
               //DataSource ds = (DataSource)cont.lookup("jdbc/LocalhostDS");
+             // Step 2: Allocate a 'Statement' object in the Connection
+             
+             
+             stmt = conn.createStatement();
               conn =  ds.getConnection();
 
-             // Step 2: Allocate a 'Statement' object in the Connection
-             stmt = conn.createStatement();
             }
             catch (SQLException ex ) {
                 out.println("Not connected to database " +ex);
@@ -92,11 +96,11 @@ public class SqlHandler {
                     
         }
     }
-    public ResultSet getStudent(String id){
+    public ResultSet getMessageDetail(Integer id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT user_Id,adress,email FROM User WHERE user_Id = ?");
-            selectString.setString(1, id);
+                selectString = conn.prepareStatement("SELECT message_Id,datetime_Message,Reciever,Sender,Subject,Content FROM Messages WHERE message_Id=? ");
+            selectString.setInt(1, id);
             
             return selectString.executeQuery();
         } // end try     
@@ -106,10 +110,120 @@ public class SqlHandler {
         return null;
     }
     
-    public void clearState(){
+    
+    public void createMessage(Integer user_Id,Integer message_id,Integer Reciever, Integer dateTime_message,String Subject, String Content){
+    PreparedStatement selectString;
+    
+    try{
+        selectString = conn.prepareStatement("INSERT INTO Messages " +"(user_Id, message_id, Sender, Reciever, dateTime_message,Subject,Content)" + "VALUES(?,?,?,?,?,?,?)");
+            
+            selectString.setInt(1, user_Id);
+            selectString.setInt(2,message_id);
+            selectString.setInt(4,Reciever);
+            selectString.setInt(5,dateTime_message);
+            selectString.setString(6, Subject);
+            selectString.setString(7, Content);
+           
+            selectString.executeUpdate();
+                
+                
+                
+    }
+    catch (SQLException ex){
+        out.println("ikke lagre i DB " + ex);
+    }
+    
+    }
+           
+    
+             public void updatemessage(Integer message_Id,Integer dateTime_message,String Subject, String Content ){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("UPDATE Messages "
+                + "SET dateTime_message = ?,Subject = ?,Content = ? "
+                + "WHERE messages_Id = ?");
+            
+            selectString.setInt(1,message_Id);
+            selectString.setInt(2, dateTime_message);
+            selectString.setString(3,Subject);
+            selectString.setString(4, Content);
+                      
+            selectString.executeUpdate();
+            
+        }//end try
+            
+            
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+        }
+        
+             }
+    
+        public void insertMessages(Integer message_Id,Integer dateTime_message,String Subject, String Content){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO Messages "
+                    + "(message_Id, datetime_message,Subject,Content) "
+                    + "VALUES (?, ?, ? , ? , ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String created = formatter.format(date);
+            
+            selectString.setInt(1, message_Id);
+            selectString.setInt(2, dateTime_message);
+            selectString.setString(3, Subject);
+            selectString.setString(4, Content);
+         
+            selectString.executeUpdate();
+            
+            ResultSet rs = selectString.getGeneratedKeys();
+            
+            
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+    
+    }
+   
+    public ResultSet viewMessages(){
+                PreparedStatement selectString;
+                
+                try{
+                    selectString = conn.prepareStatement("SELECT message_id, datetime_Message, Reciever, Sender,Subject, Content FROM Messages");
+                    
+                    return selectString.executeQuery();
+                }
+                    catch (SQLException ex){
+                        out.println("Connection does not work " + ex);
+                    
+                    }
+                       return null;
+            }  
+
+    public void insertMessage(Integer message_Id, Integer Sender, Integer Reciever, Integer dateTime_Message, String Subject, String Content) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+            
+   
+    /**
+     *clearState 
+     */
+   /* public void clearState(){
         this.select = "";
         this.where = "";
         this.from = "";
-    }
+    }*/
     
 }
+             
+
+
+ 
+
+
+
+
+
+
