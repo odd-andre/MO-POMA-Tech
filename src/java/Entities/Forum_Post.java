@@ -16,46 +16,30 @@ import java.sql.SQLException;
  */
 public class Forum_Post extends Forum {
 
-    String fName;
-    private Integer forumpost_Id;
-    private String datetime_upload;
-    private String fPostname;
-    private Integer creator;
+    //Integer forum_Id;
+    Integer forumpost_Id;
+    String datetime_upload;
+    String fPostname;
+    Integer creator;
    
-    public Forum_Post(Integer forumpost_Id, Integer forum_Id, String datetime_upload, String fPostname, Integer creator){
+    public Forum_Post(){
+        /*(Integer forumpost_Id, Integer forum_Id, String datetime_upload, String fPostname, Integer creator){
         this.forumpost_Id = forumpost_Id;
         this.forum_Id = forum_Id;
         this.datetime_upload = datetime_upload;
         this.fPostname = fPostname;
         this.creator = creator;
-        
+        */
     }
-    public Integer getforumpost_Id(){return this.forumpost_Id;}
+   
+   /* public Integer getforumpost_Id(){return this.forumpost_Id;}
     public Integer getforum_Id(){return this.forum_Id;}
     public String getdatetime_upload(){return this.datetime_upload;}
     public String getfPostname(){return this.fPostname;}
     public Integer getcreator(){return this.creator;}
-
-    public void getForumDetail(PrintWriter out, Integer id){
-        SqlHandler sqlhandl = new SqlHandler(out);
-        ResultSet rst = sqlhandl.getForum(id);
-        
-        try {
-                
-            int rowCount = 0;
-                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    
-                    this.forum_Id = rst.getInt("forum_Id");
-                    this.fName = rst.getString("fName");
-                    this.creator_Id = rst.getInt("creator_Id");
-
-          
-                    ++rowCount;
-                 }  // end while
-            }
-            catch (SQLException ex) {
-                
-                out.println("Ikke hentet fra DB " +ex);
-            }
-    }
+    */
+    public void createPost(PrintWriter out, Integer forumpost_Id, Integer forum_Id, String datetime_upload, String fPostname, Integer creator){
+       SqlHandler sqlhndl = new SqlHandler(out);
+       sqlhndl.createPost(forumpost_Id, forum_Id, datetime_upload, fPostname, creator);
+}
 }

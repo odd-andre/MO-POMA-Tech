@@ -5,15 +5,10 @@
  */
 package Servlets;
 
-import Classes.SqlHandler;
-import Entities.Forum;
+import Entities.Module;
+import Entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ThunderCow
+ * @author Muhammad Ali
  */
-@WebServlet(name = "View_Forumlist", urlPatterns = {"/View_Forumlist"})
-public class View_Forumlist extends HttpServlet {
+@WebServlet(name = "Create_Module", urlPatterns = {"/Create_Module"})
+public class Create_Module extends HttpServlet {
 
-     /**
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -39,46 +34,21 @@ public class View_Forumlist extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            /*Create a sqlHandler to run database queries*/
-            SqlHandler sqlHdl = new SqlHandler(out);
-            
-            /*Queries return as ResultSets so we have to store it as such*/
-            ResultSet rst = sqlHdl.showForumList();
-                       
-            /*We will return the Modules in the form of a ArrayList, this could be done better as there are number of modules.*/
-            List<Forum> forum = new ArrayList();
-            
-            
-            try {
-            int rowCount = 0;
-                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    Forum forumObj = new Forum();
- 
-                    Integer fId = rst.getInt("forum_Id");
-                    Integer cId = rst.getInt("creator_Id");
-                    String fName = rst.getString("fName");
-                    
-                    /*creating module instance to call these functions & object after that*/
-                    forumObj.getforumlist(fId, cId, fName);
-                    
-                    forum.add(forumObj);
-                                        
-                    ++rowCount;
-                 }  // end while
-            }
-            catch (SQLException ex) {
-                out.println("Ikke hentet fra DB " +ex);
-            }
-                         
-            /*Put data into the requset for the next page allowing us to use it.*/
-            request.setAttribute("forum", forum);
-            
-            /*Get the jsp file where we have put our html*/
-            RequestDispatcher view = request.getRequestDispatcher("/Users/viewForumlist.jsp");
-            /*Send our data from request into the jsp file*/
-            view.forward(request,response);
+         try (PrintWriter out = response.getWriter()) {
+             
+             /*Here restricting the users by defining the role of them*/
+             User user = new User();
+             String accessType = user.getUserType(request);
+             request.setAttribute("accessType", accessType);
+             
+                String modName = request.getParameter("Module_Name");
+                String deadline = request.getParameter("deadline");
+                String learngoals = request.getParameter("learn_Goals");
+                //Integer mId = Integer.parseInt(request.getParameter("module_Id"));
+                Integer tId = Integer.parseInt(request.getParameter("Teacher_ID"));
+                Module module = new Module();
+                module.createModule(out, modName, deadline, learngoals, tId);
+                response.sendRedirect("/MO-POMA_Tech");
         }
     }
 
@@ -122,3 +92,4 @@ public class View_Forumlist extends HttpServlet {
     }// </editor-fold>
 
 }
+

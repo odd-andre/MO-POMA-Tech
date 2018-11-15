@@ -262,5 +262,59 @@ public ResultSet showForumList(){
           //  JOptionPane.showMessageDialog(null, e);
         //}
     }
+    public void createPost(Integer forumpost_Id, Integer forum_Id, String datetime_upload, String fPostname, Integer creator){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO Forum_post "
+                    + "(forumpost_Id, forum_Id, datetime_upload, fPostname, creator) "
+                    + "VALUES (?, ?, ?, ?, ?)");
+                    
+                selectString.setInt(1, forumpost_Id);
+                selectString.setInt(2, forum_Id);
+                selectString.setString(3, datetime_upload);
+                selectString.setString(4, fPostname);
+                selectString.setInt(5, creator);
+                selectString.executeUpdate();
+        }
+               
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+        }
+    }
+        
+    public void createCom(Integer comment_Id, Integer forum_Id, Integer forumpost_Id, String datetime_upload_comment, String content, Integer poster){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO Forum_comment "
+                    + "(comment_Id, forum_Id, forumpost_Id, datetime_upload_comment, content, poster) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)");
+                    
+                selectString.setInt(1, comment_Id);
+                selectString.setInt(2, forum_Id);
+                selectString.setInt(3, forumpost_Id);
+                selectString.setString(4, datetime_upload_comment);
+                selectString.setString(5, content);
+                selectString.setInt(6, poster);
+                selectString.executeUpdate();
+                
+        }
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+}
+}
+    public ResultSet getForumCom(Integer id){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT f.forum_Id,f.creator_Id,f.fName, fp.forumpost_Id,fp.datetime_upload,fp.fPostname,fp.creator,fc.comment_Id,fc.datetime_upload_comment,fc.content,fc.poster FROM Forum_post AS fp INNER JOIN Forum as f ON fp.forum_Id=f.forum_Id INNER JOIN Forum_comment AS fc ON fp.forumpost_Id=fc.forumpost_Id WHERE f.forum_Id=?" );
+            selectString.setInt(1, id);
 
+            return selectString.executeQuery();
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+}
+    
+    
 }
