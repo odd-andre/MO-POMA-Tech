@@ -17,8 +17,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <title>Add Module</title>
-    </head>  
+        <title>Module Detail</title>
+    </head>
+    
+    <%-- navigation part --%>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
         <div class="navbar-header">
@@ -54,6 +56,7 @@
     </nav>
     
     <body>
+        <%-- table formatting part --%>
         <style>
             table, th, td {
                 border: 1px solid black;
@@ -77,7 +80,7 @@
             <div class="row justify-content-md-center">
         <h1 align="center">Individual Detail!</h1>
        <div class="col-10"> 
-                      
+                      <%-- Table implementation --%>
               <table style="width:100%">
               
         <tr>

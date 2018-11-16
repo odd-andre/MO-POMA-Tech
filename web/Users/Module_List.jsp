@@ -12,16 +12,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-    
+    <%-- setting libraries for the web-page --%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-        <title>Add Module</title>
+                
+        <title>Total Modules</title>
     </head> 
     
+    <%-- navigation part --%>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
         <div class="navbar-header">
@@ -41,7 +42,6 @@
                     <li><a href="/MO-POMA_Tech/Show_Module_Detail/1">Individual Module</a></li>
                     <li><a href="/MO-POMA_Tech/Add_Module">Insert Module</a></li>
                     <li><a href="/MO-POMA_Tech/Edit_Module/1">Update Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Delete_Module">Remove Module</a></li>
                 </ul>
             </li>
       
@@ -57,9 +57,9 @@
     </nav>    
     
     <body>
-        
-        <style>
-            table, th, td {
+        <%-- table formatting part --%>
+        <style> 
+        table, th, td {
                 border: 1px solid black;
                 border-collapse: collapse;
             }
@@ -75,8 +75,16 @@
             table tr:nth-child(odd) {
                 background-color: #fff;
             }
-        </style>
+        </style> 
         
+        <%-- setting alert when click to remove the module --%>
+        <script type="text/javascript">
+            function alertName(){
+            alert("Module will be deleted!");
+            } 
+        </script>
+        
+        <%-- creating table format to show modules list --%>
         <div class="container"> 
             <div class="row justify-content-md-center">
         <h1 align="center">List of Modules!</h1>
@@ -91,6 +99,7 @@
             <th> Teacher Name</th>
             <th> Module Deadline</th>
             <th> Learning Goals</th>
+            <th> Want Remove!</th>
         </tr>
         <c:forEach items="${module}" var="module">
         <tr>
@@ -100,12 +109,16 @@
               <td>${module.getTeachName()}</td>
               <td>${module.getDeadline()}</td>
               <td>${module.getGoals()}</p></td>
-              
+              <td> <form action="/MO-POMA_Tech/Delete_ModulePost/${module.getID().intValue()}" type="POST">
+                      <input type="submit" value="remove">
+                  </form></td>
         </tr>
         </c:forEach>
     </table> 
         
            </div>
       </div>
+            <%-- pop up alert message --%>
+            <script type="text/javascript"> window.onsubmit = alertName; </script>
     </body>
 </html>

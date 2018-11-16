@@ -37,7 +37,6 @@
                 <ul class="dropdown-menu">
                     <li><a href="/MO-POMA_Tech/Show_Module_Detail/1">Individual Module</a></li>
                     <li><a href="/MO-POMA_Tech/Edit_Module/1">Update Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Delete_Module">Remove Module</a></li>
                     <li><a href="/MO-POMA_Tech/Module_List/">Module List</a></li>
                 </ul>
             </li>
@@ -56,33 +55,35 @@
     <body>
         <div class="container">
             <div class="row justify-content-md-center">
-                <div class="col-10">
+                <div class="col-6">
                     <h1>Edit /Update Module</h1>
                     <form action="/MO-POMA_Tech/Edit_ModulePost" method="POST">
                         <div class="form-row">
                           <div class="col-6">
                               <label for="Module_Name">Module Name</label>
-                              <input type="text" name="Module_Name" id="Module_Name" value = "${module.getName()}" class="form-control" placeholder="String text">
+                              <input type="text" name="Module_Name" id="Module_Name" value = "${module.getName()}" class="form-control" placeholder="String text" required>                       
                           </div>
                           <div class="col-6">
                               <label for="Module_ID">Module ID</label>
                               <input type="text" name="Module_ID" id="Module_ID" value = "${module.getID().intValue()}" class="form-control" placeholder="numeric number">
                           </div>
                         </div>
+                        
                         <div class="form-row">
-                            <div class="col-9">
+                            <div class="col-6">
                               <label for="Teacher_ID">Teacher ID</label>
-                              <input type="Teacher_ID" class="form-control" name="Teacher_ID" id="teacher_id" value="${module.getTeacherID().intValue()}" placeholder="numeric value">
+                              <input type="Teacher_ID" class="form-control" name="Teacher_ID" id="teacher_id" value="${module.getTeacherID().intValue()}" placeholder="numeric value" required>
                             </div>
                             <div class="col-3">
                                 <label for="">Deadline</label>
-                                <input type="text" name="Deadline" id="deadline" value = "${module.getDeadline()}" class="form-control" placeholder="YEAR-MONTH-DAY">
+                                <input type="text" name="Deadline" id="deadline" value = "${module.getDeadline()}" class="form-control" placeholder="YEAR-MONTH-DAY" required>
                             </div>
                         </div>
+                            
                         <div class="form-row">
-                            <div class="col-9">
+                            <div class="col-6">
                               <label for="address">Goals</label>
-                              <input type="text" class="form-control" name="learn_Goals" id="goals" value = "${module.getGoals()}" placeholder="string text">
+                              <input type="text" class="form-control" name="learn_Goals" id="goals" value = "${module.getGoals()}" placeholder="string text" required>
                             </div>
                             
                             <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Update Module</button><br>

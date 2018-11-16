@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Muhammad Ali
  */
-@WebServlet(name = "Delete_ModulePost", urlPatterns = {"/Delete_ModulePost"})
+@WebServlet(name = "Delete_ModulePost", urlPatterns = {"/Delete_ModulePost/*"})
 public class Delete_ModulePost extends HttpServlet {
 
     /**
@@ -36,15 +36,18 @@ public class Delete_ModulePost extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
+            String path = request.getPathInfo();
+            String requestedModule = path.replace("/", "");
             /*Here restricting the users by defining the role of them*/
              User user = new User();
              String accessType = user.getUserType(request);
              request.setAttribute("accessType", accessType);
             
-             Integer mod_id = Integer.parseInt(request.getParameter("Module_ID"));
+            // Integer mod_id = Integer.parseInt(request.getParameter("Module_ID")); 
             
                 Module module = new Module();
-                module.deleteModule(out, mod_id);
+              /*  module.deleteModule(out, mod_id); */
+              module.deleteModule(out, Integer.parseInt(requestedModule));
                 response.sendRedirect("/MO-POMA_Tech");
         }
     }
