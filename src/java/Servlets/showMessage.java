@@ -47,7 +47,8 @@ public class showMessage extends HttpServlet {
                        Message messageObj = new Message();
                       
                         Integer message_id = rst.getInt("message_Id");
-                        Integer datetime_message = rst.getInt("datetime_Message");
+                        // Integer instead of string?
+                        String datetime_message = rst.getString("datetime_Message");
                         Integer Reciever = rst.getInt("Reciever");
                         Integer Sender = rst.getInt("sender");
                         String Subject = rst.getString("Subject");
@@ -55,7 +56,7 @@ public class showMessage extends HttpServlet {
                         
                         
                        
-                        messageObj.messageList(message_id, datetime_message, Reciever, Sender, Subject, Content);
+                        messageObj.messageList(message_id, Sender,Reciever, datetime_message, Subject, Content);
                         
                         messages.add(messageObj);
                         

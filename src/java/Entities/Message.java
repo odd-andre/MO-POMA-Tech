@@ -34,38 +34,32 @@ public class Message {
     Integer message_Id;
     Integer sender;
     Integer reciever;
-    Integer dateTime_Message;
+    // Datetime is a string, not an integer
+    String dateTime_Message;
     String  subject;
     String  content;
      
     public Message(){
           
 }
-    public Message(Integer message_id, Integer Sender, Integer Reciever, Integer dateTime_message, String Subject, String Content){
+     public void messageList(Integer message_Id, Integer Sender, Integer Reciever, String dateTime_Message, String Subject, String Content){
          this.message_Id = message_Id;
-         this.sender = sender;
-         this.reciever = reciever;
-         this.sender = sender;
+         // Not the same name as parameters
+         this.sender = Sender;
+         this.reciever = Reciever;
+         // Duplicate
+         //this.sender = sender;
          this.dateTime_Message = dateTime_Message;
-         this.subject = subject;
-         this.content = content;
-
-}  
-     public void messageList(Integer message_Id, Integer Sender, Integer Reciever, Integer dateTime_Message, String Subject, String Content){
-         this.message_Id = message_Id;
-         this.sender = sender;
-         this.reciever = reciever;
-         this.sender = sender;
-         this.dateTime_Message = dateTime_Message;
-         this.subject = subject;
-         this.content = content;
+         // Not same name as parameters
+         this.subject = Subject;
+         this.content = Content;
      }
      
      
         public Integer getMessageID(){return this.message_Id;}
         public Integer getSender(){return this.sender;}
         public Integer getReciever(){return this.reciever;}
-        public Integer getdateTime_Message(){return this.dateTime_Message;}
+        public String getdateTime_Message(){return this.dateTime_Message;}
         public String getSubject(){return this.subject;}
         public String getContent(){return this.content;}
         

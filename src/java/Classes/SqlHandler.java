@@ -40,9 +40,8 @@ public class SqlHandler {
               //DataSource ds = (DataSource)cont.lookup("jdbc/LocalhostDS");
              // Step 2: Allocate a 'Statement' object in the Connection
              
-             
+            conn =  ds.getConnection();
              stmt = conn.createStatement();
-              conn =  ds.getConnection();
 
             }
             catch (SQLException ex ) {
@@ -190,8 +189,8 @@ public class SqlHandler {
     public ResultSet viewMessages(){
                 PreparedStatement selectString;
                 
-                try{
-                    selectString = conn.prepareStatement("SELECT message_id, datetime_Message, Reciever, Sender,Subject, Content FROM Messages");
+                try{                                               //lower case on I in message_Id 
+                    selectString = conn.prepareStatement("SELECT message_Id , datetime_Message, Reciever, Sender , Subject , Content FROM Messages");
                     
                     return selectString.executeQuery();
                 }
