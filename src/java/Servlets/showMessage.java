@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author oddandre
+ * @author Mahamed Salad
  */
 @WebServlet(name = "showMessages", urlPatterns = {"/showMessages"})
 public class showMessage extends HttpServlet {
