@@ -28,7 +28,8 @@ import javax.servlet.annotation.WebServlet;
 
 /**
  *
- * @author
+ * @author Mahamed Salad
+ *
  */
 public class Message {
     Integer message_Id;
