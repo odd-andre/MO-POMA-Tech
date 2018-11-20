@@ -95,14 +95,11 @@ public Deliverable(){
             int rowCount = 0;
                 while(rst.next()) {   // Move the cursor to the next row, return false if no more row
                  this.deliverable_Id = rst.getInt("deliverable_Id");
-                 this.student_Id = rst.getInt("student_Id");
-                 this.module_Id = rst.getInt("module_Id");
-                 this.teacher_Id  = rst.getInt("teacher_Id");
-                 this.datetime_Of_Submit = rst.getString("datetime_Of_Submit");
                  this.status = rst.getString("status");
-                 this.points = rst.getInt("points");
                  this.feedback = rst.getString("feedback");
                  this.progression = rst.getString("progression");
+                 this.points = rst.getInt("points");
+                
                     
                     ++rowCount;
                  }  // end while

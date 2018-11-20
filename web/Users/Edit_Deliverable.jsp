@@ -44,6 +44,11 @@
                                 <label for="">progression</label>
                                 <input type="text" name="progression" id="progression" value = "${deliverable.getProgression()}" class="form-control" placeholder="progression">
                             </div>
+                        </div
+                        <div class="col-3">
+                                <label for="">points</label>
+                                <input type="points" name="points" id="points" value = "${deliverable.getPoints.intValue()}" class="form-control" placeholder="progression">
+                            </div>
                         </div>
                 
                            
