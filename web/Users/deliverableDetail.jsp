@@ -1,8 +1,10 @@
 <%-- 
-    Document   : newjsp
-    Created on : 9.10.2018, 10:37:49
+    Document   : deliverableDetail
+    Created on : 23.11.2018, 10:57:58
     Author     : Petr
 --%>
+
+
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="Entities.Deliverable"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,12 +20,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Show deliverable</title>
+        <title>Show students</title>
     </head>
     <body>
     <div class="container justify-content-center">
         <div class="col-12">
-        <h1>Show deliverable</h1>
+        <h1>Show individual deliverable</h1>
         <table class="table">
             <thead>
                 <tr>
@@ -51,8 +53,7 @@
                         <td>${deliverable.getFeedback()}</td>
                         <td>${deliverable.getProgression()}</td>
                      
-                       
-                   
+                      
 
                     </tr>
                 </c:forEach>
