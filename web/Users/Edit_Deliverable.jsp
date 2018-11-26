@@ -26,28 +26,29 @@
                     <h1>Edit /Update Deliverable</h1>
                     <form action="/MO-POMA_Tech/Edit_DeliverablePost" method="POST">
                         <div class="form-row">
-                          <div class="col-6">
+                                 <div class="col-3">
                               <label for="deliverable_Id">Deliverable_Id</label>
-                              <input type="text" name="deliverable_Id" id="deliverable_Id" value = "${deliverable.getDeliverable_Id.intValue()}" class="form-control" placeholder="String text">
+                              <input type="text" name="deliverable_Id" id="deliverable_Id" value="${deliverable.getDeliverable_Id().intValue()}" class="form-control" placeholder="deliverable_Id">
                           </div>
-                          <div class="col-6">
+    
+                         <div class="col-6">
                               <label for="status">status</label>
                               <input type="text" name="status" id="status" value = "${deliverable.getStatus()}" class="form-control" placeholder="string">
                           </div>
-                        </div>
+                        
                         <div class="form-row">
                             <div class="col-9">
                               <label for="feedback">feedback</label>
-                              <input type="text" class="form-control" name="feedback" id="feedback" value="${deliverable.getFeedback()}" placeholder="string">
+                              <input type="text" name="feedback" id="feedback" value="${deliverable.getFeedback()}" class="form-control" placeholder="string">
                             </div>
                             <div class="col-3">
-                                <label for="">progression</label>
+                                <label for="progression">progression</label>
                                 <input type="text" name="progression" id="progression" value = "${deliverable.getProgression()}" class="form-control" placeholder="progression">
                             </div>
-                        </div
+                        </div>
                         <div class="col-3">
-                                <label for="">points</label>
-                                <input type="points" name="points" id="points" value = "${deliverable.getPoints.intValue()}" class="form-control" placeholder="progression">
+                                <label for="points">points</label>
+                                <input type="text" name="points" id="points" value = "${deliverable.getPoints().intValue()}" class="form-control" placeholder="points">
                             </div>
                         </div>
                 

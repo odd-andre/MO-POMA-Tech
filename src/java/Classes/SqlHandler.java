@@ -102,7 +102,7 @@ public class SqlHandler {
      public ResultSet getDeliverable(Integer id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT deliverable_Id,student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression " +
+            selectString = conn.prepareStatement("SELECT deliverable_Id,status,points,feedback,progression " +
                     "FROM deliverable " +
                     "WHERE deliverable_Id = ?");
             selectString.setInt(1, id);
@@ -182,19 +182,19 @@ public class SqlHandler {
             out.println("Ikke lagre i DB " +ex);
         }
          }
-            public void updateDeliverable(Integer deliverable_Id,String status, Integer points,String feedback, String progression ){
+            public void updateDeliverable(Integer deliverable_Id, String status, Integer points,String feedback, String progression ){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("UPDATE deliverable "
                 + "SET status = ?,points = ?,feedback = ?,progression = ? "
                 + "WHERE deliverable_Id = ?");
-            
             selectString.setInt(1,deliverable_Id);
             selectString.setString(2, status);
             selectString.setInt(3, points);
             selectString.setString(4, feedback);
             selectString.setString(5, progression);            
             selectString.executeUpdate();
+            this.closeConnection();
             
         }//end try
             

@@ -96,10 +96,9 @@ public Deliverable(){
                 while(rst.next()) {   // Move the cursor to the next row, return false if no more row
                  this.deliverable_Id = rst.getInt("deliverable_Id");
                  this.status = rst.getString("status");
+                 this.points = rst.getInt("points");
                  this.feedback = rst.getString("feedback");
                  this.progression = rst.getString("progression");
-                 this.points = rst.getInt("points");
-                
                     
                     ++rowCount;
                  }  // end while
@@ -120,16 +119,16 @@ public Deliverable(){
     
 }
 
-  public void updateDeliverable(PrintWriter out,Integer deliverable_Id, String status, Integer points, String feedback, String progression){
+  public void updateDeliverable(PrintWriter out, Integer deliverable_Id, String status, Integer points, String feedback, String progression){
    
        SqlHandler sqlhndl = new SqlHandler(out);
-       sqlhndl.updateDeliverable(deliverable_Id,status, points, feedback, progression);
+       sqlhndl.updateDeliverable(deliverable_Id, status, points, feedback, progression);
    }
   
   /* call method to save data connected to sqlhandler. */
    public void save(PrintWriter out, Integer deliverable_Id, String status, Integer points, String feedback, String progression){
        SqlHandler sqlhndl = new SqlHandler();
-       sqlhndl.updateDeliverable(deliverable_Id,status, points, feedback, progression);
+       sqlhndl.updateDeliverable(deliverable_Id, status, points, feedback, progression);
   }
    
    }
