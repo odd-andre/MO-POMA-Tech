@@ -10,12 +10,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css_part/index_css.css">
-  
+    
     </head>
-  <body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-default">
+    <body>
+      
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-collapse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -27,9 +27,9 @@
             </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">PROJECT INFO</a></li>
-                <li><a href="#">USER STORIES</a></li>
-                <li><a href="#">PROBLEMS DONE</a></li>
+                <li><a href="http://localhost:8080/MO-POMA_Tech/Users/project_Info.jsp">PROJECT INFO</a></li>
+                <li><a href="http://localhost:8080/MO-POMA_Tech/Users/user_stories.jsp">USER STORIES</a></li>
+                <li><a href="https://github.com/Oddpotatoman/MO-POMA-Tech/issues">Issues DONE</a></li>
             </ul>
         </div>
         </div>
@@ -40,14 +40,15 @@
             <h2 class="margin">MO-POMA TECH</h2>
             <h3>IS-202 PROJECT</h3>
             <form action="Show_Module_Detail/2" type="get">
-                <input type="Submit" name="retrieve" value="Dashboard">   
+                <input type="submit" class="btn btn-primary" value="Dashboard">
             </form><br>
+            
         </div>
 
     <!-- Second Container -->
         <div class="container-fluid bg-2 text-center">
             <h3 class="margin">ABOUT MO-POMA</h3>
-            <p>We as students at University of Agder created a group named MO-POMA that is an acronym stands for the first letter of each name member. We are glad to be called as the most international group that may encourage us to work better. In this semester, we are working on developing a better functionality of the existing Learning Management System (LMS) through three subjects IS-200, IS-201 and IS-202. The overall purpose of the project is to make an alternative platform to "Canvas", this one will contain new features and functionalities. Thus, both teachers and students would be able to use the platform easily and effectively. 
+            <p>We as students at University of Agder created a group named MO-POMA that is an acronym stands for the first letter of each name member. We are glad to be called as the most international group that may encourage us to work better. The overall purpose of the project is to make an alternative platform to "Canvas", this one will contain new features and functionalities. Thus, both teachers and students would be able to use the platform easily and effectively. 
             </p>
             <!-- <a href="#" class="btn btn-default btn-lg">
             <span class="glyphicon glyphicon-search"></span> Search
@@ -57,32 +58,28 @@
     <!-- Third Container (Grid) -->
         <div class="container-fluid bg-3 text-center">    
             <h3 class="margin">MEMBERS OF THE GROUP</h3><br>
-            <div class="row">
-                <div class="col-sm-5">
-                    <p><b>ABDUL HALIM:</b> Student of Bachelor in IT & Information Systems. I have done my notification part in this project. It was really excited to learn new things.</p>
-                    <img src="#" class="img-responsive margin" style="width:100%" alt="Image">
+            
+            <div class="table-responsive">
+            <table class="table">
+               <tr>
+                <th>Odd Andre</th>
+                <th>Muhammad Ali </th>
+                <th>Abdul Halim</th>
+                <th>Petr Net..</th>
+                <th>Ole Morten</th>
+                <th>Mahamed Salad</th>
+                </tr>
+                
+                <tr>
+                    <td>Student of Bachelor in IT & Information Systems</td>
+                    <td> Studying Bachelor in IT & Information Systems</td>
+                    <td>Student of Bachelor in IT & Information Systems</td>
+                    <td> Student of Bachelor in IT & Information Systems.</td>
+                    <td>Student of Bachelor in IT & Information Systems</td>
+                    <td>Student of Bachelor in IT & Information Systems</td>
+                </tr>
+            </table>
                 </div>
-                <div class="col-sm-5"> 
-                    <p><b>PETR N:</b> I am exchange student at University of Agder & currently taking this semester. I was given the task of producing deliverable part in this project.</p>
-                    <img src="#" class="img-responsive margin" style="width:100%" alt="Image">
-                </div>
-                <div class="col-sm-5"> 
-                    <p><b>MAHAMED SALAD:</b> Student of Bachelor in IT & Information Systems. I have completed Message task in this project.</p>
-                    <img src="#" class="img-responsive margin" style="width:100%" alt="Image">
-                </div>
-                <div class="col-sm-5"> 
-                    <p><b>OLE MORTEN:</b> Student of Bachelor in IT & Information Systems. The forum part of this project, I have done.</p>
-                    <img src="#" class="img-responsive margin" style="width:100%" alt="Image">
-                </div>
-                <div class="col-sm-5"> 
-                    <p><b>MUHAMMAD ALI:</b> Studying Bachelor in IT & Informations Systems. I did 'Modules' part in this project. The learning environment was good overall.</p>
-                    <img src="#" class="img-responsive margin" style="width:100%" alt="Image">
-                </div>
-                <div class="col-sm-5"> 
-                    <p><b>ODD ANDRE:</b> Student of Bachelor in IT & Information Systems. I have given 'Students' part in this project that I have done.</p>
-                    <img src="#" class="img-responsive margin" style="width:100%" alt="Image">
-                </div>
-            </div>
         </div>
 
     <!-- Footer -->

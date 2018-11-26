@@ -15,11 +15,11 @@ import java.sql.SQLException;
  * @author oddandre
  */
 public class Module {
-    String name;
-    Integer id;
-    String deadline;
-    Integer tId;
-    String learnGl;
+   private String name;
+   private Integer id;
+   private String deadline;
+   private Integer tId;
+   private String learnGl;
     Teacher teach = new Teacher();
 
    /*Constructor for the class*/
@@ -104,7 +104,7 @@ public class Module {
             }
    }
    
-   //to display teacher name through JSP
+   /*to display teacher name through JSP*/
    public String getTeachName(){
        return teach.getFirstName();
    }
@@ -122,7 +122,7 @@ public class Module {
        SqlHandler sqlhndl = new SqlHandler(out);
        sqlhndl.updateModule(name, id, tId, deadline, learnGl);
    }
-    
+    /*Delete specific module*/
     public void deleteModule(PrintWriter out, Integer id){
         SqlHandler sqlhndl = new SqlHandler(out);
         sqlhndl.slettModule(id);

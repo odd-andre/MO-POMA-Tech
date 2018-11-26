@@ -27,7 +27,11 @@
             <a class="navbar-brand" href="#">MO-POMA TECH</a>
         </div>
             <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost:8080/MO-POMA_Tech/">HOME</a></li>  
+            <li class="active"><a href="http://localhost:8080/MO-POMA_Tech/">HOME</a></li>
+            <li><a href="http://localhost:8080/MO-POMA_Tech/Users/project_Info.jsp">PROJECT INFO</a></li>
+                <li><a href="http://localhost:8080/MO-POMA_Tech/Users/user_stories.jsp">User Stories</a></li>
+                      <li><a href="https://github.com/Oddpotatoman/MO-POMA-Tech/issues">Issues Done</a></li>
+                      
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">STUDENT <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                 <li><a href="#">Show student</a></li>
@@ -39,7 +43,6 @@
                 <ul class="dropdown-menu">
                     <li><a href="/MO-POMA_Tech/Add_Module">Insert Module</a></li>
                     <li><a href="/MO-POMA_Tech/Edit_Module/1">Update Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Delete_Module">Remove Module</a></li>
                     <li><a href="/MO-POMA_Tech/Module_List/">Module List</a></li>
                 </ul>
             </li>
@@ -51,6 +54,27 @@
                     <li><a href="/MO-POMA_Tech/ViewForumlist">Forum List</a></li>
                 </ul>
             </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Deliverable <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Show Deliverable</a></li>
+                    <li><a href="#">Create Deliverable</a></li>
+                    <li><a href="">Delete Deliverable</a></li>
+                </ul>
+            </li>
+            
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Message <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">View Message</a></li>
+                    <li><a href="#">Send Message</a></li>
+                </ul>
+            </li>
+            
+              <ul class="nav navbar-nav navbar-right">
+                
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Switch Account</a></li>
+                
+              </ul>
+            
          </ul>
         </div>
     </nav>
@@ -58,6 +82,9 @@
     <body>
         <%-- table formatting part --%>
         <style>
+            body {
+                background-color: powderblue;
+            }
             table, th, td {
                 border: 1px solid black;
                 border-collapse: collapse;
@@ -74,6 +101,9 @@
             table tr:nth-child(odd) {
                 background-color: #fff;
             }
+            .table{
+                width:100%;
+            }
         </style>
         
         <div class="container"> 
@@ -81,7 +111,8 @@
         <h1 align="center">Individual Detail!</h1>
        <div class="col-10"> 
                       <%-- Table implementation --%>
-              <table style="width:100%">
+              <div class="table-responsive">
+            <table class="table">
               
         <tr>
             <th> Module Name:</th>
@@ -98,7 +129,7 @@
               <td>${module.getGoals()}</p></td>
         </tr>
     </table> 
-        
+              </div>
            </div>
       </div>
     </body>

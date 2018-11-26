@@ -111,6 +111,7 @@ public class SqlHandler {
             System.out.println("Sorry, it could not commit: " +ex);
         }   
     }
+    /*method to show each module detail*/
     public ResultSet viewModule(String id){
         PreparedStatement selectString;
         try {
@@ -128,7 +129,7 @@ public class SqlHandler {
         }
         return null;
     }
-    
+    /*get module detalis through DB*/
     public ResultSet getModule(Integer id){
         PreparedStatement selectString;
         try {
@@ -265,7 +266,7 @@ public class SqlHandler {
         }
         return null;
     }
-    
+    /*clear current state*/
     public void clearState(){
         this.select = "";
         this.where = "";
@@ -274,6 +275,7 @@ public class SqlHandler {
     
     
     // @Resource DataSource LocalhostDS;
+    /*function to create connectoin with DB and through exception if its not connected or wrong naming*/
     public Connection getConnection(PrintWriter out) {
         try {
          // Step 1: Allocate a database 'Connection' object

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Muhammad Ali
  */
-@WebServlet(name = "Delete_Module", urlPatterns = {"/Delete_Module/*"})
+@WebServlet(name = "Delete_Module", urlPatterns = {"/Delete_Module"})
 public class Delete_Module extends HttpServlet {
 
     /**
@@ -37,12 +37,12 @@ public class Delete_Module extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             /* Get the path after the url, anything after /DeleteModule/ will show here.*/
-            String path = request.getPathInfo();
+           /* String path = request.getPathInfo(); */
             /* getPathInfo includes the / after showModule, remove it */
-            String requestedModule = path.replace("/", "");
+         /*   String requestedModule = path.replace("/", ""); */
             /* creating object of the class to run through method. */
             Module module = new Module();
-            module.deleteModule(out, Integer.parseInt(requestedModule));
+          /*  module.deleteModule(out, Integer.parseInt(requestedModule)); */
             
             request.setAttribute("module", module);
             /* Get the JSP file where we have to put our html code */
