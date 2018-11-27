@@ -30,7 +30,20 @@
                               <label for="deliverable_Id">Deliverable_Id</label>
                               <input type="text" name="deliverable_Id" id="deliverable_Id" value="${deliverable.getDeliverable_Id().intValue()}" class="form-control" placeholder="deliverable_Id">
                           </div>
-    
+                            <div class="col-3">
+                              <label for="module_Id">module_Id</label>
+                              <input type="text" name="module_Id" id="module_Id" value="${deliverable.getModule_Id().intValue()}" class="form-control" placeholder="module_Id">
+                          </div>
+                          <div class="col-3">
+                              <label for="teacher_Id">teacher_Id</label>
+                              <input type="text" name="teacher_Id" id="teacher_Id" value="${deliverable.getTeacher_Id().intValue()}" class="form-control" placeholder="teacher_Id">
+                          </div>
+                          
+  
+                           <div class="col-6">
+                              <label for="datetime_Of_Submit">Datetime_Of_Submit</label>
+                              <input type="text" name="datetime_Of_Submit" id="datetime_Of_Submit" value = "${deliverable.getDatetime_Of_Submit()}" class="form-control" placeholder="string">
+                          </div>
                          <div class="col-6">
                               <label for="status">status</label>
                               <input type="text" name="status" id="status" value = "${deliverable.getStatus()}" class="form-control" placeholder="string">

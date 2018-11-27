@@ -39,12 +39,15 @@ public class Edit_DeliverablePost extends HttpServlet {
             
                 Deliverable deliverable = new Deliverable();
                 Integer deliverable_Id = Integer.parseInt(request.getParameter("deliverable_Id"));
+                Integer module_Id = Integer.parseInt(request.getParameter("module_Id"));
+                Integer teacher_Id = Integer.parseInt(request.getParameter("teacher_Id"));
+                String datetime_Of_Submit = request.getParameter("datetime_Of_Submit");
                 String status = request.getParameter("status");
                 Integer points = Integer.parseInt(request.getParameter("points"));
                 String feedback = request.getParameter("feedback");
                 String progression = request.getParameter("progression");
             
-                deliverable.updateDeliverable(out, deliverable_Id, status, points, feedback, progression);
+                deliverable.updateDeliverable(out, deliverable_Id, module_Id,teacher_Id, datetime_Of_Submit, status, points, feedback, progression);
                 response.sendRedirect("/MO-POMA_Tech/showDeliverable?view_Deliverable=view_Deliverable");
                 
          
