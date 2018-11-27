@@ -51,9 +51,16 @@ public class CreateDeliverable extends HttpServlet {
             Deliverable deliverable = new Deliverable();
             deliverable.createDeliverable(out,student_Id, module_Id, teacher_Id,datetime_Of_Submit, status, points, feedback,progression);
             response.sendRedirect("/MO-POMA_Tech/showDeliverable?view_Deliverable=view_Deliverable");
-            
+         
+           
+             //Get the jsp file where we have put our html
+            RequestDispatcher view = request.getRequestDispatcher("/Users/CreateDeliverable.jsp");
+            //Send our data from request into the jsp file
+            view.forward(request,response);
         
-              }     
+              }  
+        
+            
                 }
      // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
