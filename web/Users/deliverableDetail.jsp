@@ -29,11 +29,14 @@
         <table class="table">
             <thead>
                 <tr>
-                  <th scope="col">deliverable_Id</th>     
+                  <th scope="col">deliverable_Id</th>
+                  <th scope="col">module_Id</th>
+                  <th scope="col">teacher_Id</th>
+                  <th scope="col">datetime_Of_Submit</th>
                   <th scope="col">status</th>
-                   <th scope="col">feedback</th>
-                   <th scope="col">progression</th>
-                  <th scope="col">points</th>
+                   <th scope="col">points</th>
+                  <th scope="col">feedback</th>
+                  <th scope="col">progression</th>
                  
                 </tr>
             </thead>
@@ -41,6 +44,9 @@
                 <c:forEach items="${deliverable}" var="deliverable">
                     <tr>
                         <td>${deliverable.getDeliverable_Id().intValue()}</td>
+                        <td>${deliverable.getModule_Id().intValue()}</td>
+                        <td>${deliverable.getTeacher_Id().intValue()}</td>
+                        <td>${deliverable.getDatetime_Of_Submit()}</td>
                         <td>${deliverable.getStatus()}</td>
                         <td>${deliverable.getPoints().intValue()}</td>
                         <td>${deliverable.getFeedback()}</td>
