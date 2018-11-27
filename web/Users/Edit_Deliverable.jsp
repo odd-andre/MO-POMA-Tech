@@ -23,7 +23,7 @@
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-10">
-                    <h1>Edit /Update Deliverable</h1>
+                    <h1>Edit Deliverable</h1>
                     <form action="/MO-POMA_Tech/Edit_DeliverablePost" method="POST">
                            <input hidden type="text" name="deliverable_Id" id="deliverable_Id" value="${deliverable.getDeliverable_Id().intValue()}">
                         <div class="form-row">                     

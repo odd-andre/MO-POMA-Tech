@@ -37,10 +37,8 @@ public class DeleteDeliverablePost extends HttpServlet {
             
             /*Here restricting the users by defining the role of them*/
              
-            
+             Deliverable deliverable = new Deliverable();
              Integer deliverable_Id = Integer.parseInt(request.getParameter("deliverable_Id"));
-            
-                Deliverable deliverable = new Deliverable();
                 deliverable.deleteDeliverable(out, deliverable_Id);
                 response.sendRedirect("/MO-POMA_Tech/showDeliverable?view_Deliverable=view_Deliverable");
         }

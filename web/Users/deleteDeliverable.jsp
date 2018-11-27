@@ -10,8 +10,8 @@
 
 <!DOCTYPE html>
 <html>
-     <h1>Delete / Remove Deliverable_Id</h1>
-        <form action="/MO-POMA_Tech/DeleteDeliverablePost" method="POST">
+     <h1>Delete deliverable</h1>
+        <form action="/MO-POMA_Tech/deleteDeliverablePost" method="POST">
                         
                           <div class="col-6">
                               <label for="deliverable_Id">Deliverable_Id</label>
