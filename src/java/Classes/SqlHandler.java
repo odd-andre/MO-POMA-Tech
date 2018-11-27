@@ -113,7 +113,8 @@ public class SqlHandler {
         }catch (Exception ex){
             System.out.println("Sorry, it could not commit: " +ex);
     }
-        }   
+        } 
+    public ResultSet getStudent(Integer id){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT deliverable_Id,student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression " +
