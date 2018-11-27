@@ -6,7 +6,7 @@
 package Servlets;
 
 import Classes.SqlHandler;
-import Entities.Module;
+import Entities.Forum;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Muhammad Ali
+ * @author ThunderCoW
  */
-@WebServlet(name = "View_Module", urlPatterns = {"/View_Module/*"})
-public class View_Module extends HttpServlet {
+@WebServlet(name = "View_Forum", urlPatterns = {"/View_Forum/*"})
+public class View_Forum extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,44 +38,22 @@ public class View_Module extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            // Get the path after the url, anything after /showstudent/ will show here. In this case /showstudent/{studentId}
-             String path = request.getPathInfo();
-            // getPathInfo includes the / after showStudent, remove it
-             String requestedModule = path.replace("/", "");
-            //Create a sqlHandler to run database queries
-            SqlHandler sqlHdl = new SqlHandler(out);
-            //Queries return as ResultSets so we have to store it as such
-            ResultSet rst = sqlHdl.viewModule(requestedModule);
             
-            //We will return the student in the form of a ArrayList, this could be done better as there is only one user
-            //List<Student> student = new ArrayList();
-            //List<Module> module = new ArrayList();
-            Module module = null;
+            String path = request.getPathInfo();
             
-            try {
-            int rowCount = 0;
-                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    String mName = rst.getString("name");
-                    Integer mId   = rst.getInt("module_Id");
-                    String mDeadline = rst.getString("deadline");
-                    String mLearnGl = rst.getString("learning_Goals");
-                    Integer tId   = rst.getInt("teacher_Id");
-                    //student.add(new Student(mName,mDeadline,mId, mLearnGl, tId));
-                    module = new Module ();
-                    module.forModuleList(mId,mName,mDeadline, mLearnGl, tId);
-                    ++rowCount;
-                 }  // end while
-            }
-            catch (SQLException ex) {
-                out.println("Ikke hentet fra DB " +ex);
-            }
+            String reqForum = path.replace("/", "");
+            
+            Forum forum = new Forum();
+            forum.getForumDetail(out, Integer.parseInt(reqForum));
+            
             //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("module", module);
+            request.setAttribute("forum", forum);
+            
             //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/showModule.jsp");
+            
+            RequestDispatcher view = request.getRequestDispatcher("/Users/viewForum.jsp");
             //Send our data from request into the jsp file
             view.forward(request,response);
-            
             
         }
     }

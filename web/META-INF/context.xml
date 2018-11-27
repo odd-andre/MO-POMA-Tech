@@ -5,9 +5,13 @@
         name="jdbc/localhostDS" 
         type="javax.sql.DataSource" 
         auth="Container" 
-        username="root" 
-        password="Netoldapekan1" 
+        username="web" 
+        password="password" 
         driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/mopoma">
+        url="jdbc:mysql://localhost:3306/mo-poma">
     </Resource>
+    <Realm className="org.apache.catalina.realm.DataSourceRealm" 
+         dataSourceName="jdbc/localhostDS" localDataSource="true"
+         userTable="User"  userNameCol="email" userCredCol="password"
+         userRoleTable="User" roleNameCol="rights" />
 </Context>

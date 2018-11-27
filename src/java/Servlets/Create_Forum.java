@@ -5,12 +5,9 @@
  */
 package Servlets;
 
-import Classes.SqlHandler;
-import Entities.Module;
+import Entities.Forum;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Muhammad Ali
+ * @author ThunderCow
  */
-@WebServlet(name = "View_Module", urlPatterns = {"/View_Module/*"})
-public class View_Module extends HttpServlet {
+@WebServlet(name = "Create_Forum", urlPatterns = {"/Create_Forum"})
+public class Create_Forum extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,49 +34,22 @@ public class View_Module extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            // Get the path after the url, anything after /showstudent/ will show here. In this case /showstudent/{studentId}
-             String path = request.getPathInfo();
-            // getPathInfo includes the / after showStudent, remove it
-             String requestedModule = path.replace("/", "");
-            //Create a sqlHandler to run database queries
-            SqlHandler sqlHdl = new SqlHandler(out);
-            //Queries return as ResultSets so we have to store it as such
-            ResultSet rst = sqlHdl.viewModule(requestedModule);
-            
-            //We will return the student in the form of a ArrayList, this could be done better as there is only one user
-            //List<Student> student = new ArrayList();
-            //List<Module> module = new ArrayList();
-            Module module = null;
-            
-            try {
-            int rowCount = 0;
-                while(rst.next()) {   // Move the cursor to the next row, return false if no more row
-                    String mName = rst.getString("name");
-                    Integer mId   = rst.getInt("module_Id");
-                    String mDeadline = rst.getString("deadline");
-                    String mLearnGl = rst.getString("learning_Goals");
-                    Integer tId   = rst.getInt("teacher_Id");
-                    //student.add(new Student(mName,mDeadline,mId, mLearnGl, tId));
-                    module = new Module ();
-                    module.forModuleList(mId,mName,mDeadline, mLearnGl, tId);
-                    ++rowCount;
-                 }  // end while
-            }
-            catch (SQLException ex) {
-                out.println("Ikke hentet fra DB " +ex);
-            }
-            //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("module", module);
-            //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/showModule.jsp");
-            //Send our data from request into the jsp file
+         try (PrintWriter out = response.getWriter()) {
+             
+                Integer forum_Id = Integer.parseInt(request.getParameter("Forum_ID"));
+                Integer creator_Id = Integer.parseInt(request.getParameter("Creator_ID"));
+                String fName = request.getParameter("Forum_Name");
+                Forum forum = new Forum();
+                forum.createForum(out, forum_Id, creator_Id, fName);
+                response.sendRedirect("/MO-POMA_Tech");
+                
+                /*Get the jsp file where we have put our html */
+            RequestDispatcher view = request.getRequestDispatcher("/Users/createForum.jsp");
+            /*Send our data from request into the jsp file */
             view.forward(request,response);
-            
-            
         }
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
