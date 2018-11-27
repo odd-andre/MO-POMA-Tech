@@ -25,12 +25,9 @@
                 <div class="col-10">
                     <h1>Edit /Update Deliverable</h1>
                     <form action="/MO-POMA_Tech/Edit_DeliverablePost" method="POST">
-                        <div class="form-row">
-                                 <div class="col-3">
-                              <label for="deliverable_Id">Deliverable_Id</label>
-                              <input type="text" name="deliverable_Id" id="deliverable_Id" value="${deliverable.getDeliverable_Id().intValue()}" class="form-control" placeholder="deliverable_Id">
-                          </div>
-                            <div class="col-3">
+                           <input hidden type="text" name="deliverable_Id" id="deliverable_Id" value="${deliverable.getDeliverable_Id().intValue()}">
+                        <div class="form-row">                     
+                            <div class="col-6">
                               <label for="module_Id">module_Id</label>
                               <input type="text" name="module_Id" id="module_Id" value="${deliverable.getModule_Id().intValue()}" class="form-control" placeholder="module_Id">
                           </div>

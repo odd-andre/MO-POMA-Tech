@@ -23,7 +23,7 @@
     <body>
     <div class="container justify-content-center">
         <div class="col-12">
-        <h1>Show delierable</h1>
+        <h1>Show deliverable</h1>
         <table class="table">
             <thead>
                 <tr>
