@@ -48,7 +48,7 @@ public class Edit_DeliverablePost extends HttpServlet {
                 String progression = request.getParameter("progression");
             
                 deliverable.updateDeliverable(out, deliverable_Id, module_Id,teacher_Id, datetime_Of_Submit, status, points, feedback, progression);
-                response.sendRedirect("/MO-POMA_Tech/showDeliverable?view_Deliverable=view_Deliverable");
+                response.sendRedirect("/MO-POMA_Tech/deliverableDetail/"+deliverable_Id);
                 
          
         }

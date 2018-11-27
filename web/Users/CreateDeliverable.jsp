@@ -39,7 +39,6 @@
                               <label for="teacher_Id">Teacher Id</label>
                               <input type="text" class="form-control" name="teacher_Id" id="email" placeholder="Teacher Id">
                             </div>
-                            <div class="form-row">
                             <div class="col-6">
                               <label for="datetime_Of_Submit">Datetime_Of_Submit</label>
                               <input type="text" class="form-control" name="datetime_Of_Submit" id="datetime_Of_Submit" placeholder="YEAR-MONTH-DAY">
@@ -51,21 +50,22 @@
                             </div>
                             <div class="col-6">
                               <label for="points">points</label>
-                              <input type="text" class="form-control" name="points" id="points" placeholder="points">
+                              <input type="text" class="form-control" name="points" id="points" placeholder="Points">
                             </div>
                              <div class="form-row">
-                            <div class="col-6">
+                            <div class="col-9">
                               <label for="feedback">feedback</label>
-                              <input type="text" class="form-control" name="feedback" id="feedback" placeholder="feedback">
+                              <input type="text" class="form-control" name="feedback" id="feedback" placeholder="Feedback">
                             </div>
                                  
-                                 </div>
-                                 <div class="col-6">
+           
+                                 <div class="col-9">
                               <label for="progression">progression</label>
-                              <input type="text" class="form-control" name="progression" id="points" placeholder="progression">
+                              <input type="text" class="form-control" name="progression" id="points" placeholder="Progression">
                             </div>
-                           </div>  
-                            <p>
+                           </div> 
+                           </div> 
+            
                             <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Create Deliverable</button>
                             <button style="margin-right: 10px;" type="reset" class="btn col-3">Clear</button>
                     </form>

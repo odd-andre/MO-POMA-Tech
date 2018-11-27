@@ -41,7 +41,7 @@
                               <label for="datetime_Of_Submit">Datetime_Of_Submit</label>
                               <input type="text" name="datetime_Of_Submit" id="datetime_Of_Submit" value = "${deliverable.getDatetime_Of_Submit()}" class="form-control" placeholder="string">
                           </div>
-                         <div class="col-6">
+                         <div class="col-3">
                               <label for="status">status</label>
                               <input type="text" name="status" id="status" value = "${deliverable.getStatus()}" class="form-control" placeholder="string">
                           </div>
