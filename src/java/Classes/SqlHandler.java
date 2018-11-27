@@ -188,11 +188,12 @@ public class SqlHandler {
             selectString = conn.prepareStatement("UPDATE deliverable "
                 + "SET status = ?,points = ?,feedback = ?,progression = ? "
                 + "WHERE deliverable_Id = ?");
-            selectString.setInt(1,deliverable_Id);
-            selectString.setString(2, status);
-            selectString.setInt(3, points);
-            selectString.setString(4, feedback);
-            selectString.setString(5, progression);            
+            
+            selectString.setString(1, status);
+            selectString.setInt(2, points);
+            selectString.setString(3, feedback);
+            selectString.setString(4, progression);
+            selectString.setInt(5,deliverable_Id);            
             selectString.executeUpdate();
             this.closeConnection();
             
