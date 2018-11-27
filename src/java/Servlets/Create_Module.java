@@ -48,7 +48,7 @@ public class Create_Module extends HttpServlet {
                 Integer tId = Integer.parseInt(request.getParameter("Teacher_ID"));
                 Module module = new Module();
                 module.createModule(out, modName, deadline, learngoals, tId);
-                response.sendRedirect("/MO-POMA_Tech");
+                response.sendRedirect("/MO-POMA_Tech/Module_List/");
         }
     }
 

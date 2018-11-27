@@ -1,72 +1,93 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
-      <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<html lang="en">
+<head>
+  <!-- No Copyright -->
+  <title>IS-202 Project Autumn-2018</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css_part/index_css.css">
+    
     </head>
     <body>
+      
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-collapse">
         <div class="container">
-
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>                        
+                </button>
+            <a class="navbar-brand" href="http://localhost:8080/MO-POMA_Tech/">Home</a>
+            </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://localhost:8080/MO-POMA_Tech/Users/project_Info.jsp">PROJECT INFO</a></li>
+                <li><a href="http://localhost:8080/MO-POMA_Tech/Users/user_stories.jsp">USER STORIES</a></li>
+                <li><a href="https://github.com/Oddpotatoman/MO-POMA-Tech/issues">Issues DONE</a></li>
+            </ul>
         </div>
-         <p class ="font-weight-bold">
-          <h1 align="center"><b>Welcome to MO-POMA Tech page</b> </h1>  
-          <h3>Short Description</h3>   
-          The following parts are done in this project: 
-           <ol>
-               <li>Student part </li>
-               <li>Module part </li>
-               <li>Deliverable part </li>
-               <li>Forum part </li>
-               <li>Message part </li>
-               <li>Notification part </li><br>
-               <li>The code will typically be something like: 
+        </div>
+    </nav>
 
-                   public void showStudenter(PrintWriter out) <br>
-                   { <br>
-                   PreparedStatement getStudents; <br>         
-                   try { <br>
-                   getStudents = conn.prepareStatement("select * from student order by ?");<br>
-                   getStudents.setString(1,"firstName");<br>
-                   <br>
-                   ResultSet rset = getStudents.executeQuery();<br>
- 
-                   // Step 4: Process the ResultSet by scrolling the cursor forward via next(). <br>
-                   //  For each row, retrieve the contents of the cells with getXxx(columnName). <br>
-                   out.println("The records selected are:" +" "); <br>
-                   int rowCount = 0; <br>
-                   while(rset.next()) {   <br>
-                   ...............................
-               </li>
-           </ol>
-        </p>
-            
-            <h2>From Earlier </h2>  
-           <p class="text-primary">In Context.xml: Define DataSource </p>
-              
-           <p class="text-danger"> In Web.xml: Define which DataSource to use (May be omitted)</p>
-           <p class="text-primary"> In the Java code, use the DataSource to log into the database</p>
-           <p class="text-danger"> Here we have restructured the code. </p>
-           <p class="text-primary"> The loggInn() method returns a Connection </p>
-           
-           <p class="text-primary"> For Student, we have number of Servlets, here called showstudents. 
-                  ..............continue...............
-          </p> 
-          <div><h3>Click below to connect with database App!</h3></div>
+    <!-- First Container -->
+        <div class="container-fluid bg-1 text-center">
+            <h2 class="margin">MO-POMA TECH</h2>
+            <h3>IS-202 PROJECT</h3>
             <form action="Show_Module_Detail/2" type="get">
-                <input type="Submit" name="retrieve" value="Data from DB">   
+                <input type="submit" class="btn btn-primary" value="Dashboard">
             </form><br>
+            
+        </div>
+
+    <!-- Second Container -->
+        <div class="container-fluid bg-2 text-center">
+            <h3 class="margin">ABOUT MO-POMA</h3>
+            <p>We as students at University of Agder created a group named MO-POMA that is an acronym stands for the first letter of each name member. We are glad to be called as the most international group that may encourage us to work better. The overall purpose of the project is to make an alternative platform to "Canvas", this one will contain new features and functionalities. Thus, both teachers and students would be able to use the platform easily and effectively. 
+            </p>
+            <!-- <a href="#" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-search"></span> Search
+            </a>  -->
+        </div>
+
+    <!-- Third Container (Grid) -->
+        <div class="container-fluid bg-3 text-center">    
+            <h3 class="margin">MEMBERS OF THE GROUP</h3><br>
+            
+            <div class="table-responsive">
+            <table class="table">
+               <tr>
+                <th>Odd Andre</th>
+                <th>Muhammad Ali </th>
+                <th>Abdul Halim</th>
+                <th>Petr Net..</th>
+                <th>Ole Morten</th>
+                <th>Mahamed Salad</th>
+                </tr>
+                
+                <tr>
+                    <td>Student of Bachelor in IT & Information Systems</td>
+                    <td> Studying Bachelor in IT & Information Systems</td>
+                    <td>Student of Bachelor in IT & Information Systems</td>
+                    <td> Student of Bachelor in IT & Information Systems.</td>
+                    <td>Student of Bachelor in IT & Information Systems</td>
+                    <td>Student of Bachelor in IT & Information Systems</td>
+                </tr>
+            </table>
+                </div>
+        </div>
+
+    <!-- Footer -->
+        <footer class="container-fluid bg-4 text-center">
+            <p>Drop an email if you have some queries</p>
+  
+        </footer>
+
     </body>
 </html>
+

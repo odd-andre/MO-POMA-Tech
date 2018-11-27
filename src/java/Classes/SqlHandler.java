@@ -35,6 +35,10 @@ public class SqlHandler {
         this.out = out;
         this.connectDb(out);
     }
+
+    public SqlHandler() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private void connectDb(PrintWriter out){
         try {
              // Step 1: Allocate a database 'Connection' object
@@ -71,14 +75,18 @@ public class SqlHandler {
             //selectString.setString(1,this.select);
             //selectString.setString(2,this.from);
             
-            return selectString.executeQuery();
+            ResultSet lagre = selectString.executeQuery();
+            /*calling close connectino*/
+            this.commitAndclose();
+            /*returning the result through variable*/
+            return lagre;
         } // end try     
           catch (SQLException ex) {
                 out.println("Ikke lagre i DB " +ex);
         }
         return null;
     }
-
+    /*using separate function to close the connection*/
     public void closeConnection(){
         try {
             conn.close();
@@ -87,6 +95,7 @@ public class SqlHandler {
                 System.out.println("Ikke lukke DB " +ex);
         }
     }
+    /*separate function to commit on DB*/
     public void commit(){
         try {           
              conn.commit();
@@ -94,11 +103,17 @@ public class SqlHandler {
           
              catch (SQLException ex) {
                 System.out.println("Ikke close DB " +ex);
-                    
         }
     }
-    
-     public ResultSet getDeliverable(Integer id){
+    public void commitAndclose(){
+    /*creating function to commit and close our connection*/
+        try {
+            conn.commit();
+            conn.close();
+        }catch (Exception ex){
+            System.out.println("Sorry, it could not commit: " +ex);
+    }
+        }   
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT deliverable_Id,student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression " +
@@ -106,15 +121,19 @@ public class SqlHandler {
                     "WHERE deliverable_Id = ?");
             selectString.setInt(1, id);
             
-            return selectString.executeQuery();
+            ResultSet lagre = selectString.executeQuery();
+            /*calling close connectino*/
+            this.commitAndclose();
+            /*returning the result through variable*/
+            return lagre; 
         } // end try     
         catch (SQLException ex) {
              out.println("Ikke lagre i DB " +ex);
         }
         return null;
-            }
-
-    public ResultSet getStudent(Integer id){
+    }
+    
+    public ResultSet getModule(Integer id){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email, U.zip_code, U.date_Of_Birth " +
@@ -122,8 +141,10 @@ public class SqlHandler {
                     "INNER JOIN User as U ON stu.user_Id = U.user_Id " +
                     "WHERE stu.user_Id = ?");
             selectString.setInt(1, id);
-            
-            return selectString.executeQuery();
+            /*close the connection and retruning the executed result */
+            ResultSet vld = selectString.executeQuery();
+            this.commitAndclose();
+            return vld;
         } // end try     
         catch (SQLException ex) {
              out.println("Ikke lagre i DB " +ex);
@@ -144,7 +165,18 @@ public class SqlHandler {
         }
         return null;
     }
-     public void insertModule(String name, Integer tID, String deadline, String goals){
+    
+    /*this is what we can have balance by checking the id and set different methods as well */
+    public void moduleStorePoint(Integer id, String mName, Integer tID, String deadline, String goals){
+        if (id == 0)
+            insertModule(mName, tID, deadline, goals);
+        else
+            updateModule(mName, id, tID, deadline, goals);
+        
+        getModuleList();
+    }
+    /*to create new module by the teacher*/
+    public void insertModule(String name, Integer tID, String deadline, String goals){
     PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO Modules "
@@ -158,14 +190,15 @@ public class SqlHandler {
             selectString.setString(4, goals);
            // selectString.setInt("name1",1,11,"2018-09-28","Learn something 1");
             selectString.executeUpdate();
-            
+            /*commit and closing the connection after execution.*/
+            this.commitAndclose();
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
-        }
-        catch (Exception e){
-        }
+        }    
     }
+    
+    /*updating the existing module in the database*/
     public void updateStudent(Integer id,String adress, String email,String firstName, String surName, Integer zip, String datebirth){
         PreparedStatement selectString;
         try {
@@ -203,38 +236,49 @@ public class SqlHandler {
             selectString.setString(4, learnGl);
             
             selectString.executeUpdate();
-            
+            /*calling the function to commit and close connection*/
+            this.commitAndclose();
         }//end try
-            
             
         catch (SQLException ex) {
             out.println("Ikke lagre i DB" +ex);
         }
     }
+    /*delete the module inside by while showing module detail*/
     public void slettModule(Integer id){
         PreparedStatement selectString;
         try {
-            String sqlq = "DELETE FROM Modules WHERE module_Id=?";
+           /* String sqlq = "DELETE FROM Modules WHERE module_Id=?";
             selectString = conn.prepareStatement(sqlq);
             
             selectString.setInt(1, id);
             if (id != null) {
                 int i = selectString.executeUpdate();
                 System.out.println(""+i+"Module deleted successfully");
-            }
-            conn.close();
+            } */
+           
+           selectString = conn.prepareStatement("DELETE FROM Modules WHERE module_Id=?");
+           selectString.setInt(1, id);
+           selectString.executeUpdate();
+           /*calling the commit and close the connection*/
+            this.commitAndclose();
             }     
         catch (SQLException ex) {
             out.println("Ikke lagre i DB" + ex);
         }
     }
+    /*displaying all modules at one place*/
     public ResultSet getModuleList(){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals " +
                     "FROM Modules ");
                      
-            return selectString.executeQuery();
+            ResultSet lagre = selectString.executeQuery();
+            /*calling close connectino*/
+            this.commitAndclose();
+            /*returning the result through variable*/
+            return lagre;
         } // end try     
         catch (SQLException ex) {
              out.println("Ikke lagre i DB " +ex);
@@ -305,17 +349,23 @@ public class SqlHandler {
      public ResultSet getTeacherName(Integer id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT firstname FROM User WHERE user_Id = ?;");
+            selectString = conn.prepareStatement("SELECT firstname FROM User WHERE user_Id = ?");
                     //"INNER JOIN User as U ON stu.user_Id = U.user_Id " +
                   //  "WHERE stu.user_Id = ?;");
             selectString.setInt(1, id);
-            return selectString.executeQuery();
+            
+            ResultSet lagre = selectString.executeQuery();
+            /*calling close connectino*/
+            this.commitAndclose();
+            /*returning the result through variable*/
+            return lagre;
         }
         catch (SQLException ex) {
              out.println("Ikke lagre i DB " +ex);
         }
         return null;
     }
+    /*clear current state*/
     
     public ResultSet getStudents(){
         PreparedStatement selectString;
