@@ -4,18 +4,23 @@
  * and open the template in the editor.
  */
 package Classes;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.sql.*; 
+import java.text.SimpleDateFormat;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.util.Date;
 
 /**
  *
  * @author oddandre
  */
 public class SqlHandler {
+
+    
     String select;
     String where;
     String from;
@@ -30,6 +35,14 @@ public class SqlHandler {
         this.out = out;
         this.connectDb(out);
     }
+
+    public SqlHandler(PrintStream out) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+
+    
     private void connectDb(PrintWriter out){
         try {
              // Step 1: Allocate a database 'Connection' object
@@ -95,10 +108,7 @@ public class SqlHandler {
     public ResultSet getStudent(String id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email " +
-                    "FROM Student as stu " +
-                    "INNER JOIN User as U ON stu.user_Id = U.user_Id " +
-                    "WHERE stu.user_Id = ?");
+            selectString = conn.prepareStatement("SELECT user_Id,adress,email FROM User WHERE user_Id = ?");
             selectString.setString(1, id);
             
             return selectString.executeQuery();
@@ -108,24 +118,77 @@ public class SqlHandler {
         }
         return null;
     }
-    public ResultSet viewModule(){
-        PreparedStatement selectString;
-        try {
-            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals FROM Modules WHERE module_Id = 2");
-            //selectString.setString(1, id);
-
-            return selectString.executeQuery();
-        } // end try
-        catch (SQLException ex) {
-            out.println("Ikke lagre i DB " +ex);
-        }
-        return null;
-    }
     
     public void clearState(){
         this.select = "";
         this.where = "";
         this.from = "";
     }
+
+    public ResultSet displayNotifications(Integer user_Id, String scope) {
+       PreparedStatement selectString;
+       try {
+           selectString =  conn.prepareStatement("SELECT title, content, datetime_date, url FROM Notifications WHERE user_Id = ? or scope = ? ");
+           selectString.setInt(1, user_Id);
+           selectString.setString(2, scope);
+           
+           return selectString.executeQuery();
+        } // end try     
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+            }
+        return null;
+       }
     
+    
+    
+
+    
+    public void addNotification(String title, String content, Integer user_id, String url, String scope) {
+        PreparedStatement selectString;
+        try {
+            
+            selectString =  conn.prepareStatement("INSERT INTO Notifications(title, content, datetime_date, url, user_id, scope) values (?,'?','?', '?', '?', '?', '?')");
+            SimpleDateFormat formatter = new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+           
+            String dateOfTime = formatter.format(date);
+            selectString.setString(1, title);
+            selectString.setString(2, content);
+            selectString.setString(3, dateOfTime);
+            selectString.setString(4, url);
+            selectString.setInt(5, user_id);
+            selectString.setString (6, scope);
+            selectString.executeUpdate();
+          } 
+          catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+        }
+    }
+
+    
+    public  ResultSet getUserIdByMail(String mail){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT user_Id FROM User WHERE email = ?");
+            selectString.setString(1, mail);
+            
+            ResultSet rst = selectString.executeQuery();
+            return rst;
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+}
+
+    
+
+    
+
+    
+    
+    
+    
+   
 }
