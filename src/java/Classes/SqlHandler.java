@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Classes;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.sql.*; 
 import java.text.SimpleDateFormat;
@@ -18,6 +19,8 @@ import java.util.Date;
  * @author oddandre
  */
 public class SqlHandler {
+
+    
     String select;
     String where;
     String from;
@@ -31,10 +34,6 @@ public class SqlHandler {
     public SqlHandler (PrintWriter out){
         this.out = out;
         this.connectDb(out);
-    }
-
-    public SqlHandler() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     private void connectDb(PrintWriter out){
         try {
@@ -137,7 +136,15 @@ public class SqlHandler {
             selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals FROM Modules WHERE module_Id = ?");
             selectString.setInt(1, id);
 
-            return selectString.executeQuery();
+    
+    public  ResultSet getUserIdByMail(String mail){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT user_Id FROM User WHERE email = ?");
+            selectString.setString(1, mail);
+            
+            ResultSet rst = selectString.executeQuery();
+            return rst;
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
