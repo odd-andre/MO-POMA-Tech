@@ -49,12 +49,13 @@ public class showNotifications extends HttpServlet {
                 scope = "Teacher";
             }
             Integer user_Id=User.getUserIdByMail(out,request.getRemoteUser()); 
-            
+            user_Id = 11;
             
             List<Notifications> notifications = new ArrayList();
             SqlHandler sqlhndl = new SqlHandler(out);
            
             ResultSet rst = sqlhndl.displayNotifications(user_Id, scope);
+           
            
             
             try {
@@ -63,12 +64,11 @@ public class showNotifications extends HttpServlet {
                    
                    Notifications notifs = new Notifications();
                                      
-                   String title = rst.getString("title");
                    String content = rst.getString("content");
-                   String date = rst.getString("datetime_date");
+                   String date = rst.getString("date_Created");
                    String url = rst.getString("url");
                    
-                   notifs.createNotificationsList(title, content, date, url);
+                   notifs.createNotificationsList(content, date, url);
                    notifications.add(notifs);
                    
                    
@@ -81,14 +81,15 @@ public class showNotifications extends HttpServlet {
             catch (SQLException ex)  {
                 out.println("couldnt retrieve data");
             }     
-            
+            sqlhndl.commit();
+            sqlhndl.closeConnection();
             
             
            
            //Put data into the requset for the next page allowing us to use it.
             request.setAttribute("notifications", notifications);
             //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/showNotifications.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/Notifications/showNotifications.jsp");
             //Send our data from request into the jsp file
             view.forward(request,response);
         }

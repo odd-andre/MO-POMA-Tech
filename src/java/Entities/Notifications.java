@@ -30,9 +30,8 @@ public class Notifications  {
     }
   
 
-   public void createNotificationsList (String title, String content, String date, String url) {
+   public void createNotificationsList (String content, String date, String url) {
         
-       this.title = title;
        this.content = content;
        this.date = date;
        this.url = url;
@@ -60,9 +59,9 @@ public class Notifications  {
     }
    
    
-    public static void addNotification(String title, String content, Integer user_id, String url, String scope) {
+    public static void addNotification(String content, Integer user_id, String url, String scope) {
         SqlHandler sqlhndl = new SqlHandler(out);
-        sqlhndl.addNotification(title, content, user_id, url, scope);
+        sqlhndl.addNotification(content, user_id, url, scope);
         
     }
     

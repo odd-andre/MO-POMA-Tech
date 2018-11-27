@@ -128,7 +128,7 @@ public class SqlHandler {
     public ResultSet displayNotifications(Integer user_Id, String scope) {
        PreparedStatement selectString;
        try {
-           selectString =  conn.prepareStatement("SELECT title, content, datetime_date, url FROM Notifications WHERE user_Id = ? or scope = ? ");
+           selectString =  conn.prepareStatement("SELECT content, date_Created, url FROM Notifications WHERE user_Id = ? or scope = ? ");
            selectString.setInt(1, user_Id);
            selectString.setString(2, scope);
            
@@ -160,6 +160,8 @@ public class SqlHandler {
             selectString.setInt(5, user_id);
             selectString.setString (6, scope);
             selectString.executeUpdate();
+            this.commit();
+            this.closeConnection();
           } 
           catch (SQLException ex) {
             out.println("Ikke lagre i DB" +ex);
