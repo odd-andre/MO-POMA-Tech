@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Entities.Forum;
 import Entities.Forum_comment;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,13 +41,11 @@ public class View_ForumCom extends HttpServlet {
             
             String reqForumCom = path.replace("/", "");
             
-            Forum_comment frmComm = new Forum_comment();
-            frmComm.getForumCommDetail(out, Integer.parseInt(reqForumCom));
-                    
-              
+            Forum forum = new Forum();
+            forum.getFroumContent(out, Integer.parseInt(reqForumCom) );
             
             //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("frmComm", frmComm);
+            request.setAttribute("forum", forum);
             
             //Get the jsp file where we have put our html
             
