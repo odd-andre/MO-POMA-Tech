@@ -2,6 +2,7 @@
 package Entities;
 
 import Classes.SqlHandler;
+import java.io.PrintWriter;
 import static java.lang.System.out;
 
 /**
@@ -59,7 +60,7 @@ public class Notifications  {
     }
    
    
-    public static void addNotification(String content, Integer user_id, String url, String scope) {
+    public static void addNotification(PrintWriter out,String content, Integer user_id, String url, String scope) {
         SqlHandler sqlhndl = new SqlHandler(out);
         sqlhndl.addNotification(content, user_id, url, scope);
         

@@ -130,15 +130,8 @@ public class SqlHandler {
         }
         return null;
     }
-    public ResultSet getModule(Integer id){
-        PreparedStatement selectString;
-        try {
-            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals FROM Modules WHERE module_Id = ?");
-            selectString.setInt(1, id);
-
-    
     public  ResultSet getUserIdByMail(String mail){
-    PreparedStatement selectString;
+        PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT user_Id FROM User WHERE email = ?");
             selectString.setString(1, mail);
@@ -449,8 +442,40 @@ public ResultSet showForumList(){
         }
         return null;
 }
-   
-    // @Resource DataSource LocalhostDS;
+   public ResultSet displayNotifications(Integer user_Id, String scope) {
+       PreparedStatement selectString;
+       try {
+           selectString =  conn.prepareStatement("SELECT content, date_Created, url FROM Notifications WHERE user_Id = ? or scope = ? ");
+           selectString.setInt(1, user_Id);
+           selectString.setString(2, scope);
+           
+           return selectString.executeQuery();
+        } // end try     
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+            }
+        return null;
+       }
+    public void addNotification(String content, Integer user_id, String url, String scope) {
+        PreparedStatement selectString;
+        try {
+            
+            selectString =  conn.prepareStatement("INSERT INTO Notifications(content, date_Created, url, user_id, scope) values (?,?,?,?,?,?)");
+            SimpleDateFormat formatter = new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+           
+            String dateOfTime = formatter.format(date);
+            selectString.setString(1, content);
+            selectString.setString(2, dateOfTime);
+            selectString.setString(3, url);
+            selectString.setInt(4, user_id);
+            selectString.setString (5, scope);
+            selectString.executeUpdate();
+          } 
+          catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+        }
+    }
     public void createForum(Integer forum_Id, Integer creator_Id, String fName){
     PreparedStatement selectString;
         try {
@@ -462,15 +487,11 @@ public ResultSet showForumList(){
             selectString.setInt(2, creator_Id);
             selectString.setString(3, fName);
             selectString.executeUpdate();
-                
-            //JOptionPane.showMessageDialog(null, "Forum created sucessfully");
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
         }
-        //catch (Exception e){
-          //  JOptionPane.showMessageDialog(null, e);
-        //}
+
     }
 
 }

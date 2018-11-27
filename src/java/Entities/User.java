@@ -17,7 +17,10 @@ import java.sql.SQLException;
  */
 public class User {
 
-  
+    String firstName;
+    String surName;
+    Integer zip_code;
+    String rights;
     String adress;
     String email;
     String datebirth;
