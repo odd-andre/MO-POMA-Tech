@@ -110,18 +110,19 @@ public class SqlHandler {
     }
     
     
-    public void createMessage(Integer user_Id,Integer message_id,Integer Reciever, Integer dateTime_message,String Subject, String Content){
+    public void createMessage(Integer message_id,Integer Sender,Integer Reciever, String dateTime_message,String Subject, String Content){
     PreparedStatement selectString;
     
     try{
-        selectString = conn.prepareStatement("INSERT INTO Messages " +"(user_Id, message_id, Sender, Reciever, dateTime_message,Subject,Content)" + "VALUES(?,?,?,?,?,?,?)");
+        selectString = conn.prepareStatement("INSERT INTO Messages " +"(message_id, Sender, Reciever, dateTime_message,Subject,Content)" + "VALUES(?,?,?,?,?,?)");
             
-            selectString.setInt(1, user_Id);
-            selectString.setInt(2,message_id);
-            selectString.setInt(4,Reciever);
-            selectString.setInt(5,dateTime_message);
-            selectString.setString(6, Subject);
-            selectString.setString(7, Content);
+           
+            selectString.setInt(1,message_id);
+            selectString.setInt(2,Sender);
+            selectString.setInt(3,Reciever);
+            selectString.setString(4,dateTime_message);
+            selectString.setString(5, Subject);
+            selectString.setString(6, Content);
            
             selectString.executeUpdate();
                 
@@ -158,7 +159,7 @@ public class SqlHandler {
         
              }
     
-        public void insertMessages(Integer message_Id,Integer dateTime_message,String Subject, String Content){
+        public void insertMessages(Integer message_Id, String dateTime_message,String Subject, String Content){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO Messages "
@@ -170,13 +171,15 @@ public class SqlHandler {
             String created = formatter.format(date);
             
             selectString.setInt(1, message_Id);
-            selectString.setInt(2, dateTime_message);
+            selectString.setString(2, dateTime_message);
             selectString.setString(3, Subject);
             selectString.setString(4, Content);
          
             selectString.executeUpdate();
             
             ResultSet rs = selectString.getGeneratedKeys();
+            
+            
             
             
         } // end try

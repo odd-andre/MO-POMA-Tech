@@ -1,7 +1,7 @@
 <%-- 
     Document   : showMessage
     Created on : 01.nov.2018, 14:03:01
-    Author     : Mahamed
+    Author     : Mahamed Salad
 --%>
 
 
@@ -26,7 +26,7 @@
     <body>
         <div class="container"> 
             <div class="row justify-content-md-center">
-        <h1>View Message!</h1>
+        <h1>Show Message!</h1>
        <div class="col-10"> 
                       
               <table style="width:100%">
@@ -35,16 +35,19 @@
             <th> Messsge ID</th>
             <th> Date & Time</th>
             <th> Subject</th>
+            <th> Content </th>
             
         </tr>
-        <tr>
-             <c:forEach items="${Messages}" var="message"> 
+       
+        <c:forEach items="${Messages}" var="message"> 
+              <tr>
               <td><p>${message.getMessageID().intValue()}</td>
               <td>${message.getdateTime_Message()}</td>
               <td>${message.getSubject()}</p></td>
-       
+              <td>${message.getContent()}</p></td>
+              </tr> 
        </c:forEach> 
-        </tr> 
+        
         
     </table> 
         

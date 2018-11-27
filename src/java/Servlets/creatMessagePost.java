@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Mahamed Salad
  */
-@WebServlet(name = "creatMessage", urlPatterns = {"/creatMessage"})
-public class creatMessage extends HttpServlet {
+@WebServlet(urlPatterns = {"/creatMessagePost"})
+public class creatMessagePost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,13 +39,20 @@ public class creatMessage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         
-     
+        try (PrintWriter out = response.getWriter()) {
             
-           try (PrintWriter out = response.getWriter()) { 
-           
+            Integer message_Id = Integer.parseInt(request.getParameter("message_Id"));
             
-            RequestDispatcher view = request.getRequestDispatcher("/Users/sendMessage.jsp");
-            view.forward(request, response);
+            Integer Sender = Integer.parseInt(request.getParameter("Sender"));
+            Integer Reciever = Integer.parseInt(request.getParameter("Reciever"));
+            String datetime_message = request.getParameter("datetime_Message");
+            String Subject = request.getParameter("Subject");
+            String Content = request.getParameter("Content");
+            
+            Message message = new Message();
+            message.creatMessage(out, message_Id,Sender,Reciever,datetime_message,Subject,Content);
+            response.sendRedirect("/MO-POMA_Tech/showMessages");
+            
 
           
         }

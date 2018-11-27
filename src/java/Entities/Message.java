@@ -66,9 +66,9 @@ public class Message {
         
         
         
-        public void createMessage(PrintWriter out,Integer message_Id, Integer Sender, Integer Reciever, Integer dateTime_Message, String Subject, String Content){
+        public void creatMessage(PrintWriter out,Integer message_Id, Integer Sender, Integer Reciever, String dateTime_Message, String Subject, String Content){
         SqlHandler sqlhndl = new SqlHandler(out);
-        sqlhndl.insertMessage(message_Id, Sender,Reciever,dateTime_Message,Subject,Content);               
+        sqlhndl.createMessage(message_Id, Sender,Reciever,dateTime_Message,Subject,Content);               
      }
      
          
