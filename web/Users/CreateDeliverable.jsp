@@ -23,7 +23,7 @@
             <div class="row justify-content-md-center">
                 <div class="col-10">
                     <h1>Create deliverable</h1>
-                    <form action="/MO-POMA_Tech/CreateDeliverable" method="POST">
+                    <form action="/MO-POMA_Tech/CreateDeliverablePost" method="POST">
                         <div class="form-row">
                                 <div class="col-6">
                               <label for="student_Id">Student id</label>
