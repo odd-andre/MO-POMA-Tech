@@ -25,7 +25,7 @@
             <url-pattern>/showStudent/*</url-pattern>
             <url-pattern>/showStudents</url-pattern>
             <url-pattern>/editStudent/*</url-pattern>
-            <url-pattern>/signOut/*</url-pattern>
+            <url-pattern>/signOut</url-pattern>
             <url-pattern>/showNotifications</url-pattern>
 
         </web-resource-collection>
