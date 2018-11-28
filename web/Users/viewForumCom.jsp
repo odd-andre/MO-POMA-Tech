@@ -15,7 +15,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -65,43 +64,20 @@
     <body>
         <div class="container"> 
             <div class="row justify-content-md-center">
-        <h1>View Forum!</h1>
+        <h1>View Complete Forum!</h1>
        <div class="col-10"> 
-                      
-              <table style="width:100%">
-              
-        <tr>
-            <th> Forum ID</th>
-            <th> Creator ID</th>
-            <th> Forum Name</th>
-             <th> Forum Post ID</th>
-              <th> Forum Post DateTime</th>
-               <th> Forum Post Name</th>
-                <th> Forum Post Creator</th>
-                 <th> Forum Content</th>
-                  <th> Forum Poster</th>
-                  <th> Comment ID</th>
-                  <th> Comment Date</th>
 
+              ${forum.getForumName()}
+       
             
-        </tr>
-        <tr>
-            <c:forEach items="${frmComm}" var="frmComm">
-              <td><p>${Forum_comment.getFroumID().intValue()}</td>
-              <td>${Forum_comment.getCreatorID().intValue()}</td>
-              <td>${Forum_comment.getFroumName()}</p></td>
-              <td>${Forum_comment.getForumPostID().intValue()}</p></td>
-              <td>${Forum_comment.getForumPostDate()}</p></td>
-              <td>${Forum_comment.getForumPostName()}</p></td>
-              <td>${Forum_comment.getForumPostCreator().intValue()}</p></td>
-              <td>${Forum_comment.getForumContent()}</p></td>
-              <td>${Forum_comment.getForumPoster()}</p></td>
-              <td>${Forum_comment.getForumCommentID()}</p></td>
-              <td>${Forum_comment.getForumComDate()}</p></td>
-        </tr>
-       </c:forEach>
-    </table> 
+            <c:forEach items="${forum.getHash()}" var="forumPost">
+              ${forumPost.getValue().getfPostName()}
+              <c:forEach items="${forumPost.getValue().getCommentArray()}" var="forumComments">
+                            ${forumComments.getForumContent()}
+                            </c:forEach>
         
+       </c:forEach>
+            
            </div>
       </div>
         </div>
