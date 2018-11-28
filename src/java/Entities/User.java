@@ -34,8 +34,6 @@ public class User {
             return accessType;
     }
     
-    
-
 public static Integer getUserIdByMail(PrintWriter out,String email){
         SqlHandler sqhndl = new SqlHandler(out);
         ResultSet rst = sqhndl.getUserIdByMail(email);
@@ -44,15 +42,15 @@ public static Integer getUserIdByMail(PrintWriter out,String email){
                 int rowCount = 0;
                     while(rst.next()) {   // Move the cursor to the next row, return false if no more row
                         Integer user_id = rst.getInt("user_id");
-                        sqhndl.commit();
-                        sqhndl.closeConnection();
+                        //commit and close connection
+                        sqhndl.commitAndclose();
                         return user_id;
                      }
-            }
+            } //End try
             catch (SQLException ex) {
                 out.println("Ikke hentet fra DB " +ex);
             }
+        //Return null in case the try for some reason does not work and does not get caught.
         return null;
-        
     }
 }

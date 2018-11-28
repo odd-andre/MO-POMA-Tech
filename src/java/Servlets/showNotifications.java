@@ -28,8 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "showNotifications", urlPatterns = {"/showNotifications"})
 public class showNotifications extends HttpServlet {
 
-     
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -48,15 +46,13 @@ public class showNotifications extends HttpServlet {
             if(request.isUserInRole("Teacher")) {
                 scope = "Teacher";
             }
-            Integer user_Id=User.getUserIdByMail(out,request.getRemoteUser()); 
+            Integer user_Id = User.getUserIdByMail(out,request.getRemoteUser()); 
             
             List<Notifications> notifications = new ArrayList();
             SqlHandler sqlhndl = new SqlHandler(out);
            
             ResultSet rst = sqlhndl.displayNotifications(user_Id, scope);
            
-           
-            
             try {
                int rowCount = 0;             
                while (rst.next()){
@@ -69,22 +65,16 @@ public class showNotifications extends HttpServlet {
                    
                    notifs.createNotificationsList(content, date, url);
                    notifications.add(notifs);
-                   
-                   
-         
+
                   ++rowCount;
-                  
-                   
-               } 
+             } 
             }
             catch (SQLException ex)  {
                 out.println("couldnt retrieve data");
             }     
-            sqlhndl.commit();
-            sqlhndl.closeConnection();
-            
-            
-           
+            //Commit and close database connection
+            sqlhndl.commitAndclose();
+   
            //Put data into the requset for the next page allowing us to use it.
             request.setAttribute("notifications", notifications);
             //Get the jsp file where we have put our html
