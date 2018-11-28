@@ -19,63 +19,8 @@
 
         <title>Add Module</title>
     </head>  
-    <nav class="navbar navbar-inverse">
-       <div class="container-fluid">
-          <div class="navbar-header">
-             <a class="navbar-brand" href="#">MO-POMA TECH</a>   
-          </div>
-            <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost:8080/MO-POMA_Tech/">HOME</a></li>
-            <li><a href="http://localhost:8080/MO-POMA_Tech/Users/project_Info.jsp">PROJECT INFO</a></li>
-                <li><a href="http://localhost:8080/MO-POMA_Tech/Users/user_stories.jsp">User Stories</a></li>
-                      <li><a href="https://github.com/Oddpotatoman/MO-POMA-Tech/issues">Issues Done</a></li>
-                      
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">STUDENT <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                <li><a href="#">Show student</a></li>
-                <li><a href="#">Add New Student</a></li>
-                <li><a href="#">Student List</a></li>
-                </ul>   
-            </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MODULE <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/MO-POMA_Tech/Show_Module_Detail/1">Individual Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Edit_Module/1">Update Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Module_List/">Module List</a></li>
-                </ul>
-            </li>
-      
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FORUM <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/MO-POMA_Tech/View_Forum/1">View Forum</a></li>
-                    <li><a href="#">Create Forum</a></li>
-                    <li><a href="/MO-POMA_Tech/ViewForumlist">Forum List</a></li>
-                </ul>
-            </li>
-            
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Deliverable <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Show Deliverable</a></li>
-                    <li><a href="#">Create Deliverable</a></li>
-                    <li><a href="">Delete Deliverable</a></li>
-                </ul>
-            </li>
-            
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Message <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">View Message</a></li>
-                    <li><a href="#">Send Message</a></li>
-                </ul>
-            </li>
-            
-              <ul class="nav navbar-nav navbar-right">
-                
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Switch Account</a></li>
-                
-              </ul>
-              </ul>
-        </div>
-    </nav>
+    
+    <jsp:include page="/WEB-INF/menu.jsp" />
   
     <body style="background-color: powderblue;">
         

@@ -18,64 +18,29 @@
 
         <title>Create Forum</title>
     </head>  
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">MO-POMA TECH</a>
-        </div>
-            <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost:8080/MO-POMA_Tech/">HOME</a></li>  
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">STUDENT <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                <li><a href="#">Show student</a></li>
-                <li><a href="#">Add New Student</a></li>
-                <li><a href="#">Student List</a></li>
-                </ul>   
-            </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MODULE <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/MO-POMA_Tech/Show_Module_Detail/1">Individual Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Add_Module">Insert Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Edit_Module/1">Update Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Delete_Module">Remove Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Module_List/">Module List</a></li>
-                </ul>
-            </li>
-      
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FORUM <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/MO-POMA_Tech/View_Forum/1">View Forum</a></li>
-                    <li><a href="/MO-POMA_Tech/createForum">Create Forum</a></li>
-                    <li><a href="/MO-POMA_Tech/View_Forumlist">Forum List</a></li>
-                    <li><a href="/MO-POMA_Tech/createPost">Create Post</a></li>
-                    <li><a href="/MO-POMA_Tech/createPost">Create Comment</a></li>
-                    <li><a href="/MO-POMA_Tech//View_ForumCom/1">View Comment List</a></li>
-                </ul>
-            </li>
-         </ul>
-        </div>
-    </nav>
+   
+    <jsp:include page="/WEB-INF/menu.jsp" />
     
-    <body>
+    <body style="background-color: powderblue;">
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-10">
                     <h1>Insert Forum</h1>
                     <form action="Create_Forum" method="POST">
                         <div class="form-row">
-                          <div class="col-3">
+                          <div class="col-sm-6">
                               <label for="Forum_ID">Forum ID</label>
-                              <input type="text" name="Forum_ID" id="Forum_ID" class="form-control" placeholder="numeric number">
+                              <input type="text" name="Forum_ID" id="Forum_ID" class="form-control" placeholder="numeric number" required>
                           </div>
-                            <div class="col-3">
+                            <div class="col-sm-6">
                               <label for="Creator_ID">Creator ID</label>
-                              <input type="Creator_ID" class="form-control" name="Creator_ID" id="teacher_id" placeholder="numeric value">
+                              <input type="Creator_ID" class="form-control" name="Creator_ID" id="teacher_id" placeholder="numeric value" required>
                           </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-6">
+                            <div class="col-sm-6">
                               <label for="Forum_Name">Forum Name</label>
-                              <input type="text" name="Forum_Name" id="Forum_Name" class="form-control" placeholder="String text">    
+                              <input type="text" name="Forum_Name" id="Forum_Name" class="form-control" placeholder="String text" required>    
                             </div>
                             
                             <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Add Forum</button><br>

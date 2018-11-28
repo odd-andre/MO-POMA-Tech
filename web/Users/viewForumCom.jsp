@@ -8,8 +8,6 @@
 <%@page import="Entities.Forum"%>
 <%@page import="Entities.Forum_comment"%>
 <%@page import="Entities.Forum_Post"%>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -22,62 +20,60 @@
 
         <title>View Forum Comments</title>
     </head>  
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">MO-POMA TECH</a>
-        </div>
-            <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost:8080/MO-POMA_Tech/">HOME</a></li>  
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">STUDENT <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                <li><a href="#">Show student</a></li>
-                <li><a href="#">Add New Student</a></li>
-                <li><a href="#">Student List</a></li>
-                </ul>   
-            </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MODULE <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/MO-POMA_Tech/Show_Module_Detail/1">Individual Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Add_Module">Insert Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Edit_Module/1">Update Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Delete_Module">Remove Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Module_List/">Module List</a></li>
-                </ul>
-            </li>
-      
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FORUM <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/MO-POMA_Tech/View_Forum/1">View Forum</a></li>
-                    <li><a href="/MO-POMA_Tech/createForum">Create Forum</a></li>
-                    <li><a href="/MO-POMA_Tech/View_Forumlist">Forum List</a></li>
-                    <li><a href="/MO-POMA_Tech/createPost">Create Post</a></li>
-                    <li><a href="/MO-POMA_Tech/createPost">Create Comment</a></li>
-                    <li><a href="/MO-POMA_Tech//View_ForumCom/1">View Comment List</a></li>
-                </ul>
-            </li>
-         </ul>
-        </div>
-    </nav>
+   
+    <jsp:include page="/WEB-INF/menu.jsp" />
     
-    
-    <body>
+         <body>
+        <%-- table formatting part --%>
+        <style> 
+        body {
+                background-color: powderblue;
+            }
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+            }
+            th, td {
+                text-align: center;
+            }
+            table tr:nth-child(even) {
+                background-color: #eee;
+            }
+            table tr:nth-child(odd) {
+                background-color: #fff;
+            }
+            
+        </style> 
+
         <div class="container"> 
             <div class="row justify-content-md-center">
-        <h1>View Complete Forum!</h1>
+        <h1 align='center'>View Complete Forum!</h1>
        <div class="col-10"> 
 
-              ${forum.getForumName()}
-       
-            
+             <div class="table-responsive">
+            <table class="table" style="width:100%"     
+           <tr>
+               <th>Forum_Name</th>
+            <th>Forum Post name</th>
+            <th>Content</th>
+           </tr>
+           
             <c:forEach items="${forum.getHash()}" var="forumPost">
-              ${forumPost.getValue().getfPostName()}
-              <c:forEach items="${forumPost.getValue().getCommentArray()}" var="forumComments">
-                            ${forumComments.getForumContent()}
-                            </c:forEach>
-        
-       </c:forEach>
+                <c:forEach items="${forumPost.getValue().getCommentArray()}" var="forumComments">
+            <tr>
+                <td> ${forum.getForumName()}</td>
+            <td>${forumPost.getValue().getfPostName()}</td>
             
+            <td>${forumComments.getForumContent()}</td>
+            </tr>
+           
+            </c:forEach>
+          
+       </c:forEach>
+           </table> 
            </div>
       </div>
         </div>

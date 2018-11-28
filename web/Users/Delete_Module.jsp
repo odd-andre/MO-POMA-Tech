@@ -20,41 +20,9 @@
         <title>Delete Module</title>
     </head>  
     
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">MO-POMA TECH</a>
-        </div>
-            <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost:8080/MO-POMA_Tech/">HOME</a></li>  
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">STUDENT <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                <li><a href="#">Show student</a></li>
-                <li><a href="#">Add New Student</a></li>
-                <li><a href="#">Student List</a></li>
-                </ul>   
-            </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MODULE <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/MO-POMA_Tech/Show_Module_Detail/1">Individual Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Add_Module">Insert Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Edit_Module/1">Update Module</a></li>
-                    <li><a href="/MO-POMA_Tech/Module_List/">Module List</a></li>
-                </ul>
-            </li>
-      
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FORUM <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="/MO-POMA_Tech/View_Forum/1">View Forum</a></li>
-                    <li><a href="#">Create Forum</a></li>
-                    <li><a href="/MO-POMA_Tech/ViewForumlist">Forum List</a></li>
-                </ul>
-            </li>
-         </ul>
-        </div>
-    </nav>
+   <jsp:include page="/WEB-INF/menu.jsp" />
     
-    <body>
+    <body style="background-color: powderblue;">
         <h1>Delete / Remove Module</h1>
         <form action="/MO-POMA_Tech/Delete_ModulePost" method="POST">
                         

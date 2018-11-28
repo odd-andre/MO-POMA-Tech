@@ -13,6 +13,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    
+    <jsp:include page="/WEB-INF/menu.jsp" />
+    
     <body>
         <h1>Adding module</h1>
         <form name="addModule" action="addModule">
