@@ -36,18 +36,14 @@ public class showStudent extends HttpServlet {
             String path = request.getPathInfo();
             // getPathInfo includes the / after showStudent, remove it
             String requestedStudent = path.replace("/", "");
-            //Create a sqlHandler to run database queries
-            //SqlHandler sqlHdl = new SqlHandler(out);
-            //Queries return as ResultSets so we have to store it as such
-            //ResultSet rst = sqlHdl.getStudent(requestedStudent);
-            
+
             //We will return the student in the form of a ArrayList, this could be done better as there is only one user
             List<Student> student = new ArrayList();
             Student studentObj = new Student();
             studentObj.getStudent(Integer.parseInt(requestedStudent), out);
-            student.add(studentObj);
+            
             //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("students", student);
+            request.setAttribute("student", studentObj);
             //Get the jsp file where we have put our html
             RequestDispatcher view = request.getRequestDispatcher("/Users/showStudent.jsp");
             //Send our data from request into the jsp file

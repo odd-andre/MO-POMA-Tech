@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import java.io.IOException;
@@ -34,7 +29,6 @@ public class addStudent extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-             
 
             //Get the jsp file where we have put our html
             RequestDispatcher view = request.getRequestDispatcher("/Users/addStudent.jsp");

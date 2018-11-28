@@ -12,11 +12,10 @@ import java.sql.SQLException;
 public class Student extends User {
 
     Integer semester;
-    //Set default values if none are provided otherwise
+    //Constructor for thhe sake of having a constructor
     public Student(){
 
     }
-    
     public void getStudent(Integer id,PrintWriter out){
         SqlHandler sqlHdl = new SqlHandler(out);
         ResultSet rst = sqlHdl.getStudent(id);

@@ -26,7 +26,7 @@ public class User {
     private String datebirth;
     private Integer id;
     
-    public String getfirstname(){return this.firstName;}
+    public String getfirstName(){return this.firstName;}
     public String getsurName(){return this.surName;}
     public Integer getzip_code(){return this. zip_code;}
     public String getrights(){return this.rights;}

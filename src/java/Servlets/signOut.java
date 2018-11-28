@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import java.io.IOException;
@@ -33,9 +28,12 @@ public class signOut extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+
+            //Invalidate current session in 3 steps, first invalidate it on the server
             request.getSession().invalidate();
+            //Secondly give a 401 forbidden status to the rowser
             response.setStatus(401);
+            //And lastly manually send html wich will refresh the users page and redirect him/her to the homepage
             out.write("<html><head><meta http-equiv='refresh' content='0;/MO-POMA_Tech'></head></html>");
         }
     }
