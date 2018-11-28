@@ -103,6 +103,7 @@
                 <th>Message part</th>
                 <th>Notification part</th>
                 <th>Front-end part</th>
+                <th>Version Control part</th>
                 </tr>
                 
                 <tr>
@@ -113,6 +114,7 @@
                     <td> Mahamed Salad</td>
                     <td> Abdul Halim</td>
                     <td> Muhammad Ali</td>
+                    <td> Odd Andre</td>
                 </tr>
             </table>
                 </div>
