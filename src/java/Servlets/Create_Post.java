@@ -5,12 +5,9 @@
  */
 package Servlets;
 
-import Classes.SqlHandler;
-import Entities.Forum;
+import Entities.Forum_Post;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ThunderCoW
+ * @author ThunderCow
  */
-@WebServlet(name = "View_Forum", urlPatterns = {"/View_Forum/*"})
-public class View_Forum extends HttpServlet {
+@WebServlet(name = "Create_Post", urlPatterns = {"/Create_Post"})
+public class Create_Post extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,27 +34,25 @@ public class View_Forum extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            String path = request.getPathInfo();
-            
-            String reqForum = path.replace("/", "");
-            
-            Forum forum = new Forum();
-            forum.getForumDetail(out, Integer.parseInt(reqForum));
-            
-            //Put data into the requset for the next page allowing us to use it.
-            request.setAttribute("forum", forum);
-            
-            //Get the jsp file where we have put our html
-            
-            RequestDispatcher view = request.getRequestDispatcher("/Users/viewForum.jsp");
-            //Send our data from request into the jsp file
+         try (PrintWriter out = response.getWriter()) {
+             
+                Integer forumpost_Id = Integer.parseInt(request.getParameter("ForumPost_ID"));
+                Integer forum_Id = Integer.parseInt(request.getParameter("Forum_ID"));
+                String datetime_upload = request.getParameter("Date");
+                String fPostname = request.getParameter("ForumPost_Name");
+                Integer creator = Integer.parseInt(request.getParameter("Creator"));
+                
+                Forum_Post forum_post = new Forum_Post();
+                forum_post.createPost(out, forumpost_Id, forum_Id, datetime_upload, fPostname, creator);
+                
+                /*Get the jsp file where we have put our html */
+            RequestDispatcher view = request.getRequestDispatcher("/Users/createPost.jsp");
+            /*Send our data from request into the jsp file */
             view.forward(request,response);
-            
-        }
+        response.sendRedirect("/MO-POMA_Tech");
+         }
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

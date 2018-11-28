@@ -5,12 +5,10 @@
  */
 package Servlets;
 
-import Classes.SqlHandler;
 import Entities.Forum;
+import Entities.Forum_comment;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ThunderCoW
  */
-@WebServlet(name = "View_Forum", urlPatterns = {"/View_Forum/*"})
-public class View_Forum extends HttpServlet {
+@WebServlet(name = "View_ForumCom", urlPatterns = {"/View_ForumCom/*"})
+public class View_ForumCom extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,17 +39,17 @@ public class View_Forum extends HttpServlet {
             
             String path = request.getPathInfo();
             
-            String reqForum = path.replace("/", "");
+            String reqForumCom = path.replace("/", "");
             
             Forum forum = new Forum();
-            forum.getForumDetail(out, Integer.parseInt(reqForum));
+            forum.getFroumContent(out, Integer.parseInt(reqForumCom) );
             
             //Put data into the requset for the next page allowing us to use it.
             request.setAttribute("forum", forum);
             
             //Get the jsp file where we have put our html
             
-            RequestDispatcher view = request.getRequestDispatcher("/Users/viewForum.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/Users/viewForumCom.jsp");
             //Send our data from request into the jsp file
             view.forward(request,response);
             

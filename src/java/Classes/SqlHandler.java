@@ -512,5 +512,24 @@ public  ResultSet showForumList(){
         }
 
     }
-
+    public void createPost(Integer forumpost_Id, Integer forum_Id, String datetime_upload, String fPostname, Integer creator){
+    PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO Forum_post "
+                    + "(forumpost_Id, forum_Id, datetime_upload, fPostname, creator) "
+                    + "VALUES (?, ?, ?, ?, ?)");
+                    
+                selectString.setInt(1, forumpost_Id);
+                selectString.setInt(2, forum_Id);
+                selectString.setString(3, datetime_upload);
+                selectString.setString(4, fPostname);
+                selectString.setInt(5, creator);
+                selectString.executeUpdate();
+        }
+               
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+}
+    
+}
 }

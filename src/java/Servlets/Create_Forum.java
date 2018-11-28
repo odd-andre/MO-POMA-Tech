@@ -41,13 +41,14 @@ public class Create_Forum extends HttpServlet {
                 String fName = request.getParameter("Forum_Name");
                 Forum forum = new Forum();
                 forum.createForum(out, forum_Id, creator_Id, fName);
-                response.sendRedirect("/MO-POMA_Tech");
+                
                 
                 /*Get the jsp file where we have put our html */
             RequestDispatcher view = request.getRequestDispatcher("/Users/createForum.jsp");
             /*Send our data from request into the jsp file */
             view.forward(request,response);
-        }
+        response.sendRedirect("/MO-POMA_Tech");
+         }
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
