@@ -17,14 +17,32 @@ import java.sql.SQLException;
  */
 public class User {
 
-    String firstName;
-    String surName;
-    Integer zip_code;
-    String rights;
-    String adress;
-    String email;
-    String datebirth;
-    Integer id;
+    private String firstName;
+    private String surName;
+    private Integer zip_code;
+    private String rights;
+    private String adress;
+    private String email;
+    private String datebirth;
+    private Integer id;
+    
+    public String getfirstname(){return this.firstName;}
+    public String getsurName(){return this.surName;}
+    public Integer getzip_code(){return this. zip_code;}
+    public String getrights(){return this.rights;}
+    public String getadress(){return this.adress;}
+    public String getemail(){return this.email;}
+    public String getdatebirth(){return this.datebirth;}
+    public Integer getid(){return this.id;}
+    
+    public void setfirstName(String firstName){this.firstName = firstName ;}
+    public void setsurName(String surName){this.surName = surName ;}
+    public void setzip_code(Integer zip_code){this.zip_code = zip_code ;}
+    public void setrights(String rights){this.rights = rights ;}
+    public void setadress(String adress){this.adress = adress ;}
+    public void setemail(String email){this.email = email ;}
+    public void setdatebirth(String datebirth){this.datebirth = datebirth ;}
+    public void setid(Integer id){this.id = id ;}
     
     public String getUserType(HttpServletRequest request){
         String accessType = "Student";
@@ -34,7 +52,7 @@ public class User {
             return accessType;
     }
     
-public static Integer getUserIdByMail(PrintWriter out,String email){
+    public static Integer getUserIdByMail(PrintWriter out,String email){
         SqlHandler sqhndl = new SqlHandler(out);
         ResultSet rst = sqhndl.getUserIdByMail(email);
         

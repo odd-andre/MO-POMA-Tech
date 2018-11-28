@@ -12,5 +12,5 @@ package Entities;
 public class Teacher extends User {
     Integer user_id;
     
-    public String getFirstName(){return this.firstName;}
+    public String getFirstName(){return this.getfirstName();}
 }
