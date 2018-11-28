@@ -1,10 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Petr
+ * The purpose of this class is to POST deleting deliverable and remove the record from database.
  */
-package Servlets;
 
+package Servlets;
 import Entities.Deliverable;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,10 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Petr
- */
 @WebServlet(name = "DeleteDeliverablePost", urlPatterns = {"/DeleteDeliverablePost"})
 public class DeleteDeliverablePost extends HttpServlet {
 
@@ -30,6 +25,8 @@ public class DeleteDeliverablePost extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+     /*This aim of this method is remove record of deliverable which was retrieved by method deleteDeliverable*/
    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -39,8 +36,8 @@ public class DeleteDeliverablePost extends HttpServlet {
              Integer deliverable_Id = Integer.parseInt(request.getParameter("deliverable_Id"));
              Deliverable deliverable = new Deliverable();
              
-                deliverable.deleteDeliverable(out, deliverable_Id);
-                response.sendRedirect("/MO-POMA_Tech/showDeliverable?view_Deliverable=view_Deliverable");
+             deliverable.deleteDeliverable(out, deliverable_Id);
+             response.sendRedirect("/MO-POMA_Tech/showDeliverable");
         }
     }
 

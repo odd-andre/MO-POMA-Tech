@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Petr
+ * The purpose of this class is to POST editing deliverable and edits the values in database.
  */
 package Servlets;
 
@@ -14,10 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Petr
- */
 @WebServlet(name = "Edit_DeliverablePost", urlPatterns = {"/Edit_DeliverablePost"})
 public class Edit_DeliverablePost extends HttpServlet {
 
@@ -30,13 +25,13 @@ public class Edit_DeliverablePost extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    // The aim of this method is edit the record of that deliverable which was retrieved by method editDeliverable*/
+
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-  
-            
+           
                 Deliverable deliverable = new Deliverable();
                 Integer deliverable_Id = Integer.parseInt(request.getParameter("deliverable_Id"));
                 Integer module_Id = Integer.parseInt(request.getParameter("module_Id"));
@@ -48,9 +43,7 @@ public class Edit_DeliverablePost extends HttpServlet {
                 String progression = request.getParameter("progression");
             
                 deliverable.updateDeliverable(out, deliverable_Id, module_Id,teacher_Id, datetime_Of_Submit, status, points, feedback, progression);
-                response.sendRedirect("/MO-POMA_Tech/deliverableDetail/"+deliverable_Id);
-                
-         
+                response.sendRedirect("/MO-POMA_Tech/deliverableDetail/"+deliverable_Id);                        
         }
     }
 
@@ -92,5 +85,4 @@ public class Edit_DeliverablePost extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

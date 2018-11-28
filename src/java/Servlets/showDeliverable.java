@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Petr 
+ * The purpose of this class is retrieve all deliverables in database.
  */
 package Servlets;
 
@@ -9,7 +8,6 @@ import Classes.SqlHandler;
 import Entities.Deliverable;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,10 +21,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Petr
- */
 @WebServlet(name = "showDeliverable", urlPatterns = {"/showDeliverable"})
 public class showDeliverable extends HttpServlet {
 
@@ -39,18 +33,21 @@ public class showDeliverable extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    //The purpose of this method is retrieve all deliverables in database.
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
         
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+      
            SqlHandler sqlHdl = new SqlHandler(out);
-            ResultSet rst = sqlHdl.viewDeliverable();
-         List<Deliverable> deliverable = new ArrayList();
+           ResultSet rst = sqlHdl.viewDeliverable();
          
-          try {
+           List<Deliverable> deliverable = new ArrayList();         
+          
+         try {
               
              int rowCount = 0;
              while (rst.next()) {
@@ -65,27 +62,20 @@ public class showDeliverable extends HttpServlet {
                  String feedback = rst.getString("feedback");
                  String progression = rst.getString("progression");
                  
-                 deliverableObj.deliverableList(deliverable_Id, teacher_Id, student_Id, module_Id, datetime_Of_Submit, status, points, feedback, progression);
-              /*   deliverableObj.getTeachName(out, teacher_Id);*/
-              
+                 deliverableObj.deliverableList(deliverable_Id, teacher_Id, student_Id, module_Id, datetime_Of_Submit, status, points, feedback, progression);                    
                  deliverable.add(deliverableObj);
                  
-                 ++rowCount;
-                
+                 ++rowCount;                
              }
               }
              catch (SQLException ex){
                      out.println("Error");
-                     }
-         
-            
+                     }                     
      
-          request.setAttribute("deliverable", deliverable);
-            //Get the jsp file where we have put our html
+            request.setAttribute("deliverable", deliverable);           
             RequestDispatcher view = request.getRequestDispatcher("/Users/showDeliverable.jsp");
-            //Send our data from request into the jsp file
-            view.forward(request,response);
-        
+            
+            view.forward(request,response);        
         }
         }
     

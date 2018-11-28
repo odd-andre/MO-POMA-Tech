@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Petr
+ * The purpose of this class is to retrieve deliverable_Id from database to form for deleting deliverable.
  */
 package Servlets;
 
@@ -15,10 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Petr
- */
 @WebServlet(name = "DeleteDeliverable", urlPatterns = {"/DeleteDeliverable/*"})
 public class DeleteDeliverable extends HttpServlet {
 
@@ -31,21 +26,20 @@ public class DeleteDeliverable extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    //This method retrieves deliverableId from database. Which deliverableId is going to be retrieve depends on path of URL.
+    // /1 - first deliverable
+    // /2 - second deliverable etc.
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
      
            response.setContentType("text/html;charset=UTF-8");
                try (PrintWriter out = response.getWriter()) {
                         
-              String path = request.getPathInfo();
-              String requestedDeliverable = path.replace("/", "");
-             Deliverable delObj = new Deliverable();
-             delObj.getDeliverableDetail(Integer.parseInt(requestedDeliverable), out);
-               
-           
-            
-           
-            request.setAttribute("deliverable", delObj);
+            String path = request.getPathInfo();
+            String requestedDeliverable = path.replace("/", "");
+            Deliverable delObj = new Deliverable();
+            delObj.getDeliverableDetail(Integer.parseInt(requestedDeliverable), out);           
+            request.setAttribute("deliverable", delObj);            
             
             RequestDispatcher view = request.getRequestDispatcher("/Users/deleteDeliverable.jsp");
             view.forward(request, response);

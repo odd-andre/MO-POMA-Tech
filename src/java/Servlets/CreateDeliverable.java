@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Petr
+ * The purpose of this class is to GET form of creating deliverable.
  */
 package Servlets;
-
-import Entities.Deliverable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -18,10 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Petr
- */
+
 @WebServlet(name = "CreateDeliverable", urlPatterns = {"/CreateDeliverable"})
 public class CreateDeliverable extends HttpServlet {
 
@@ -34,10 +28,11 @@ public class CreateDeliverable extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    //This method allows us to get jsp file with form of creating deliverable. 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
-        
+        response.setContentType("text/html;charset=UTF-8");       
         
         try (PrintWriter out = response.getWriter()) { 
            
