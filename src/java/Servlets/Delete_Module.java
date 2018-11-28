@@ -28,17 +28,9 @@ public class Delete_Module extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            /* Get the path after the url, anything after /DeleteModule/ will show here.*/
-           /* String path = request.getPathInfo(); */
-            /* getPathInfo includes the / after showModule, remove it */
-         /*   String requestedModule = path.replace("/", ""); */
-            /* creating object of the class to run through method. */
             Module module = new Module();
-          /*  module.deleteModule(out, Integer.parseInt(requestedModule)); */
-            
+         
             request.setAttribute("module", module);
-            /* Get the JSP file where we have to put our html code */
             RequestDispatcher view = request.getRequestDispatcher("/Users/Delete_Module.jsp");
             view.forward(request, response);
         }

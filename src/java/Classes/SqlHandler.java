@@ -56,36 +56,7 @@ public class SqlHandler {
             catch (NamingException nex) {
                 out.println("Not correct naming" + nex);
             }
-    }
-    
-    public void select(String selectString){
-        this.select = selectString;
-    }
-    public void where(String whereString){
-        this.where = whereString;
-    }
-    public void from(String fromString){
-        this.from = fromString;
-    }
-    
-    public ResultSet runSelect(){
-        PreparedStatement selectString;
-        try {
-            selectString = conn.prepareStatement("SELECT "+this.select+" FROM "+this.from);
-            //selectString.setString(1,this.select);
-            //selectString.setString(2,this.from);
-            
-            ResultSet lagre = selectString.executeQuery();
-            /*calling close connectino*/
-            this.commitAndclose();
-            /*returning the result through variable*/
-            return lagre;
-        } // end try     
-          catch (SQLException ex) {
-                out.println("Ikke lagre i DB " +ex);
-        }
-        return null;
-    }
+    } 
     /*using separate function to close the connection*/
     public void closeConnection(){
         try {
@@ -184,13 +155,12 @@ public class SqlHandler {
                     + "(name, teacher_Id, deadline, learning_Goals) "
                     + "VALUES (?, ?, ?, ?)");
             
-            //selectString.setInt(1, id);
             selectString.setString(1, name);
             selectString.setInt(2, tID);
             selectString.setString(3, deadline);
             selectString.setString(4, goals);
-           // selectString.setInt("name1",1,11,"2018-09-28","Learn something 1");
             selectString.executeUpdate();
+            
             /*commit and closing the connection after execution.*/
             this.commitAndclose();
         } // end try
@@ -248,16 +218,7 @@ public class SqlHandler {
     /*delete the module inside by while showing module detail*/
     public void slettModule(Integer id){
         PreparedStatement selectString;
-        try {
-           /* String sqlq = "DELETE FROM Modules WHERE module_Id=?";
-            selectString = conn.prepareStatement(sqlq);
-            
-            selectString.setInt(1, id);
-            if (id != null) {
-                int i = selectString.executeUpdate();
-                System.out.println(""+i+"Module deleted successfully");
-            } */
-           
+        try {        
            selectString = conn.prepareStatement("DELETE FROM Modules WHERE module_Id=?");
            selectString.setInt(1, id);
            selectString.executeUpdate();
@@ -351,8 +312,6 @@ public class SqlHandler {
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT firstname FROM User WHERE user_Id = ?");
-                    //"INNER JOIN User as U ON stu.user_Id = U.user_Id " +
-                  //  "WHERE stu.user_Id = ?;");
             selectString.setInt(1, id);
             
             ResultSet lagre = selectString.executeQuery();
@@ -366,8 +325,6 @@ public class SqlHandler {
         }
         return null;
     }
-    /*clear current state*/
-    
     public ResultSet getStudents(){
         PreparedStatement selectString;
         try {
