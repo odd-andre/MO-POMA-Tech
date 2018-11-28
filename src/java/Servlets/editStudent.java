@@ -46,7 +46,6 @@ public class editStudent extends HttpServlet {
             request.setAttribute("student", studentObj);
             RequestDispatcher view = request.getRequestDispatcher("/Users/editStudent.jsp");
             view.forward(request,response);
-            
         }
     }
 

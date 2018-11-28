@@ -133,7 +133,7 @@
         </tr>
         <c:forEach items="${module}" var="module">
         <tr>
-              <td><p>${module.getName()}</td>
+              <td><p><a href="/MO-POMA_Tech/Show_Module_Detail/${module.getID().intValue()}"/>${module.getName()}</td>
               <td>${module.getID().intValue()}</td>
               <td>${module.getTeacherID().intValue()}</td>
               <td>${module.getTeachName()}</td>

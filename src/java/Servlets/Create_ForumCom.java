@@ -6,7 +6,7 @@
  */
 package Servlets;
 
-import Entities.Forum;
+import Entities.Forum_Post;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ThunderCow
  */
-@WebServlet(name = "Create_Forum", urlPatterns = {"/Create_Forum"})
-public class Create_Forum extends HttpServlet {
+@WebServlet(name = "Create_ForumCom", urlPatterns = {"/Create_ForumCom"})
+public class Create_ForumCom extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,15 +37,17 @@ public class Create_Forum extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
          try (PrintWriter out = response.getWriter()) {
              
+                Integer forumpost_Id = Integer.parseInt(request.getParameter("ForumPost_ID"));
                 Integer forum_Id = Integer.parseInt(request.getParameter("Forum_ID"));
-                Integer creator_Id = Integer.parseInt(request.getParameter("Creator_ID"));
-                String fName = request.getParameter("Forum_Name");
-                Forum forum = new Forum();
-                forum.createForum(out, forum_Id, creator_Id, fName);
+                String datetime_upload = request.getParameter("Date");
+                String fPostname = request.getParameter("ForumPost_Name");
+                Integer creator = Integer.parseInt(request.getParameter("Creator"));
                 
+                Forum_Post forum_post = new Forum_Post();
+                forum_post.createPost(out, forumpost_Id, forum_Id, datetime_upload, fPostname, creator);
                 
                 /*Get the jsp file where we have put our html */
-            RequestDispatcher view = request.getRequestDispatcher("/Users/createForum.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/Users/createForumCom.jsp");
             /*Send our data from request into the jsp file */
             view.forward(request,response);
         response.sendRedirect("/MO-POMA_Tech");
@@ -90,7 +92,7 @@ public class Create_Forum extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+}
 =======
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -99,7 +101,7 @@ public class Create_Forum extends HttpServlet {
  */
 package Servlets;
 
-import Entities.Forum;
+import Entities.Forum_Post;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -113,8 +115,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ThunderCow
  */
-@WebServlet(name = "Create_Forum", urlPatterns = {"/Create_Forum"})
-public class Create_Forum extends HttpServlet {
+@WebServlet(name = "Create_ForumCom", urlPatterns = {"/Create_ForumCom"})
+public class Create_ForumCom extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -130,15 +132,17 @@ public class Create_Forum extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
          try (PrintWriter out = response.getWriter()) {
              
+                Integer forumpost_Id = Integer.parseInt(request.getParameter("ForumPost_ID"));
                 Integer forum_Id = Integer.parseInt(request.getParameter("Forum_ID"));
-                Integer creator_Id = Integer.parseInt(request.getParameter("Creator_ID"));
-                String fName = request.getParameter("Forum_Name");
-                Forum forum = new Forum();
-                forum.createForum(out, forum_Id, creator_Id, fName);
+                String datetime_upload = request.getParameter("Date");
+                String fPostname = request.getParameter("ForumPost_Name");
+                Integer creator = Integer.parseInt(request.getParameter("Creator"));
                 
+                Forum_Post forum_post = new Forum_Post();
+                forum_post.createPost(out, forumpost_Id, forum_Id, datetime_upload, fPostname, creator);
                 
                 /*Get the jsp file where we have put our html */
-            RequestDispatcher view = request.getRequestDispatcher("/Users/createForum.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/Users/createForumCom.jsp");
             /*Send our data from request into the jsp file */
             view.forward(request,response);
         response.sendRedirect("/MO-POMA_Tech");
@@ -183,6 +187,5 @@ public class Create_Forum extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
->>>>>>> ThunderCow
 }
+>>>>>>> ThunderCow

@@ -20,13 +20,11 @@
         <div class="container justify-content-center">
             <div class="col-4">
                 <h1>Hello World!</h1>
-                <c:forEach items="${students}" var="student">
-                    <p>${student.getAdress()}</p>
+                    <p>${student.getadress()}</p>
                     <p>${student.email}</p>
-                    <p>${student.getId().intValue()}</p>
-                    <p>${student.getFirstName()}</p>
-                    <p>${student.getSurName()}</p>
-                </c:forEach>
+                    <p>${student.getid().intValue()}</p>
+                    <p>${student.getfirstName()}</p>
+                    <p>${student.getsurName()}</p>
             </div>
         </div>
     </body>

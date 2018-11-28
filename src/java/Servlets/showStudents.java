@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import Classes.SqlHandler;
@@ -42,11 +37,12 @@ public class showStudents extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
+            //Check what type of user is signed in, Student or Teacher?
             User user = new User();
             String accessType = user.getUserType(request);
-            
             request.setAttribute("accessType", accessType);
             
+            //Get students and put thhem into an array to be sent to the jsp file
             SqlHandler sqlHdl = new SqlHandler(out);
             ResultSet rst = sqlHdl.getStudents();
             List<Student> students = new ArrayList();
@@ -69,6 +65,9 @@ public class showStudents extends HttpServlet {
             catch (SQLException ex) {
                 out.println("Ikke hentet fra DB " +ex);
             }
+            
+            //Commit and close connection
+            sqlHdl.commitAndclose();
             
             //Put data into the requset for the next page allowing us to use it.
             request.setAttribute("students", students);

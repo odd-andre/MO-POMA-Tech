@@ -1,12 +1,11 @@
 <%-- 
-    Document   : viewForum
-    Created on : 02-Nov-2018, 12:43:37
+    Document   : createForum
     Author     : ThunderCow
 --%>
 
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="Entities.Forum"%>
-
+<%@page import="Entities.Forum_Post"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -18,7 +17,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <title>View Forum</title>
+        <title>Create Forum Post</title>
     </head>  
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -57,34 +56,44 @@
          </ul>
         </div>
     </nav>
-
+    
     <body>
-        <div class="container"> 
+        <div class="container">
             <div class="row justify-content-md-center">
-        <h1>View Forum!</h1>
-       <div class="col-10"> 
-                      
-              <table style="width:100%">
-              
-        <tr>
-            <th> Forum ID</th>
-            <th> Creator ID</th>
-            <th> Forum Name</th>
-            
-        </tr>
-        <tr>
-            <%-- <c:forEach items="${forum}" var="forum"> --%>
-              <td><p>${forum.getFroumID().intValue()}</td>
-              <td><p>${forum.getCreatorID().intValue()}</td>
-              <td><p>${forum.getForumName()}</td>
-              
-
-        </tr>
-       <%-- </c:forEach> --%>
-    </table> 
-        
-           </div>
-      </div>
+                <div class="col-10">
+                    <h1>Insert Post</h1>
+                    <form action="Create_Post" method="POST">
+                        <div class="form-row">
+                          <div class="col-3">
+                              <label for="Forum_ID">Forum Post ID</label>
+                              <input type="text" name="ForumPost_ID" id="ForumPost_ID" class="form-control" placeholder="numeric number">
+                          </div>
+                            <div class="col-3">
+                              <label for="Creator_ID">Forum ID</label>
+                              <input type="Creator_ID" class="form-control" name="Forum_ID" id="Forum_ID" placeholder="numeric value">
+                          </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-6">
+                              <label for="Forum_Name">Date</label>
+                              <input type="text" name="Date" id="Date" class="form-control" placeholder="String text">    
+                            </div>
+                         <div class="col-6">
+                              <label for="Forum Post Name">Forum Name</label>
+                              <input type="text" name="ForumPost_Name" id="ForumPost_Name" class="form-control" placeholder="String text">    
+                            </div>
+                        </div>
+                        <div class="form-row">
+                         <div class="col-9">
+                              <label for="Forum_Name">Creator</label>
+                              <input type="text" name="Creator" id="Creator" class="form-control" placeholder="String text">    
+                            </div>
+                                  
+                            <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Add Post</button><br>
+                            <button style="margin-right: 10px;" type="reset" class="btn col-3">Clear</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>

@@ -47,9 +47,9 @@
             <tbody>
                 <c:forEach items="${students}" var="student">
                     <tr>
-                        <td><a href="/MO-POMA_Tech/showStudent/${student.getId().intValue()}"/> ${student.getFirstName()} ${student.getSurName()}</td>
+                        <td><a href="/MO-POMA_Tech/showStudent/${student.getid().intValue()}"/> ${student.getfirstName()} ${student.getsurName()}</td>
                         <td>${student.email}</td>
-                        <td><a href="/MO-POMA_Tech/editStudent/${student.getId().intValue()}"> edit </a></td>
+                        <td><a href="/MO-POMA_Tech/editStudent/${student.getid().intValue()}"> edit </a></td>
 
                     </tr>
                 </c:forEach>

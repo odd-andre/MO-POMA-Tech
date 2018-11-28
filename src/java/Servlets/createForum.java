@@ -6,7 +6,6 @@
  */
 package Servlets;
 
-import Entities.Forum;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ThunderCow
  */
-@WebServlet(name = "Create_Forum", urlPatterns = {"/Create_Forum"})
-public class Create_Forum extends HttpServlet {
+@WebServlet(name = "createForum", urlPatterns = {"/createForum"})
+public class createForum extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,23 +34,17 @@ public class Create_Forum extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
              
-                Integer forum_Id = Integer.parseInt(request.getParameter("Forum_ID"));
-                Integer creator_Id = Integer.parseInt(request.getParameter("Creator_ID"));
-                String fName = request.getParameter("Forum_Name");
-                Forum forum = new Forum();
-                forum.createForum(out, forum_Id, creator_Id, fName);
-                
-                
-                /*Get the jsp file where we have put our html */
+
+            //Get the jsp file where we have put our html
             RequestDispatcher view = request.getRequestDispatcher("/Users/createForum.jsp");
-            /*Send our data from request into the jsp file */
+            //Send our data from request into the jsp file
             view.forward(request,response);
-        response.sendRedirect("/MO-POMA_Tech");
-         }
+        }
     }
-    
+
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -90,7 +83,6 @@ public class Create_Forum extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 =======
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -99,7 +91,6 @@ public class Create_Forum extends HttpServlet {
  */
 package Servlets;
 
-import Entities.Forum;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -113,8 +104,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ThunderCow
  */
-@WebServlet(name = "Create_Forum", urlPatterns = {"/Create_Forum"})
-public class Create_Forum extends HttpServlet {
+@WebServlet(name = "createForum", urlPatterns = {"/createForum"})
+public class createForum extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -128,23 +119,17 @@ public class Create_Forum extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
              
-                Integer forum_Id = Integer.parseInt(request.getParameter("Forum_ID"));
-                Integer creator_Id = Integer.parseInt(request.getParameter("Creator_ID"));
-                String fName = request.getParameter("Forum_Name");
-                Forum forum = new Forum();
-                forum.createForum(out, forum_Id, creator_Id, fName);
-                
-                
-                /*Get the jsp file where we have put our html */
+
+            //Get the jsp file where we have put our html
             RequestDispatcher view = request.getRequestDispatcher("/Users/createForum.jsp");
-            /*Send our data from request into the jsp file */
+            //Send our data from request into the jsp file
             view.forward(request,response);
-        response.sendRedirect("/MO-POMA_Tech");
-         }
+        }
     }
-    
+
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -183,6 +168,5 @@ public class Create_Forum extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 >>>>>>> ThunderCow
 }

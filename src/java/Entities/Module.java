@@ -84,7 +84,7 @@ public class Module {
     try {
         while (rstst.next()){
         String teachrName = rstst.getString("firstname");
-        teach.firstName= teachrName;
+        teach.setfirstName(teachrName);
         }
             
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlets;
 
 import Entities.Student;
@@ -34,16 +29,24 @@ public class createStudent extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+            //Retrieve all request variables
             String firstName = request.getParameter("firstname");
             String surName = request.getParameter("lastname");
             String email = request.getParameter("email");
             String birthDate = request.getParameter("datebirth");
             String address = request.getParameter("address");
             Integer zipcode = Integer.parseInt(request.getParameter("zipcode"));
+            
+            //Manually set semester because i have decided this course is only for semester 1
             Integer semester = 1;
+            
+            //Initiate user and create a user
             Student student = new Student();
             student.createStudent(out, address, email, firstName, surName, semester, zipcode, birthDate);
-            response.sendRedirect("/MO-POMA_Tech");
+            
+            //Redirect user to student list
+            response.sendRedirect("/MO-POMA_Tech/showStudents");
         }
     }
 
