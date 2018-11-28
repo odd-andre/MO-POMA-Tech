@@ -21,14 +21,10 @@ import java.util.Date;
 public class SqlHandler {
 
     
-    String select;
-    String where;
-    String from;
+    private  PrintWriter out;
     
-    PrintWriter out;
-    
-    Connection conn;        // Must be defined here as class variables, get their value in the login method
-    Statement stmt;    
+    private  Connection conn;        // Must be defined here as class variables, get their value in the login method
+    private  Statement stmt;    
     
     
     public SqlHandler (PrintWriter out){
@@ -58,7 +54,7 @@ public class SqlHandler {
             }
     } 
     /*using separate function to close the connection*/
-    public void closeConnection(){
+    public  void closeConnection(){
         try {
             conn.close();
         }
@@ -67,7 +63,7 @@ public class SqlHandler {
         }
     }
     /*separate function to commit on DB*/
-    public void commit(){
+    public  void commit(){
         try {           
              conn.commit();
          } // end try     
@@ -76,7 +72,7 @@ public class SqlHandler {
                 System.out.println("Ikke close DB " +ex);
         }
     }
-    public void commitAndclose(){
+    public  void commitAndclose(){
     /*creating function to commit and close our connection*/
         try {
             conn.commit();
@@ -85,7 +81,7 @@ public class SqlHandler {
             System.out.println("Sorry, it could not commit: " +ex);
     }
         } 
-    public ResultSet getStudent(Integer id){
+    public  ResultSet getDeliverable(Integer id){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT deliverable_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression " +
@@ -95,7 +91,7 @@ public class SqlHandler {
             
             ResultSet lagre = selectString.executeQuery();
             /*calling close connectino*/
-            this.commitAndclose();
+            commitAndclose();
             /*returning the result through variable*/
             return lagre; 
         } // end try     
@@ -105,7 +101,7 @@ public class SqlHandler {
         return null;
     }
     
-    public ResultSet getModule(Integer id){
+    public  ResultSet getStudent(Integer id){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT U.user_Id ,stu.semester, U.firstname, U.surname, U.adress, U.email, U.zip_code, U.date_Of_Birth " +
@@ -115,7 +111,7 @@ public class SqlHandler {
             selectString.setInt(1, id);
             /*close the connection and retruning the executed result */
             ResultSet vld = selectString.executeQuery();
-            this.commitAndclose();
+            commitAndclose();
             return vld;
         } // end try     
         catch (SQLException ex) {
@@ -123,7 +119,7 @@ public class SqlHandler {
         }
         return null;
     }
-    public  ResultSet getUserIdByMail(String mail){
+    public   ResultSet getUserIdByMail(String mail){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT user_Id FROM User WHERE email = ?");
@@ -139,7 +135,7 @@ public class SqlHandler {
     }
     
     /*this is what we can have balance by checking the id and set different methods as well */
-    public void moduleStorePoint(Integer id, String mName, Integer tID, String deadline, String goals){
+    public  void moduleStorePoint(Integer id, String mName, Integer tID, String deadline, String goals){
         if (id == 0)
             insertModule(mName, tID, deadline, goals);
         else
@@ -148,7 +144,7 @@ public class SqlHandler {
         getModuleList();
     }
     /*to create new module by the teacher*/
-    public void insertModule(String name, Integer tID, String deadline, String goals){
+    public  void insertModule(String name, Integer tID, String deadline, String goals){
     PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO Modules "
@@ -162,7 +158,7 @@ public class SqlHandler {
             selectString.executeUpdate();
             
             /*commit and closing the connection after execution.*/
-            this.commitAndclose();
+            commitAndclose();
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
@@ -170,7 +166,7 @@ public class SqlHandler {
     }
     
     /*updating the existing module in the database*/
-    public void updateStudent(Integer id,String adress, String email,String firstName, String surName, Integer zip, String datebirth){
+    public  void updateStudent(Integer id,String adress, String email,String firstName, String surName, Integer zip, String datebirth){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("UPDATE User "
@@ -187,13 +183,13 @@ public class SqlHandler {
 
 
             selectString.executeUpdate();
-            this.closeConnection();
+            closeConnection();
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
         }
     }
-    public void updateModule(String name, Integer id, Integer tId, String deadline, String learnGl ){
+    public  void updateModule(String name, Integer id, Integer tId, String deadline, String learnGl ){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("UPDATE Modules "
@@ -208,7 +204,7 @@ public class SqlHandler {
             
             selectString.executeUpdate();
             /*calling the function to commit and close connection*/
-            this.commitAndclose();
+            commitAndclose();
         }//end try
             
         catch (SQLException ex) {
@@ -216,21 +212,21 @@ public class SqlHandler {
         }
     }
     /*delete the module inside by while showing module detail*/
-    public void slettModule(Integer id){
+    public  void slettModule(Integer id){
         PreparedStatement selectString;
         try {        
            selectString = conn.prepareStatement("DELETE FROM Modules WHERE module_Id=?");
            selectString.setInt(1, id);
            selectString.executeUpdate();
            /*calling the commit and close the connection*/
-            this.commitAndclose();
+            commitAndclose();
             }     
         catch (SQLException ex) {
             out.println("Ikke lagre i DB" + ex);
         }
     }
     /*displaying all modules at one place*/
-    public ResultSet getModuleList(){
+    public  ResultSet getModuleList(){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals " +
@@ -238,7 +234,7 @@ public class SqlHandler {
                      
             ResultSet lagre = selectString.executeQuery();
             /*calling close connectino*/
-            this.commitAndclose();
+            commitAndclose();
             /*returning the result through variable*/
             return lagre;
         } // end try     
@@ -247,7 +243,7 @@ public class SqlHandler {
         }
         return null;
     }
-    public void insertStudent(Integer id){
+    public  void insertStudent(Integer id){
     PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO Student "
@@ -263,7 +259,7 @@ public class SqlHandler {
         }
     }
     
-    public void insertUser(String address, Integer zip, String email, String password, String datebirth, String firstname, String surname){
+    public  void insertUser(String address, Integer zip, String email, String password, String datebirth, String firstname, String surname){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO User "
@@ -287,14 +283,14 @@ public class SqlHandler {
             ResultSet rs = selectString.getGeneratedKeys();
             if(rs.next()){
                 Integer id = rs.getInt(1);
-                this.insertStudent(id);
+                insertStudent(id);
             }
         } // end try
         catch (SQLException ex) {
             out.println("Ikke lagre i DB " +ex);
         }
     }
-    public ResultSet viewModule(String id){
+    public  ResultSet viewModule(String id){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals FROM Modules WHERE module_Id = ?");
@@ -307,8 +303,25 @@ public class SqlHandler {
         }
         return null;
     }
+     public ResultSet getModule(Integer id){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals " +
+                    "FROM Modules " +
+                    "WHERE module_Id = ?");
+            selectString.setInt(1, id);
+            /*close the connection and retruning the executed result */
+            ResultSet vld = selectString.executeQuery();
+            this.commitAndclose();
+            return vld;
+        } // end try     
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+    }
     /*To get teacher name to present in module list*/
-     public ResultSet getTeacherName(Integer id){
+     public  ResultSet getTeacherName(Integer id){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT firstname FROM User WHERE user_Id = ?");
@@ -316,7 +329,7 @@ public class SqlHandler {
             
             ResultSet lagre = selectString.executeQuery();
             /*calling close connectino*/
-            this.commitAndclose();
+            commitAndclose();
             /*returning the result through variable*/
             return lagre;
         }
@@ -325,7 +338,7 @@ public class SqlHandler {
         }
         return null;
     }
-    public ResultSet getStudents(){
+    public  ResultSet getStudents(){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT U.user_Id , U.firstname, U.surname, U.email " +
@@ -341,7 +354,7 @@ public class SqlHandler {
     }
    
         
-         public void createDeliverable(Integer student_Id, Integer module_Id, Integer teacher_Id,String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
+         public  void createDeliverable(Integer student_Id, Integer module_Id, Integer teacher_Id,String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO deliverable "
@@ -363,7 +376,7 @@ public class SqlHandler {
             out.println("Ikke lagre i DB " +ex);
         }
          }
-            public void updateDeliverable(Integer deliverable_Id, Integer module_Id, Integer teacher_Id, String datetime_Of_Submit, String status, Integer points,String feedback, String progression ){
+            public  void updateDeliverable(Integer deliverable_Id, Integer module_Id, Integer teacher_Id, String datetime_Of_Submit, String status, Integer points,String feedback, String progression ){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("UPDATE deliverable "
@@ -379,7 +392,7 @@ public class SqlHandler {
             selectString.setString(7, progression);
             selectString.setInt(8, deliverable_Id);            
             selectString.executeUpdate();
-            this.closeConnection();
+            closeConnection();
             
         }//end try
             
@@ -391,7 +404,7 @@ public class SqlHandler {
         
     
     }
-     public ResultSet viewDeliverable(){
+     public  ResultSet viewDeliverable(){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT deliverable_Id,student_Id,module_Id,teacher_Id,datetime_Of_Submit,status,points,feedback,progression FROM deliverable ");
@@ -405,7 +418,7 @@ public class SqlHandler {
         return null;
     }
      
-      public void deleteDeliverable(Integer deliverable_Id){
+      public  void deleteDeliverable(Integer deliverable_Id){
         PreparedStatement selectString;
         try {
             String sqlq = "DELETE FROM deliverable WHERE deliverable_Id=?";
@@ -422,13 +435,7 @@ public class SqlHandler {
             out.println("Ikke lagre i DB" + ex);
         }
     }
-    
-    public void clearState(){
-        this.select = "";
-        this.where = "";
-        this.from = "";
-    }
-    public ResultSet getForum(Integer id){
+    public  ResultSet getForum(Integer id){
     PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum WHERE forum_Id = ? ");
@@ -442,7 +449,7 @@ public class SqlHandler {
         return null;
 }
 
-public ResultSet showForumList(){
+public  ResultSet showForumList(){
     PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum ");
@@ -454,7 +461,7 @@ public ResultSet showForumList(){
         }
         return null;
 }
-   public ResultSet displayNotifications(Integer user_Id, String scope) {
+   public  ResultSet displayNotifications(Integer user_Id, String scope) {
        PreparedStatement selectString;
        try {
            selectString =  conn.prepareStatement("SELECT content, date_Created, url FROM Notifications WHERE user_Id = ? or scope = ? ");
@@ -468,7 +475,7 @@ public ResultSet showForumList(){
             }
         return null;
        }
-    public void addNotification(String content, Integer user_id, String url, String scope) {
+    public  void addNotification(String content, Integer user_id, String url, String scope) {
         PreparedStatement selectString;
         try {
             
@@ -488,7 +495,7 @@ public ResultSet showForumList(){
             out.println("Ikke lagre i DB" +ex);
         }
     }
-    public void createForum(Integer forum_Id, Integer creator_Id, String fName){
+    public  void createForum(Integer forum_Id, Integer creator_Id, String fName){
     PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO Forum "
