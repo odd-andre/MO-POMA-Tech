@@ -16,11 +16,11 @@ import java.sql.SQLException;
  */
 public class Forum_Post extends Forum {
 
-    //Integer forum_Id;
-    Integer forumpost_Id;
-    String datetime_upload;
-    String fPostname;
-    Integer creator;
+    Integer forum_Id;
+    private Integer forumpost_Id;
+    private String datetime_upload;
+    private String fPostname;
+    private Integer creator;
    
     public Forum_Post(){
         /*(Integer forumpost_Id, Integer forum_Id, String datetime_upload, String fPostname, Integer creator){

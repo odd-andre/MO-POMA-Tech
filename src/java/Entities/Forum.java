@@ -9,8 +9,6 @@ import Classes.SqlHandler;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -22,7 +20,6 @@ public class Forum {
     Integer creator_Id;
     String fName;
     
-    List<Forum_Post> forumPosts = new ArrayList();
     
     public Forum(){
        /* this.forum_Id=Forum_Id;
