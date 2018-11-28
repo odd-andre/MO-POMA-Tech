@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Petr 
+ * The purpose of this class is retrieve individual deliverable, which deliverable 
+ * is going to be retrieved depends on path of link.
  */
 package Servlets;
 
@@ -17,10 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 
-/**
- *
- * @author Petr
- */
 @WebServlet(name = "deliverableDetail", urlPatterns = {"/deliverableDetail/*"})
 public class deliverableDetail extends HttpServlet {
 
@@ -33,29 +29,26 @@ public class deliverableDetail extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    // The purpose of this method is retrieve individual deliverable, which deliverable 
+ //    is going to be retrieved depends on path of link.
    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            // Get the path after the url, anything after /showstudent/ will show here. In this case /showstudent/{studentId}
-            String path = request.getPathInfo();
-            // getPathInfo includes the / after showStudent, remove it
-            String requestedDeliverable = path.replace("/", "");
-            //Create a sqlHandler to run database queries
-            //SqlHandler sqlHdl = new SqlHandler(out);
-            //Queries return as ResultSets so we have to store it as such
-            //ResultSet rst = sqlHdl.getStudent(requestedStudent);
             
-            //We will return the student in the form of a ArrayList, this could be done better as there is only one user
+            String path = request.getPathInfo();
+            String requestedDeliverable = path.replace("/", "");
+            
             List<Deliverable> deliverable = new ArrayList();
             Deliverable delObj = new Deliverable();
             delObj.getDeliverableDetail(Integer.parseInt(requestedDeliverable), out);
             deliverable.add(delObj);
-            //Put data into the requset for the next page allowing us to use it.
+            
             request.setAttribute("deliverable", deliverable);
-            //Get the jsp file where we have put our html
+            
             RequestDispatcher view = request.getRequestDispatcher("/Users/deliverableDetail.jsp");
-            //Send our data from request into the jsp file
+           
             view.forward(request,response);
         }
     }

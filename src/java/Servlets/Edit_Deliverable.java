@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Petr
+ * The purpose of this class is to retrieve values from database for editing deliverable.
  */
 package Servlets;
-
 import Entities.Deliverable;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,10 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Petr
- */
 @WebServlet(name = "Edit_Deliverable", urlPatterns = {"/Edit_Deliverable/*"})
 public class Edit_Deliverable extends HttpServlet {
 
@@ -31,23 +25,24 @@ public class Edit_Deliverable extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+     //This method retrieves values from database, which values of deliverable are going to be retrieve depends on path of URL.
+    // /1 - first deliverable
+    // /2 - second deliverable etc.
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
         try (PrintWriter out = response.getWriter()) {
                         
-              String path = request.getPathInfo();
-              String requestedDeliverable = path.replace("/", "");
+             String path = request.getPathInfo();
+             String requestedDeliverable = path.replace("/", "");
              Deliverable delObj = new Deliverable();
-               delObj.getDeliverableDetail(Integer.parseInt(requestedDeliverable), out);
+             delObj.getDeliverableDetail(Integer.parseInt(requestedDeliverable), out);
            
+             request.setAttribute("deliverable", delObj);
             
-           
-            request.setAttribute("deliverable", delObj);
-            
-            RequestDispatcher view = request.getRequestDispatcher("/Users/Edit_Deliverable.jsp");
-            view.forward(request, response);
+             RequestDispatcher view = request.getRequestDispatcher("/Users/Edit_Deliverable.jsp");
+             view.forward(request, response);
             
         }
     }

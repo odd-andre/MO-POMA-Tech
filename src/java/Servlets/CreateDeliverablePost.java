@@ -1,11 +1,8 @@
-package Servlets;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Petr
+ * The purpose of this class is to POST form of creating deliverable and save data in database.
  */
-
+package Servlets;
 import Entities.Deliverable;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,10 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Petr
- */
 @WebServlet(urlPatterns = {"/CreateDeliverablePost"})
 public class CreateDeliverablePost extends HttpServlet {
 
@@ -31,6 +24,9 @@ public class CreateDeliverablePost extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    // This method guarantees storage of data to database, which are filled in by teacher.
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
