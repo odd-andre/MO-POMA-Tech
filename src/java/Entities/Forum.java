@@ -108,7 +108,7 @@ public class Forum {
         public int getFroumID(){return this.forum_Id;}
         public int getCreatorID(){return this.creator_Id;}
         public String getForumName(){return this.fName;}
-//    
+    
        /* public void getForumNumber(PrintWriter out, Integer id){
         SqlHandler sqlhandl = new SqlHandler(out);
         sqlhandl.getForum(id);
