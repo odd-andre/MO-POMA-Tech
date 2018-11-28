@@ -1,13 +1,14 @@
+package Servlets;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlets;
 
+import Entities.Deliverable;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Petr
  */
-@WebServlet(name = "CreateDeliverablepost", urlPatterns = {"/CreateDeliverablePost"})
+@WebServlet(urlPatterns = {"/CreateDeliverablePost"})
 public class CreateDeliverablePost extends HttpServlet {
 
     /**
@@ -34,14 +35,20 @@ public class CreateDeliverablePost extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            //Get the jsp file where we have put our html
-            RequestDispatcher view = request.getRequestDispatcher("/Users/CreateDeliverable.jsp");
-            //Send our data from request into the jsp file
-            view.forward(request,response);
-        }
+            Integer student_Id = Integer.parseInt(request.getParameter("student_Id"));
+            Integer module_Id = Integer.parseInt(request.getParameter("module_Id"));
+            Integer teacher_Id = Integer.parseInt(request.getParameter("teacher_Id"));
+            String datetime_Of_Submit = request.getParameter("datetime_Of_Submit");
+            String status = request.getParameter("status");
+            Integer points = Integer.parseInt(request.getParameter("points"));
+            String feedback = request.getParameter("feedback");
+            String progression = request.getParameter("progression");
+            Deliverable deliverable = new Deliverable();
+            deliverable.createDeliverable(out,student_Id, module_Id, teacher_Id,datetime_Of_Submit, status, points, feedback,progression);
+            response.sendRedirect("/MO-POMA_Tech/showDeliverable?view_Deliverable=view_Deliverable");
     }
-
+ }
+     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -80,5 +87,5 @@ public class CreateDeliverablePost extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
+

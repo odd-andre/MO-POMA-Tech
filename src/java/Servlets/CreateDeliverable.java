@@ -40,20 +40,17 @@ public class CreateDeliverable extends HttpServlet {
         
         
         try (PrintWriter out = response.getWriter()) { 
-            Integer student_Id = Integer.parseInt(request.getParameter("student_Id"));
-            Integer module_Id = Integer.parseInt(request.getParameter("module_Id"));
-            Integer teacher_Id = Integer.parseInt(request.getParameter("teacher_Id"));
-            String datetime_Of_Submit = request.getParameter("datetime_Of_Submit");
-            String status = request.getParameter("status");
-            Integer points = Integer.parseInt(request.getParameter("points"));
-            String feedback = request.getParameter("feedback");
-            String progression = request.getParameter("progression");
-            Deliverable deliverable = new Deliverable();
-            deliverable.createDeliverable(out,student_Id, module_Id, teacher_Id,datetime_Of_Submit, status, points, feedback,progression);
-            response.sendRedirect("/MO-POMA_Tech/showDeliverable?view_Deliverable=view_Deliverable");
+           
+            
+            RequestDispatcher view = request.getRequestDispatcher("/Users/CreateDeliverable.jsp");
+            view.forward(request, response);
+         
+           
             
         
-              }     
+              }  
+        
+            
                 }
      // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

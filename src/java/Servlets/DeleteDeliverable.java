@@ -40,11 +40,12 @@ public class DeleteDeliverable extends HttpServlet {
               String path = request.getPathInfo();
               String requestedDeliverable = path.replace("/", "");
              Deliverable delObj = new Deliverable();
-               delObj.deleteDeliverable(out, Integer.parseInt(requestedDeliverable));
+             delObj.getDeliverableDetail(Integer.parseInt(requestedDeliverable), out);
+               
            
             
            
-            request.setAttribute("delObj", delObj);
+            request.setAttribute("deliverable", delObj);
             
             RequestDispatcher view = request.getRequestDispatcher("/Users/deleteDeliverable.jsp");
             view.forward(request, response);

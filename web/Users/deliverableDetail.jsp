@@ -1,12 +1,15 @@
 <%-- 
-    Document   : deleteDeliverable
-    Created on : 13.11.2018, 12:11:00
+    Document   : deliverableDetail
+    Created on : 23.11.2018, 10:57:58
     Author     : Petr
 --%>
+
 
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="Entities.Deliverable"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
 
 
 <!DOCTYPE html>
@@ -18,7 +21,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <title>CreateDeliverable</title>
+        <title>Individual Deliverable</title>
     </head>  
     <nav class="navbar navbar-inverse">
        <div class="container-fluid">
@@ -81,20 +84,42 @@
     </nav>
   
     <body style="background-color: powderblue;">
-     <h1>Delete deliverable</h1>
-        <form action="/MO-POMA_Tech/deleteDeliverablePost" method="POST">
+    <div class="container justify-content-center">
+        <div class="col-12">
+        <h1>Show individual deliverable</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">deliverable_Id</th>
+                  <th scope="col">module_Id</th>
+                  <th scope="col">teacher_Id</th>
+                  <th scope="col">datetime_Of_Submit</th>
+                  <th scope="col">status</th>
+                   <th scope="col">points</th>
+                  <th scope="col">feedback</th>
+                  <th scope="col">progression</th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${deliverable}" var="deliverable">
+                    <tr>
+                        <td>${deliverable.getDeliverable_Id().intValue()}</td>
+                        <td>${deliverable.getModule_Id().intValue()}</td>
+                        <td>${deliverable.getTeacher_Id().intValue()}</td>
+                        <td>${deliverable.getDatetime_Of_Submit()}</td>
+                        <td>${deliverable.getStatus()}</td>
+                        <td>${deliverable.getPoints().intValue()}</td>
+                        <td>${deliverable.getFeedback()}</td>
+                         <td>${deliverable.getProgression()}</td>
                         
-                          <div class="col-6">
-                              <label for="deliverable_Id">Deliverable_Id</label>
-                              <input type="text" name="deliverable_Id" id="deliverable_Id" value = "${deliverable.getDeliverable_Id().intValue()}" class="form-control" placeholder="numeric number">
-                          </div>
-                        
-                            
-                            <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Delete it</button><br>
-                            <button style="margin-right: 10px;" type="reset" class="btn col-2">Clear</button>
-                    </form>
-                </div>
-            </div>
+                      
+
+                    </tr>
+                </c:forEach>
+           </tbody>
+         </table>
         </div>
+    </div>
     </body>
 </html>
