@@ -352,9 +352,8 @@ public class SqlHandler {
         }
         return null;
     }
-   
-        
-         public  void createDeliverable(Integer student_Id, Integer module_Id, Integer teacher_Id,String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
+    
+    public  void createDeliverable(Integer student_Id, Integer module_Id, Integer teacher_Id,String datetime_Of_Submit, String status, Integer points,String feedback, String progression){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("INSERT INTO deliverable "
@@ -400,9 +399,6 @@ public class SqlHandler {
         catch (SQLException ex) {
             out.println("Ikke lagre i DB" +ex);
         }
-    
-        
-    
     }
      public  ResultSet viewDeliverable(){
         PreparedStatement selectString;
@@ -447,20 +443,52 @@ public class SqlHandler {
             out.println("Ikke lagre i DB " +ex);
         }
         return null;
-}
+    }
+    public ResultSet getForumCom(Integer id){
+        PreparedStatement selectString;
+            try {
+                selectString = conn.prepareStatement("SELECT f.forum_Id,f.creator_Id,f.fName, fp.forumpost_Id,fp.datetime_upload,fp.fPostname,fp.creator,fc.comment_Id,fc.datetime_upload_comment,fc.content,fc.poster FROM Forum_post AS fp INNER JOIN Forum as f ON fp.forum_Id=f.forum_Id INNER JOIN Forum_comment AS fc ON fp.forumpost_Id=fc.forumpost_Id WHERE f.forum_Id=?" );
+                selectString.setInt(1, id);
 
-public  ResultSet showForumList(){
+                return selectString.executeQuery();
+            } // end try
+            catch (SQLException ex) {
+                out.println("Ikke lagre i DB " +ex);
+            }
+            return null;
+    }
+    public void createCom(Integer comment_Id, Integer forum_Id, Integer forumpost_Id, String datetime_upload_comment, String content, Integer poster){
     PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum ");
-            
-            return selectString.executeQuery();
-        } // end try
-        catch (SQLException ex) {
-            out.println("Ikke lagre i DB " +ex);
+            selectString = conn.prepareStatement("INSERT INTO Forum_comment "
+                    + "(comment_Id, forum_Id, forumpost_Id, datetime_upload_comment, content, poster) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)");
+                    
+                selectString.setInt(1, comment_Id);
+                selectString.setInt(2, forum_Id);
+                selectString.setInt(3, forumpost_Id);
+                selectString.setString(4, datetime_upload_comment);
+                selectString.setString(5, content);
+                selectString.setInt(6, poster);
+                selectString.executeUpdate();
+                
         }
-        return null;
-}
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+        }
+    }
+    public  ResultSet showForumList(){
+        PreparedStatement selectString;
+            try {
+                selectString = conn.prepareStatement("SELECT forum_Id,creator_Id,fName FROM Forum ");
+
+                return selectString.executeQuery();
+            } // end try
+            catch (SQLException ex) {
+                out.println("Ikke lagre i DB " +ex);
+            }
+            return null;
+    }
    public  ResultSet displayNotifications(Integer user_Id, String scope) {
        PreparedStatement selectString;
        try {
