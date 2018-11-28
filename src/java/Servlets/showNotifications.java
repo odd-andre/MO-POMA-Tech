@@ -49,7 +49,6 @@ public class showNotifications extends HttpServlet {
                 scope = "Teacher";
             }
             Integer user_Id=User.getUserIdByMail(out,request.getRemoteUser()); 
-            user_Id = 11;
             
             List<Notifications> notifications = new ArrayList();
             SqlHandler sqlhndl = new SqlHandler(out);

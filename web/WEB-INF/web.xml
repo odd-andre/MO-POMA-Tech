@@ -26,6 +26,8 @@
             <url-pattern>/showStudents</url-pattern>
             <url-pattern>/editStudent/*</url-pattern>
             <url-pattern>/signOut/*</url-pattern>
+            <url-pattern>/showNotifications</url-pattern>
+
         </web-resource-collection>
         <!--  the user must have one of these roles  -->
         <auth-constraint>
