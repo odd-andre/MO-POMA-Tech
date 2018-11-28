@@ -5,7 +5,7 @@
  */
 package Servlets;
 
-import Entities.Forum_comment;
+import Entities.Forum_Post;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -35,22 +35,21 @@ public class Create_ForumCom extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
          try (PrintWriter out = response.getWriter()) {
-             Forum_comment forum_com = new Forum_comment();
              
-                Integer comment_Id = Integer.parseInt(request.getParameter("Comment_ID"));
-                Integer forum_Id = Integer.parseInt(request.getParameter("Forum_ID"));
                 Integer forumpost_Id = Integer.parseInt(request.getParameter("ForumPost_ID"));
-                String datetime_upload_comment = request.getParameter("DateTime");
-                String content = request.getParameter("Content");
-                Integer poster = Integer.parseInt(request.getParameter("Poster"));
+                Integer forum_Id = Integer.parseInt(request.getParameter("Forum_ID"));
+                String datetime_upload = request.getParameter("Date");
+                String fPostname = request.getParameter("ForumPost_Name");
+                Integer creator = Integer.parseInt(request.getParameter("Creator"));
                 
-                forum_com.createCom(out, comment_Id, forum_Id, forumpost_Id, datetime_upload_comment, content, poster);
+                Forum_Post forum_post = new Forum_Post();
+                forum_post.createPost(out, forumpost_Id, forum_Id, datetime_upload, fPostname, creator);
                 
                 /*Get the jsp file where we have put our html */
-           // RequestDispatcher view = request.getRequestDispatcher("/Users/createForumCom.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("/Users/createForumCom.jsp");
             /*Send our data from request into the jsp file */
-            //view.forward(request,response); 
-            response.sendRedirect("/MO-POMA_Tech");
+            view.forward(request,response);
+        response.sendRedirect("/MO-POMA_Tech");
          }
     }
     

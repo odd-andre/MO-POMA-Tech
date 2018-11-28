@@ -5,9 +5,12 @@
  */
 package Servlets;
 
+import Classes.SqlHandler;
 import Entities.Forum;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
