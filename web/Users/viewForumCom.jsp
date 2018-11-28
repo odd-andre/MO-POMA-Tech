@@ -1,24 +1,26 @@
 <%-- 
-    Document   : viewForum
-    Created on : 02-Nov-2018, 12:43:37
-    Author     : ThunderCow
+    Document   : viewForumCom
+    Created on : 14-Nov-2018, 14:21:57
+    Author     : cyber
 --%>
 
 <%@taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="Entities.Forum"%>
+<%@page import="Entities.Forum_comment"%>
+<%@page import="Entities.Forum_Post"%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-        <title>View Forum</title>
+        <title>View Forum Comments</title>
     </head>  
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -57,32 +59,25 @@
          </ul>
         </div>
     </nav>
-
+    
+    
     <body>
         <div class="container"> 
             <div class="row justify-content-md-center">
-        <h1>View Forum!</h1>
+        <h1>View Complete Forum!</h1>
        <div class="col-10"> 
-                      
-              <table style="width:100%">
-              
-        <tr>
-            <th> Forum ID</th>
-            <th> Creator ID</th>
-            <th> Forum Name</th>
-            
-        </tr>
-        <tr>
-            <%-- <c:forEach items="${forum}" var="forum"> --%>
-              <td><p>${forum.getFroumID().intValue()}</td>
-              <td><p>${forum.getCreatorID().intValue()}</td>
-              <td><p>${forum.getForumName()}</td>
-              
 
-        </tr>
-       <%-- </c:forEach> --%>
-    </table> 
+              ${forum.getForumName()}
+       
+            
+            <c:forEach items="${forum.getHash()}" var="forumPost">
+              ${forumPost.getValue().getfPostName()}
+              <c:forEach items="${forumPost.getValue().getCommentArray()}" var="forumComments">
+                            ${forumComments.getForumContent()}
+                            </c:forEach>
         
+       </c:forEach>
+            
            </div>
       </div>
         </div>
