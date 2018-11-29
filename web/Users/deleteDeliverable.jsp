@@ -27,10 +27,11 @@
      <h1>Delete deliverable</h1>
         <form action="/MO-POMA_Tech/deleteDeliverablePost" method="POST">
                         
-                          <div class="col-sm-6">
+                          <div class="col-sm-3">
                               <label for="deliverable_Id">Deliverable_Id</label>
                               <input type="text" name="deliverable_Id" id="deliverable_Id" value = "${deliverable.getDeliverable_Id().intValue()}" class="form-control" placeholder="numeric number" required>
-                          </div>
+                          
+                          </div><br>
                         
                             
                             <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Delete it</button><br>
