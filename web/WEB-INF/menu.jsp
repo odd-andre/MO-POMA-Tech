@@ -13,9 +13,9 @@
             <a class="navbar-brand" href="#">MO-POMA TECH</a>
         </div>
             <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost:8080/MO-POMA_Tech/">HOME</a></li>
-            <li><a href="http://localhost:8080/MO-POMA_Tech/Users/project_Info.jsp">PROJECT INFO</a></li>
-                <li><a href="http://localhost:8080/MO-POMA_Tech/Users/user_stories.jsp">User Stories</a></li>
+            <li class="active"><a href="http://localhost:8084/MO-POMA_Tech/">HOME</a></li>
+            <li><a href="http://localhost:8084/MO-POMA_Tech/Users/project_Info.jsp">PROJECT INFO</a></li>
+                <li><a href="http://localhost:8084/MO-POMA_Tech/Users/user_stories.jsp">User Stories</a></li>
                       <li><a href="https://github.com/Oddpotatoman/MO-POMA-Tech/issues">Issues Done</a></li>
                       
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">STUDENT <span class="caret"></span></a>
@@ -63,7 +63,7 @@
             
               <ul class="nav navbar-nav navbar-right">
                 
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Switch Account</a></li>
+                <li><a href="/MO-POMA_Tech/signOut"><span class="glyphicon glyphicon-log-in"></span> Switch Account</a></li>
                 
               </ul>
             
