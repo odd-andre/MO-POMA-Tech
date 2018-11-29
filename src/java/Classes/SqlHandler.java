@@ -541,6 +541,7 @@ public class SqlHandler {
         catch (SQLException ex) {
             out.println("Ikke lagre i DB" +ex);
 }
+        }
     
     public void createMessage(Integer message_id,Integer Sender,Integer Reciever, String dateTime_message,String Subject, String Content){
     PreparedStatement selectString;
@@ -561,14 +562,28 @@ public class SqlHandler {
                 
                 
     }
-    catch (SQLException ex){
-        out.println("ikke lagre i DB " + ex);
+        catch (SQLException ex){
+            out.println("ikke lagre i DB " + ex);
+        }
     }
-    
+     public ResultSet getModule(Integer id){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals " +
+                    "FROM Modules " +
+                    "WHERE module_Id = ?");
+            selectString.setInt(1, id);
+            /*close the connection and retruning the executed result */
+            ResultSet vld = selectString.executeQuery();
+            this.commitAndclose();
+            return vld;
+        } // end try     
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
     }
-           
-    
-             public void updatemessage(Integer message_Id,Integer dateTime_message,String Subject, String Content ){
+    public void updatemessage(Integer message_Id,Integer dateTime_message,String Subject, String Content ){
         PreparedStatement selectString;
         try {
             selectString = conn.prepareStatement("UPDATE Messages "
