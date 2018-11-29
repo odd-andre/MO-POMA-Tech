@@ -542,7 +542,23 @@ public class SqlHandler {
             out.println("Ikke lagre i DB" +ex);
 }
         }
-    
+      public  ResultSet getTeacherName(Integer id){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("SELECT firstname FROM User WHERE user_Id = ?");
+            selectString.setInt(1, id);
+            
+            ResultSet lagre = selectString.executeQuery();
+            /*calling close connectino*/
+            commitAndclose();
+            /*returning the result through variable*/
+            return lagre;
+        }
+        catch (SQLException ex) {
+             out.println("Ikke lagre i DB " +ex);
+        }
+        return null;
+    }
     public void createMessage(Integer message_id,Integer Sender,Integer Reciever, String dateTime_message,String Subject, String Content){
     PreparedStatement selectString;
     
