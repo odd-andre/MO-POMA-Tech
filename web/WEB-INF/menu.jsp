@@ -47,9 +47,9 @@
                 <ul class="dropdown-menu">
                     <li><a href="/MO-POMA_Tech/showDeliverable">Show Deliverable</a></li>
                     <li><a href="/MO-POMA_Tech/CreateDeliverable">Create Deliverable</a></li>
-                    <li><a href="/MO-POMA_Tech/DeleteDeliverable/6">Delete Deliverable</a></li>
-                    <li><a href="/MO-POMA_Tech/Edit_Deliverable/6">Edit Deliverable</a></li>
-                    <li><a href="/MO-POMA_Tech/deliverableDetail/6">Show individual Deliverable</a></li>
+                    <li><a href="/MO-POMA_Tech/DeleteDeliverable/1">Delete Deliverable</a></li>
+                    <li><a href="/MO-POMA_Tech/Edit_Deliverable/1">Edit Deliverable</a></li>
+                    <li><a href="/MO-POMA_Tech/deliverableDetail/1">Show individual Deliverable</a></li>
 
                 </ul>
             </li>
