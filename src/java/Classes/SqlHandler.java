@@ -41,10 +41,11 @@ public class SqlHandler {
               Context cont = new InitialContext();
               DataSource ds = (DataSource)cont.lookup("java:comp/env/jdbc/localhostDS");  
               //DataSource ds = (DataSource)cont.lookup("jdbc/LocalhostDS");
-              conn =  ds.getConnection();
-
              // Step 2: Allocate a 'Statement' object in the Connection
+             
+            conn =  ds.getConnection();
              stmt = conn.createStatement();
+
             }
             catch (SQLException ex ) {
                 out.println("Not connected to database " +ex);
@@ -303,29 +304,11 @@ public class SqlHandler {
         }
         return null;
     }
-     public ResultSet getModule(Integer id){
+    public ResultSet getStudent(String id){
         PreparedStatement selectString;
         try {
-            selectString = conn.prepareStatement("SELECT module_Id,name,deadline,teacher_Id,learning_Goals " +
-                    "FROM Modules " +
-                    "WHERE module_Id = ?");
-            selectString.setInt(1, id);
-            /*close the connection and retruning the executed result */
-            ResultSet vld = selectString.executeQuery();
-            this.commitAndclose();
-            return vld;
-        } // end try     
-        catch (SQLException ex) {
-             out.println("Ikke lagre i DB " +ex);
-        }
-        return null;
-    }
-    /*To get teacher name to present in module list*/
-     public  ResultSet getTeacherName(Integer id){
-        PreparedStatement selectString;
-        try {
-            selectString = conn.prepareStatement("SELECT firstname FROM User WHERE user_Id = ?");
-            selectString.setInt(1, id);
+            selectString = conn.prepareStatement("SELECT user_Id,adress,email FROM User WHERE user_Id = ?");
+            selectString.setString(1, id);
             
             ResultSet lagre = selectString.executeQuery();
             /*calling close connectino*/
@@ -559,5 +542,112 @@ public class SqlHandler {
             out.println("Ikke lagre i DB" +ex);
 }
     
-}
+    public void createMessage(Integer message_id,Integer Sender,Integer Reciever, String dateTime_message,String Subject, String Content){
+    PreparedStatement selectString;
+    
+    try{
+        selectString = conn.prepareStatement("INSERT INTO Messages " +"(message_id, Sender, Reciever, dateTime_message,Subject,Content)" + "VALUES(?,?,?,?,?,?)");
+            
+           
+            selectString.setInt(1,message_id);
+            selectString.setInt(2,Sender);
+            selectString.setInt(3,Reciever);
+            selectString.setString(4,dateTime_message);
+            selectString.setString(5, Subject);
+            selectString.setString(6, Content);
+           
+            selectString.executeUpdate();
+                
+                
+                
+    }
+    catch (SQLException ex){
+        out.println("ikke lagre i DB " + ex);
+    }
+    
+    }
+           
+    
+             public void updatemessage(Integer message_Id,Integer dateTime_message,String Subject, String Content ){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("UPDATE Messages "
+                + "SET dateTime_message = ?,Subject = ?,Content = ? "
+                + "WHERE messages_Id = ?");
+            
+            selectString.setInt(1,message_Id);
+            selectString.setInt(2, dateTime_message);
+            selectString.setString(3,Subject);
+            selectString.setString(4, Content);
+                      
+            selectString.executeUpdate();
+            
+        }//end try
+            
+            
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB" +ex);
+        }
+        
+             }
+    
+        public void insertMessages(Integer message_Id, String dateTime_message,String Subject, String Content){
+        PreparedStatement selectString;
+        try {
+            selectString = conn.prepareStatement("INSERT INTO Messages "
+                    + "(message_Id, datetime_message,Subject,Content) "
+                    + "VALUES (?, ?, ? , ? , ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String created = formatter.format(date);
+            
+            selectString.setInt(1, message_Id);
+            selectString.setString(2, dateTime_message);
+            selectString.setString(3, Subject);
+            selectString.setString(4, Content);
+         
+            selectString.executeUpdate();
+            
+            ResultSet rs = selectString.getGeneratedKeys();
+            
+            
+            
+            
+        } // end try
+        catch (SQLException ex) {
+            out.println("Ikke lagre i DB " +ex);
+        }
+    
+    }
+   
+    public ResultSet viewMessages(){
+                PreparedStatement selectString;
+                
+                try{                                               //lower case on I in message_Id 
+                    selectString = conn.prepareStatement("SELECT message_Id , datetime_Message, Reciever, Sender , Subject , Content FROM Messages");
+                    
+                    return selectString.executeQuery();
+                }
+                    catch (SQLException ex){
+                        out.println("Connection does not work " + ex);
+                    
+                    }
+                       return null;
+            }  
+
+    public void insertMessage(Integer message_Id, Integer Sender, Integer Reciever, Integer dateTime_Message, String Subject, String Content) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+            
+   
+    /**
+     *clearState 
+     */
+   /* public void clearState(){
+        this.select = "";
+        this.where = "";
+        this.from = "";
+    }*/
+    
 }
