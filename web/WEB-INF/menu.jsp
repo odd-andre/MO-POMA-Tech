@@ -56,8 +56,8 @@
             
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Message <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">View Message</a></li>
-                    <li><a href="#">Send Message</a></li>
+                    <li><a href="/MO-POMA_Tech/showMessages">View Message</a></li>
+                    <li><a href="/MO-POMA_Tech/creatMessage">Create Message</a></li>
                 </ul>
             </li>
             
