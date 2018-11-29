@@ -50,7 +50,7 @@ public class creatMessagePost extends HttpServlet {
             
             Message message = new Message();
             message.creatMessage(out, message_Id,Sender,Reciever,datetime_message,Subject,Content);
-            response.sendRedirect("/MO-POMA-Tech/showMessages");
+            response.sendRedirect("/MO-POMA_Tech/showMessages");
             
 
           
