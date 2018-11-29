@@ -40,17 +40,17 @@ public class creatMessagePost extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             
-            Integer message_Id = Integer.parseInt(request.getParameter("message_Id"));
+            Integer message_Id = Integer.parseInt(request.getParameter("message_id"));
             
             Integer Sender = Integer.parseInt(request.getParameter("Sender"));
-            Integer Reciever = Integer.parseInt(request.getParameter("Reciever"));
-            String datetime_message = request.getParameter("datetime_Message");
+            Integer Reciever = Integer.parseInt(request.getParameter("reciever"));
+            String datetime_message = request.getParameter("datetime_message");
             String Subject = request.getParameter("Subject");
             String Content = request.getParameter("Content");
             
             Message message = new Message();
             message.creatMessage(out, message_Id,Sender,Reciever,datetime_message,Subject,Content);
-            response.sendRedirect("/MO-POMA-Tech/showMessage");
+            response.sendRedirect("/MO-POMA-Tech/showMessages");
             
 
           

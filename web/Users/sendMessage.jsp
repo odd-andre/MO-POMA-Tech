@@ -36,7 +36,7 @@
                         <div class="form-row">
                             <div class="col-9">
                               <label for="Reciever">Reciever</label>
-                              <input type="Reciever " class="form-control" name="Reciever " id="email" placeholder="Reciever ">
+                              <input type="text" class="form-control" name="reciever" id="reciever" placeholder="Reciever">
                             </div>
                             <div class="col-3">
                                 <label for="Sender">Sender</label>
@@ -46,7 +46,7 @@
                         <div class="form-row">
                             <div class="col-9">
                               <label for="Subject ">Subject </label>
-                              <input type="text" class="form-control" name="Subject " id="Subject " placeholder="Subject ">
+                              <input type="text" class="form-control" name="Subject" id="Subject" placeholder="Subject">
                             </div>
                             <div class="col-3">
                                 <label for="Content">Content</label>
