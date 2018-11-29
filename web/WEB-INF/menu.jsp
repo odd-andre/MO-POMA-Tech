@@ -43,18 +43,18 @@
                     <li><a href="/MO-POMA_Tech/createForumCom">Create Comment</a></li>
                     <li><a href="/MO-POMA_Tech//View_ForumCom/1">View Comment List</a></li>                </ul>
             </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Deliverable <span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">DELIVERABLE <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/MO-POMA_Tech/showDeliverable">Show Deliverable</a></li>
                     <li><a href="/MO-POMA_Tech/CreateDeliverable">Create Deliverable</a></li>
-                    <li><a href="/MO-POMA_Tech/DeleteDeliverable/1">Delete Deliverable</a></li>
-                    <li><a href="/MO-POMA_Tech/Edit_Deliverable/1">Edit Deliverable</a></li>
-                    <li><a href="/MO-POMA_Tech/deliverableDetail/1">Show individual Deliverable</a></li>
+                    <li><a href="/MO-POMA_Tech/DeleteDeliverable/6">Delete Deliverable</a></li>
+                    <li><a href="/MO-POMA_Tech/Edit_Deliverable/6">Edit Deliverable</a></li>
+                    <li><a href="/MO-POMA_Tech/deliverableDetail/6">Show individual Deliverable</a></li>
 
                 </ul>
             </li>
             
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Message <span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MESSAGE <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/MO-POMA_Tech/showMessages">View Message</a></li>
                     <li><a href="/MO-POMA_Tech/creatMessage">Create Message</a></li>
@@ -63,7 +63,7 @@
             
               <ul class="nav navbar-nav navbar-right">
                 
-                <li><a href="/MO-POMA_Tech/signOut"><span class="glyphicon glyphicon-log-in"></span> Switch Account</a></li>
+                <li><a href="/MO-POMA_Tech/signOut"><span class="glyphicon glyphicon-log-in"></span> SWITCH ACCOUNT</a></li>
                 
               </ul>
             
