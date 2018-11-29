@@ -18,14 +18,14 @@
                 <li><a href="http://localhost:8084/MO-POMA_Tech/Users/user_stories.jsp">User Stories</a></li>
                       <li><a href="https://github.com/Oddpotatoman/MO-POMA-Tech/issues">Issues Done</a></li>
                       
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">STUDENT <span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Student <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                 <li><a href="/MO-POMA_Tech/showStudent/1">Show student</a></li>
                 <li><a href="/MO-POMA_Tech/addStudent">Add New Student</a></li>
                 <li><a href="/MO-POMA_Tech/showStudents">Student List</a></li>
                 </ul>   
             </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MODULE <span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Module <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/MO-POMA_Tech/Show_Module_Detail/1">Show Module</a></li>
                     <li><a href="/MO-POMA_Tech/Add_Module">Insert Module</a></li>
@@ -34,7 +34,7 @@
                 </ul>
             </li>
       
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">FORUM <span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Forum <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/MO-POMA_Tech/View_Forum/1">View Forum</a></li>
                     <li><a href="/MO-POMA_Tech/createForum">Create Forum</a></li>
@@ -43,7 +43,7 @@
                     <li><a href="/MO-POMA_Tech/createForumCom">Create Comment</a></li>
                     <li><a href="/MO-POMA_Tech//View_ForumCom/1">View Comment List</a></li>                </ul>
             </li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">DELIVERABLE <span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Deliverable <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/MO-POMA_Tech/showDeliverable">Show Deliverable</a></li>
                     <li><a href="/MO-POMA_Tech/CreateDeliverable">Create Deliverable</a></li>
@@ -54,7 +54,7 @@
                 </ul>
             </li>
             
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">MESSAGE <span class="caret"></span></a>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Message <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/MO-POMA_Tech/showMessages">View Message</a></li>
                     <li><a href="/MO-POMA_Tech/creatMessage">Create Message</a></li>
@@ -63,7 +63,7 @@
             
               <ul class="nav navbar-nav navbar-right">
                 
-                <li><a href="/MO-POMA_Tech/signOut"><span class="glyphicon glyphicon-log-in"></span> SWITCH ACCOUNT</a></li>
+                <li><a href="/MO-POMA_Tech/signOut"><span class="glyphicon glyphicon-log-in"></span> Switch Account</a></li>
                 
               </ul>
             
