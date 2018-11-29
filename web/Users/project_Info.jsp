@@ -24,8 +24,8 @@
                     <a class="navbar-brand" href="#">MO-POMA TECH</a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
-                      <li class="active"><a href="http://localhost:8084/MO-POMA_Tech/">Home</a></li>
-                      <li><a href="http://localhost:8084/MO-POMA_Tech/Users/user_stories.jsp">User Stories</a></li>
+                      <li class="active"><a href="/MO-POMA_Tech/">Home</a></li>
+                      <li><a href="/MO-POMA_Tech/Users/user_stories.jsp">User Stories</a></li>
                       <li><a href="https://github.com/Oddpotatoman/MO-POMA-Tech/issues">Issues Done</a></li>
 
                     </ul>
