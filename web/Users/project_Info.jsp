@@ -130,11 +130,11 @@
                 <p class="paragraph">
                     Project structure is illustrated through this diagram.
                 </p>
-                <img src="C:/Users/Muhammad Ali/Documents/NetBeansProjects/MO-POMA-Tech-master/MO-POMA-Tech/web/firstdiagram.PNG" alt="overall structure" width="450"  class="image-set" >
+                <img src="firstdiagram.PNG" alt="overall structure" width="450"  class="image-set" >
                 
                 <p class="paragraph">
                     The inner part of this structure.
                 </p>
-                <img src="C:/Users/Muhammad Ali/Documents/NetBeansProjects/MO-POMA-Tech-master/MO-POMA-Tech/web/seconddiagram.PNG" alt="inner structure" width="450"  class="image-set">
+                <img src="seconddiagram.PNG" alt="inner structure" width="450"  class="image-set">
     </body>
 </html>

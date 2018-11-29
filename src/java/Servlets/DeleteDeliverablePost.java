@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "DeleteDeliverablePost", urlPatterns = {"/DeleteDeliverablePost"})
+@WebServlet(name = "DeleteDeliverablePost", urlPatterns = {"/deleteDeliverablePost"})
 public class DeleteDeliverablePost extends HttpServlet {
 
     /**
