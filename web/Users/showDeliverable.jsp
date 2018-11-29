@@ -23,6 +23,30 @@
     <jsp:include page="/WEB-INF/menu.jsp" />
   
     <body style="background-color: powderblue;">
+        
+        <style> 
+        body {
+                background-color: powderblue;
+            }
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+            }
+            th, td {
+                text-align: center;
+            }
+            table tr:nth-child(even) {
+                background-color: #eee;
+            }
+            table tr:nth-child(odd) {
+                background-color: #fff;
+            }
+            
+        </style>
+        
     <div class="container justify-content-center">
         <div class="col-12">
         <h1>Show deliverable</h1>
