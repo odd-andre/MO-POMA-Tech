@@ -2,6 +2,7 @@
     Document   : user_stories
     Created on : Nov 17, 2018, 9:02:20 PM
     Author     : Muhammad Ali
+&#10068 for ?
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -45,6 +46,10 @@
                 color: green;
                 
             }
+            .check2 {
+                font-size: 18px;
+                color: yellow;
+            }
         </style>
         
         <%-- check symbol formatting
@@ -62,8 +67,8 @@
                     <a class="navbar-brand" href="#">MO-POMA TECH</a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
-                      <li class="active"><a href="http://localhost:8080/MO-POMA_Tech/">Home</a></li>
-                      <li><a href="http://localhost:8080/MO-POMA_Tech/Users/project_Info.jsp">Project Info</a></li>
+                      <li class="active"><a href="http://localhost:8084/MO-POMA_Tech/">Home</a></li>
+                      <li><a href="http://localhost:8084/MO-POMA_Tech/Users/project_Info.jsp">Project Info</a></li>
                       <li><a href="https://github.com/Oddpotatoman/MO-POMA-Tech/issues">Issues Done</a></li>
 
                     </ul>
@@ -106,28 +111,28 @@
                 <tr>
                     <td>
                         <p class="check">Implemented &#9989;</p>
-                        <form action="http://localhost:8080/MO-POMA_Tech/Show_Module_Detail/2" type="get">
+                        <form action="http://localhost:8084/MO-POMA_Tech/Show_Module_Detail/2" type="get">
                             <input type="submit" class="btn btn-link" value="Show_Module">
                         </form>
                     </td>
                     
                     <td>
                         <p class="check">Implemented &#9989;</p>
-                        <form action="http://localhost:8080/MO-POMA_Tech/" type="get">
+                        <form action="http://localhost:8084/MO-POMA_Tech/addStudent" type="get">
                             <input type="submit" class="btn btn-link" value="Add_Student">
                         </form>
                     </td>
                     
                     <td>
                         <p class="check">Implemented &#9989;</p>
-                        <form action="http://localhost:8080/MO-POMA_Tech/" type="get">
+                        <form action="http://localhost:8084/MO-POMA_Tech/View_Forum/2" type="get">
                             <input type="submit" class="btn btn-link" value="View_Forum">
                         </form>
                     </td>
                     
                     <td>
                         <p class="check1">Implemented &#10068;</p>
-                        <form action="http://localhost:8080/MO-POMA_Tech/" type="get">
+                        <form action="http://localhost:8084/MO-POMA_Tech/" type="get">
                             <input type="submit" class="btn btn-link" value="Posted">
                         </form>
                     </td>
@@ -163,23 +168,23 @@
                 
                 <tr>
                     <td>
-                        <p class="check1">Implemented &#10068;</p>
-                        <form action="http://localhost:8080/MO-POMA_Tech/" type="get">
+                        <p class="check2">Partially Implemented &#9989;</p>
+                        <form action="http://localhost:8084/MO-POMA_Tech/showMessages" type="get">
                             <input type="submit" class="btn btn-link" value="View_Message">
                         </form>
                     </td>
                     
                     <td>
                         <p class="check">Implemented &#9989;</p>
-                        <form action="http://localhost:8080/MO-POMA_Tech/" type="get">
+                        <form action="http://localhost:8084/MO-POMA_Tech/showDeliverable" type="get">
                             <input type="submit" class="btn btn-link" value="Show_Deliverable">
                         </form>
                     </td>
                     
                     
                     <td>
-                        <p class="check1">Implemented &#10068;</p>
-                        <form action="http://localhost:8080/MO-POMA_Tech/" type="get">
+                        <p class="check">Implemented &#9989;</p>
+                        <form action="http://localhost:8084/MO-POMA_Tech/showNotifications" type="get">
                             <input type="submit" class="btn btn-link" value="Notification">
                         </form>
                     </td>
